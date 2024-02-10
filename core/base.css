@@ -1,0 +1,714 @@
+/* recommended jellyfin rounded icons */
+
+@import url("https://cdn.jsdelivr.net/gh/prayag17/Jellyfin-Icons/round.css");
+
+/*
+material icons https://fonts.google.com/icons?selected=Material+Icons
+*/
+
+
+
+html {
+	background: black;
+}
+
+
+/* CHANGES FOR ALL PAGES */
+
+/* Overlays */
+.dialogBackdrop {
+	transition: none !important;
+}
+.dialogBackdropOpened {
+	opacity: .7;
+/* 	background: repeating-linear-gradient(160deg, #000c, #000c 1em, #000a 1em, #000a 2em); */
+}
+.dialog {
+	animation-duration: 0s !important; /* cannot fully remove animation or closing dialogs breaks?..... */
+}
+
+
+/* Modify background */
+
+.backdropContainer {
+	filter: blur(5px);
+}
+
+
+
+/* Modify header */
+
+.skinHeader.semiTransparent {
+	-webkit-backdrop-filter: blur(3px) !important;
+	backdrop-filter: blur(3px) !important;
+}
+
+
+
+/* Modify sidebar */
+
+/* only applies to wider screens in horizontal mode */
+@media (min-width: 800px) and (min-aspect-ratio: 1/1) {
+	.libraryDocument:not(.hide-scroll) .skinHeader,
+	.libraryDocument:not(.hide-scroll) .page {
+		left: 50px;
+	}
+	
+	.libraryDocument:not(.hide-scroll) .mainDrawerButton,
+	.libraryDocument:not(.hide-scroll) .headerHomeButton {
+		display: none;
+	}
+	
+	.libraryDocument:not(.hide-scroll) .mainDrawer {
+		left: -22px !important;
+		width: 72px !important;
+		background: #202020;
+		background: #1a1a1a;
+		color: rgba(255, 255, 255, 0.8);
+		transform: none !important;
+		transition: left 0.12s ease-out, width 0.12s ease-out !important;
+	} .libraryDocument:not(.hide-scroll) .mainDrawer:hover {
+		left: 0 !important;
+		width: 320px !important;
+	}
+	
+	.libraryDocument:not(.hide-scroll) .navMenuOption-selected:not(:hover) {
+		background: none !important;
+	}
+	
+	.libraryDocument:not(.hide-scroll) .sidebarHeader {
+		opacity: 0;
+		transition: opacity 0.12s ease-out;
+	} .libraryDocument:not(.hide-scroll) .mainDrawer:hover .sidebarHeader {
+		opacity: 1;
+	}
+	
+	/* move header texts up since they have more space */
+	.headerTabs {
+		width: auto;
+		margin-top: -4.3em;
+		align-self: center;
+	}
+}
+
+
+
+/* Library browsing */
+
+/* remove trailers & upcoming */
+.libraryDocument .emby-tab-button[data-index="2"] {
+	display: none;
+}
+
+/* rounded images */
+.visualCardBox,
+.cardScalable {
+	border-radius: .6em;
+	overflow: hidden;
+}
+
+.visualCardBox .cardScalable {
+	border-radius: .6em .6em 0 0;
+}
+
+/* Better Filters */
+
+.dynamicFilterDialog {
+	--width: clamp(20em, 80vw, 1200px);
+	top: 5vh !important;
+	left: calc(50% - var(--width)*.5) !important;
+	width: var(--width);
+	height: 85vh;
+	margin: 0 !important;
+}
+
+.filterDialogContent {
+	& #expandButton {
+		pointer-events: none;
+		
+		& .emby-collapse-expandIcon {
+			display: none;
+		}
+	}
+	
+	& .collapseContent {
+		display: block !important;
+		height: auto !important;
+	}
+	
+	& .checkboxList {
+		display: flex;
+		flex-flow: row wrap;
+		gap: 0 10px;
+		
+		& .emby-checkbox-label {
+			width: auto;
+			height: auto;
+			padding: 0;
+			font-size: 1rem;
+			
+			& .checkboxOutline {
+				position: static;
+				width: 1.35em;
+				height: 1.35em;
+				order: -1;
+				margin-right: .5em;
+			}
+		}
+	}
+}
+
+/* blur cards on hover
+.card:hover .cardImageContainer {
+	filter: blur(1px);
+}*/
+
+/* increase darkening */
+.cardOverlayContainer {
+	background: rgba(0,0,0,0.7);
+}
+
+/* indicators */
+.cardIndicators, .listItemIndicators {
+	top: 0;
+	right: 0;
+}
+.indicator {
+	padding: .125em;
+	box-shadow: -0.75px 1.5px 6px 0.5px rgba(0,0,0,0.7);
+	border-width: 0 0 1px 1px;
+	border-radius: 0 0 0 .6em !important;
+}
+.countIndicator {
+	background: rgba(25, 25, 125, 0.85);
+}
+.playedIndicator {
+	background: rgba(25, 125, 25, 0.85);
+}
+
+/* buttons */
+.playstatebutton-icon-played {
+	color: green;
+}
+
+
+
+/* Fancy play animation */
+
+.paper-icon-button-light[data-action="resume"]:hover:not(:disabled) {
+	background: rgba(150, 30, 30, 0.3);
+	background: rgba(0, 0, 0, 0.3);
+	color: #ff4f4f;
+	text-shadow: 1px 1px 5px rgba(150, 30, 30, 0.9);
+}
+
+.paper-icon-button-light[data-action="resume"]::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	box-shadow: inset 0 3px 0 #ff4f4f;
+	border-radius: 100%;
+	opacity: 0;
+}
+.paper-icon-button-light[data-action="resume"]:hover:not(:disabled)::before {
+	animation:
+		8s linear .6s infinite rotate-repeat,
+		.6s cubic-bezier(0.25, 0.1, 0, 1) 0s backwards rotate-in;
+	opacity: 1;
+}
+@keyframes rotate-in {
+	from {
+		transform: rotate(-220deg);
+		opacity: 0;
+	} to {
+		transform: rotate(45deg);
+		opacity: 1;
+	}
+}
+@keyframes rotate-repeat {
+	from {
+		transform: rotate(45deg);
+	} to {
+		transform: rotate(405deg);
+	}
+}
+
+
+
+/* Hide collection year */
+.card[data-path*="/data/collections/"] .cardText-secondary {
+	display: none;
+}
+
+
+
+/* Hide collection count */
+.card[data-path*="/data/collections/"] .indicator {
+	display: none;
+}
+
+
+
+/* Increase collection poster size */
+
+@media (max-width:31.25em) or (min-width:31.25em) {
+	.collectionItems .portraitCard {
+		width: 50%;
+	}
+}
+@media (min-width:43.75em) {
+	.collectionItems .portraitCard {
+		width: 33.333333333333336%;
+	}
+}
+@media (min-width:50em) {
+	.collectionItems .portraitCard {
+		width: 25%;
+	}
+}
+@media (min-width:75em) {
+	.collectionItems .portraitCard {
+		width: 20%;
+	}
+}
+@media (min-width:87.5em) {
+	.collectionItems .portraitCard {
+		width: 16.666666666666668%;
+	}
+}
+@media (min-width:100em) {
+	.collectionItems .portraitCard {
+		width: 14.285714285714286%;
+	}
+}
+@media (min-width:120em) {
+	.portraitCard {
+		width: 12.5%;
+	}
+}
+@media (min-width:131.25em) {
+	.collectionItems .portraitCard {
+		width: 11.11111111111111%;
+/* 		width: 10%; */
+	}
+}
+
+
+
+/* Letter Picker Improvements */
+
+.alphaPickerButton {
+	border-radius: 50%;
+	transition: background 0.1s ease-out;
+}
+.alphaPickerButton:hover,
+.alphaPickerButton-selected {
+	background: rgba(127, 127, 127, 0.25);
+}
+
+
+
+/* Library item page */
+
+#itemBackdrop {
+	position: fixed;
+	top: 0;
+	width: 100%;
+	height: 100%;
+}
+
+.detailPageWrapperContainer {
+	position: relative;
+	top: 7.2em;
+	min-height: calc(100vh + 7.2em);
+	background: #101010c0;
+	-webkit-backdrop-filter: blur(10px);
+	backdrop-filter: blur(10px);
+}
+
+@media (pointer: fine) {
+	.detailPageWrapperContainer {
+		top: 40vh;
+		min-height: calc(60vh + 7.2em);
+	}
+
+	.detailImageContainer .card {
+		top: -10vw;
+		transform: none;
+	}
+	.detailImageContainer .card.backdropCard {
+		top: -3vw;
+	}
+	.detailImageContainer .card.squareCard {
+		top: -5vw;
+	}
+}
+
+.detailPageSecondaryContainer {
+	padding: 1.25em 0;
+	margin: 0;
+}
+
+/* recommended/suggestions section - AKA "more like this" carousel */
+@media (pointer: fine) {
+	#similarCollapsible .card + .card {
+		margin-left: -4em;
+		transition: margin-left 0.1s ease-out;
+	}
+	#similarCollapsible .card:hover + .card {
+		margin-left: -.5em;
+	}
+
+	#similarCollapsible .card + .card .cardScalable {
+		box-shadow: -7px 0 8px -4px black;
+	}
+
+	#similarCollapsible .cardText {
+		-webkit-mask-image: linear-gradient(to left, transparent 1vw, rgba(0,0,0,0.1) 3vw, black 7vw);
+		mask-image: linear-gradient(to left, transparent 1vw, rgba(0,0,0,0.1) 3vw, black 7vw);
+	}
+	#similarCollapsible .card:hover .cardText {
+		-webkit-mask-image: none;
+		mask-image: none;
+	}
+}
+
+
+
+/* Stylized and smaller cast/crew info as per https://jellyfin.org/docs/general/clients/css-customization.html */
+
+/* Shrink and square (or round) cast thumnails */
+#castContent .card.overflowPortraitCard.personCard.card-hoverable.card-withuserdata {width: 4.2cm !important; font-size: 90% !important;}
+#castContent .card.overflowPortraitCard.personCard.card-withuserdata {width: 4.2cm !important; font-size: 90% !important;}
+
+/* Correct image aspect ratio behaviour, set border-radius to zero for square tiles */
+#castContent .cardContent-button.cardImageContainer.coveredImage.cardContent.cardContent-shadow.itemAction.lazy {background-size: cover; !important; border-radius: 2.5cm;}
+#castContent .cardContent-button.cardImageContainer.coveredImage.defaultCardBackground.defaultCardBackground1.cardContent.cardContent-shadow.itemAction {background-size: cover; !important; border-radius: 2.5cm;}
+#castContent .cardContent-button.cardImageContainer.coveredImage.defaultCardBackground.defaultCardBackground2.cardContent.cardContent-shadow.itemAction {background-size: cover; !important; border-radius: 2.5cm;}
+#castContent .cardContent-button.cardImageContainer.coveredImage.defaultCardBackground.defaultCardBackground3.cardContent.cardContent-shadow.itemAction {background-size: cover; !important; border-radius: 2.5cm;}
+#castContent .cardContent-button.cardImageContainer.coveredImage.defaultCardBackground.defaultCardBackground4.cardContent.cardContent-shadow.itemAction {background-size: cover; !important; border-radius: 2.5cm;}
+#castContent .cardContent-button.cardImageContainer.coveredImage.defaultCardBackground.defaultCardBackground5.cardContent.cardContent-shadow.itemAction {background-size: cover; !important; border-radius: 2.5cm;}
+#castContent .cardScalable {width: 3.8cm !important; height: 3.8cm !important; border-radius: 2.5cm;}
+#castContent .cardOverlayContainer.itemAction {border-radius: 2.5cm;}
+
+/* Center the mouseover buttons */
+#castContent .cardOverlayButton-br {bottom: 4%; right: 15%; width: 70%;}
+#castContent .cardOverlayButton.cardOverlayButton-hover.itemAction.paper-icon-button-light {margin:auto;}
+
+
+
+/* Episode pages & "more from" section on library pages */
+@media (pointer: fine) {
+	#childrenCollapsible.verticalSection-extrabottompadding .itemsContainer {
+		flex-flow: row wrap;
+		padding-right: 0;
+	}
+
+	#childrenCollapsible.verticalSection-extrabottompadding .listItem {
+		width: 19vw;
+		min-width: 250px;
+		max-width: 350px;
+	}
+
+	#childrenCollapsible.verticalSection-extrabottompadding .listItem-content {
+		flex-flow: column nowrap;
+	}
+
+	#childrenCollapsible.verticalSection-extrabottompadding .listItemImage {
+		width: 100%;
+		min-height: 125px;
+		max-height: 175px;
+		border-radius: .6em;
+		margin: 0;
+		overflow: hidden;
+	}
+
+	#childrenCollapsible.verticalSection-extrabottompadding .listItemImage::before {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background: rgba(0,0,0,0.7);
+		opacity: 0;
+		transition: opacity .2s ease;
+	}
+	#childrenCollapsible.verticalSection-extrabottompadding .listItem:hover .listItemImage::before {
+		opacity: 1;
+	}
+
+	#childrenCollapsible.verticalSection-extrabottompadding .listItemBody {
+		padding: .25em .5em .85em;
+		order: 1;
+	}
+
+	#childrenCollapsible.verticalSection-extrabottompadding .listViewUserDataButtons {
+		height: 3em;
+		margin-top: -3em;
+		opacity: 0;
+		transition: opacity .2s ease;
+	}
+	#childrenCollapsible.verticalSection-extrabottompadding .listItem:hover .listViewUserDataButtons {
+		opacity: 1;
+	}
+}
+
+/* fix default CSS */
+.listItemProgressBar {
+	position: absolute;
+}
+
+
+
+/* Add website icons */
+
+.itemExternalLinks {
+	font-size: 0 !important;
+}
+
+.itemExternalLinks a {
+	font-size: 13.6896px;
+	margin-right: .6em;
+	line-height: 1.8em;
+}
+
+.itemExternalLinks a::before {
+	width: 1em;
+	height: 1em;
+	background-size: contain;
+	margin-right: .4em;
+}
+.itemExternalLinks a[href^="https://anilist.co"]::before {
+	content: "";
+	background-image: url(https://anilist.co/img/icons/favicon-32x32.png);
+}
+.itemExternalLinks a[href^="https://www.imdb.com"]::before {
+	content: "";
+	background-image: url(https://m.media-amazon.com/images/G/01/imdb/images-ANDW73HA/favicon_desktop_32x32._CB1582158068_.png);
+}
+.itemExternalLinks a[href^="https://www.themoviedb.org"]::before {
+	content: "";
+	background-image: url(https://www.themoviedb.org/assets/2/favicon-32x32-543a21832c8931d3494a68881f6afcafc58e96c5d324345377f3197a37b367b5.png);
+}
+.itemExternalLinks a[href^="https://trakt.tv"]::before {
+	content: "";
+	background-image: url(https://walter.trakt.tv/hotlink-ok/public/apple-touch-icon.png);
+}
+.itemExternalLinks a[href^="http://www.tvmaze.com"]::before {
+	content: "";
+	background-image: url(https://static.tvmaze.com/images/favico/favicon-32x32.png);
+}
+.itemExternalLinks a[href^="https://www.thetvdb.com"]::before {
+	content: "";
+	background-image: url(https://www.thetvdb.com/images/icon.png);
+}
+
+
+
+/* Login form */
+
+.visualLoginForm > h1,
+.btnForgotPassword {
+	display: none !important;
+}
+
+#loginPage .cardPadder {
+	background: none !important;
+}
+
+#loginPage .defaultCardBackground {
+	background: rgba(0,0,0,0.4);
+}
+
+#loginPage > div {
+	position: relative;
+	padding-top: 2.5em;
+	padding-bottom: 0 !important;
+}
+
+.btnManual {
+	width: auto !important;
+	margin: 0 auto !important;
+}
+
+#loginPage::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: linear-gradient(170deg, #b32424 100px, #500152, #340034, #27001f);
+	opacity: 0.25;
+}
+
+.manualLoginForm {
+	max-width: 300px;
+	background: rgba(0,0,0,0.3);
+	border-radius: 10px;
+	padding: 15px;
+}
+
+/* temporary measure - explain how to sign in over LAN */
+/*.manualLoginForm .inputContainer + .inputContainer::after {
+	content: "\e88e  use your birth year while on the local network";
+	display: block;
+	margin-top: .25em;
+	font-family: "Noto Sans", "Material Icons";
+	opacity: 0.65;
+	animation: 4.5s cubic-bezier(.26,.1,.34,1.15) 3s infinite attention;
+}
+@keyframes attention {
+	0%, 87.5%, 76.75%, 96%, 99%, 100% {
+		transform: translateX(0px);
+	}
+	90% {
+		transform: translateX(5px);
+	}
+	94.75% {
+		transform: translateX(3px);
+	}
+	97.75% {
+		transform: translateX(1.5px);
+	}
+}*/
+
+
+
+/* Metadata changes for easier editing */
+
+.focuscontainer.dialog.dialog-fixedSize.dialog-small.formDialog.opened {
+	width: 100%;
+	height: 100%;
+}
+
+/* Header & Footer */
+
+.formDialogHeader,
+.formDialogFooter {
+	padding: 0 .5em;
+}
+
+.formDialogHeader .paper-icon-button-light {
+/* 	button */
+}
+
+/* Fields */
+
+.metadataFormFields {
+	font-size: 13px;
+	line-height: 1.25;
+}
+
+.metadataFormFields .emby-input {
+	padding: 2px;
+	font-size: 13px;
+}
+
+.metadataFormFields > div:not(.formDialogFooter) {
+	display: flow-root;
+	clear: both;
+	padding-bottom: 3em !important;
+	margin: 0 !important;
+}
+
+.editMetadataForm [class$="Container"]:not(.selectArrowContainer) {
+	width: 100%;
+	float: left;
+}
+
+.editMetadataForm .inlineForm {
+	display: contents;
+}
+
+#fldPath label,
+#fldDateAdded .fieldDescription {
+	display: none;
+}
+
+#fldPath input {
+	background: none;
+	border: none;
+	padding: 0;
+	opacity: 0.5;
+}
+
+#fldOriginalName,
+#fldPath + div {
+	width: 60%;
+	margin-right: 1%;
+}
+#fldOriginalName + div {
+	width: 39%;
+}
+
+#fldDateAdded, #fldStatus {
+	width: 39%;
+	margin-right: 1%;
+}
+#fldParentIndexNumber, #fldIndexNumber {
+	width: 19%;
+	margin-right: 1%;
+	margin-left: 0;
+}
+#fldCommunityRating {
+	width: 20%;
+}
+
+#fldPremiereDate, #fldYear, #fldEndDate {
+	width: 32%;
+	margin-right: 1%;
+}
+
+#fldAirDays div {
+	display: flex;
+}
+
+#fldAirTime,
+#fldSeriesRuntime,
+#fldOfficialRating,
+#fldCustomRating,
+/* #fldDisplayOrder */
+#fldOriginalAspectRatio,
+#fld3dFormat
+{
+	width: 24%;
+	margin-right: 1%;
+	margin-left: 0;
+}
+
+.editMetadataForm .externalIdsSection .inputContainer {
+	width: 24%;
+	margin-right: 1%;
+	white-space: nowrap;
+}
+
+/* [id$="Collapsible"] .listItem {
+	position: relative;
+	float: left;
+	background: #333333;
+	background: #202020;
+	padding: 0;
+	border-radius: 10px;
+	margin: 0 0 .6em .6em;
+}
+[id$="Collapsible"] .listItemIcon {
+	display: none;
+}
+[id$="Collapsible"] .listItemBody {
+	padding: .4em .6em;
+}
+[id$="Collapsible"] .listItemBody + button {
+	position: absolute;
+	right: 0;
+	opacity: 0;
+	z-index: 1;
+}
+
+[id$="Collapsible"] .listItem:hover .listItemBody + button {
+	opacity: 1;
+} */
