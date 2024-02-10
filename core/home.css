@@ -1,0 +1,31 @@
+/*
+HOME PAGE
+/home.html
+*/
+
+/* Episode Cards */
+
+.visualCardBox, .cardScalable {
+	border-radius: 1rem;
+}
+
+.innerCardFooter {
+	overflow: visible;
+}
+
+.itemProgressBar {
+	position: absolute;
+	left: .5rem;
+	right: .5rem;
+	bottom: .3rem;
+	height: .4rem;
+	background: #0008;
+	border-radius: 99em;
+	padding: .2rem;
+}
+
+.itemProgressBarForeground {
+	position: static;
+	height: 100%;
+	border-radius: 99em;
+}

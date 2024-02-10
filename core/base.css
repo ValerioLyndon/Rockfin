@@ -10,6 +10,11 @@ material icons https://fonts.google.com/icons?selected=Material+Icons
 
 html {
 	background: black;
+	font-size: 10px;
+}
+
+body {
+	font-size: 1.5em;
 }
 
 
