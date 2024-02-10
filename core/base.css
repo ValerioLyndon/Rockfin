@@ -24,7 +24,7 @@ html {
 /* 	background: repeating-linear-gradient(160deg, #000c, #000c 1em, #000a 1em, #000a 2em); */
 }
 .dialog {
-	animation-duration: 0s !important; /* cannot fully remove animation or closing dialogs breaks?..... */
+	animation-duration: 0.01s !important; /* cannot fully remove animation or closing dialogs breaks?..... */
 }
 
 
@@ -47,44 +47,47 @@ html {
 
 /* Modify sidebar */
 
-/* only applies to wider screens in horizontal mode */
-@media (min-width: 800px) and (min-aspect-ratio: 1/1) {
-	.libraryDocument:not(.hide-scroll) .skinHeader,
-	.libraryDocument:not(.hide-scroll) .page {
-		left: 50px;
-	}
-	
-	.libraryDocument:not(.hide-scroll) .mainDrawerButton,
-	.libraryDocument:not(.hide-scroll) .headerHomeButton {
-		display: none;
-	}
-	
-	.libraryDocument:not(.hide-scroll) .mainDrawer {
-		left: -22px !important;
-		width: 72px !important;
-		background: #202020;
-		background: #1a1a1a;
-		color: rgba(255, 255, 255, 0.8);
-		transform: none !important;
-		transition: left 0.12s ease-out, width 0.12s ease-out !important;
-	} .libraryDocument:not(.hide-scroll) .mainDrawer:hover {
-		left: 0 !important;
-		width: 320px !important;
-	}
-	
-	.libraryDocument:not(.hide-scroll) .navMenuOption-selected:not(:hover) {
-		background: none !important;
-	}
-	
-	.libraryDocument:not(.hide-scroll) .sidebarHeader {
-		opacity: 0;
-		transition: opacity 0.12s ease-out;
-	} .libraryDocument:not(.hide-scroll) .mainDrawer:hover .sidebarHeader {
-		opacity: 1;
+.layout-desktop {
+	& .libraryDocument:not(.hide-scroll) {		
+		& .skinHeader,
+		& .page {
+			left: 50px;
+		}
+		
+		& .mainDrawerButton,
+		& .headerHomeButton {
+			display: none;
+		}
+		
+		& .mainDrawer {
+			left: -22px !important;
+			width: 72px !important;
+			background: #202020;
+			background: #1a1a1a;
+			color: rgba(255, 255, 255, 0.8);
+			transform: none !important;
+			transition: left 0.12s ease-out, width 0.12s ease-out !important;
+		}
+		& .mainDrawer:hover {
+			left: 0 !important;
+			width: 320px !important;
+		}
+		
+		& .navMenuOption-selected:not(:hover) {
+			background: none !important;
+		}
+		
+		& .sidebarHeader {
+			opacity: 0;
+			transition: opacity 0.12s ease-out;
+		}
+		& .mainDrawer:hover .sidebarHeader {
+			opacity: 1;
+		}
 	}
 	
 	/* move header texts up since they have more space */
-	.headerTabs {
+	& .headerTabs {
 		width: auto;
 		margin-top: -4.3em;
 		align-self: center;
