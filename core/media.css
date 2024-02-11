@@ -62,10 +62,13 @@ MEDIA ITEM
 
 	/* HEADER */
 
-	.detailLogo {
-		left: 30vw;
+	& .detailLogo {
+		z-index: 1;
+		left: var(--s-card-allowance);
+		width: calc(100% - var(--s-card-allowance));
 		top: calc(var(--s-banner) - 20rem);
 		height: 7rem;
+		background-position-x: left;
 	}
 	
 	/* NEXT UP */
