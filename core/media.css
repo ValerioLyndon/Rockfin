@@ -220,7 +220,10 @@ MEDIA ITEM
 	}
 
 	& #childrenCollapsible.verticalSection-extrabottompadding .listItem {
+		position: relative;
 		width: 30rem;
+		overflow: visible;
+		contain: initial;
 	}
 
 	& #childrenCollapsible.verticalSection-extrabottompadding .listItem-content {
@@ -257,6 +260,8 @@ MEDIA ITEM
 	& #childrenCollapsible.verticalSection-extrabottompadding .listItemBody {
 		padding: .25em .5em .85em;
 		order: 1;
+		overflow: visible;
+		contain: initial;
 	}
 
 	& #childrenCollapsible.verticalSection-extrabottompadding .listViewUserDataButtons {
@@ -274,6 +279,15 @@ MEDIA ITEM
 	& .listItem-overview {
 		position: absolute;
 		bottom: 100%;
+		z-index: 5;
+		background: var(--foreground);
+		padding: .6em;
+		border-radius: .6em;
+		pointer-events: none;
+		opacity: 0;
+	}
+	& .listItem:hover .listItem-overview {
+		opacity: 1;
 	}
 }
 
