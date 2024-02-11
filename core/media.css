@@ -16,6 +16,10 @@ MEDIA ITEM
 	min-height: calc(100vh + 7.2em);
 	background: color-mix(in hsl, var(--background) 80%, transparent);
 	backdrop-filter: blur(10px);
+	
+	.layout-mobile & {
+		top: 30vh;
+	}
 }
 
 
@@ -125,6 +129,9 @@ MEDIA ITEM
 	text-indent: -4.5ch; /* VERY INNACURATELY hides the "Tags: " text from the start. */
 	overflow: hidden;
 }
+.layout-mobile .itemTags {
+	margin-left: 5.1em !important;
+}
 
 .itemTags::before {
 	content: "Tags";
@@ -140,6 +147,7 @@ MEDIA ITEM
 	display: flex;
 	gap: .3rem;
 	font-size: 0 !important;
+	flex-wrap: wrap;
 }
 
 .itemExternalLinks a {

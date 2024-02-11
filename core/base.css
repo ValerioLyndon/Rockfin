@@ -15,10 +15,10 @@
 }
 
 html {
-	font-size: 10px;
+	font-size: 10px !important;
 }
 
-.layout-desktop body {
+body {
 	font-size: 1.5em;
 }
 
