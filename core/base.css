@@ -4,13 +4,8 @@
 
 /* material icons reference https://fonts.google.com/icons?selected=Material+Icons */
 
-/* resets */
 
-* {
-	contain: initial !important;
-}
-
-/* theme variables */
+/* VARIABLES */
 
 :root {
 	/* Colours */
@@ -32,7 +27,16 @@ body {
 	font-size: 1.5em;
 }
 
+
 /* BASIC ELEMENTS */
+
+/* Resets */
+
+* {
+	contain: initial !important;
+}
+
+/* Sizings */
 
 .padded-left {
 	padding-left: var(--s-page-pad);
@@ -41,7 +45,28 @@ body {
 	padding-right: var(--s-page-pad);
 }
 
-/* CHANGES FOR ALL PAGES */
+/* Scrollers */
+
+.emby-scroller {
+	margin-inline:  var(--s-page-pad);
+}
+.layout-mobile .emby-scroller {
+	padding-inline: 0;
+}
+
+
+/* BACKGROUND */
+
+.backgroundContainer.withBackdrop {
+	background: color-mix(in hsl, var(--background) 91%, transparent);
+}
+
+.backdropImage {
+	filter: blur(10px);
+}
+
+
+/* DIALOGS */
 
 /* Overlays */
 .dialogBackdrop {
@@ -51,7 +76,7 @@ body {
 	opacity: .7;
 /* 	background: repeating-linear-gradient(160deg, #000c, #000c 1em, #000a 1em, #000a 2em); */
 }
-.dialog {
+.layout-desktop .dialog {
 	animation-duration: 0.01s !important; /* cannot fully remove animation or closing dialogs breaks?..... */
 }
 
@@ -100,24 +125,6 @@ body {
 }
 
 
-/* Scrollers */
-
-.emby-scroller {
-	margin-inline:  var(--s-page-pad);
-}
-.layout-mobile .emby-scroller {
-	padding-inline: 0;
-}
-
-/* Modify background */
-
-.backgroundContainer.withBackdrop {
-	background: color-mix(in hsl, var(--background) 80%, transparent);
-}
-
-.backdropImage {
-	filter: blur(10px);
-}
 
 
 
@@ -271,10 +278,9 @@ body {
 /* Fancy play animation */
 
 .paper-icon-button-light[data-action="resume"]:hover:not(:disabled) {
-	background: rgba(150, 30, 30, 0.3);
-	background: rgba(0, 0, 0, 0.3);
-	color: #ff4f4f;
-	text-shadow: 1px 1px 5px rgba(150, 30, 30, 0.9);
+	background: #0008;
+	color: var(--accent);
+	text-shadow: 1px 1px 5px color-mix(in hsl, var(--accent) 66%, transparent);
 }
 
 .paper-icon-button-light[data-action="resume"]::before {
@@ -284,7 +290,7 @@ body {
 	left: 0;
 	width: 100%;
 	height: 100%;
-	box-shadow: inset 0 3px 0 #ff4f4f;
+	box-shadow: inset 0 3px 0 var(--accent), inset 0 1px 3px var(--accent);
 	border-radius: 100%;
 	opacity: 0;
 }
