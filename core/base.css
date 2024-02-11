@@ -18,6 +18,10 @@
 	/* Sizes */
 	--s-page-pad: calc(1vw + 3rem);
 }
+.layout-mobile {
+	/* Sizes */
+	--s-page-pad: 3.3%;
+}
 
 html {
 	font-size: 10px !important;
@@ -48,9 +52,12 @@ body {
 /* Scrollers */
 
 .emby-scroller {
-	margin-inline:  var(--s-page-pad);
+	margin-inline: var(--s-page-pad);
 }
 .layout-mobile .emby-scroller {
+	padding-inline: var(--s-page-pad);
+}
+.layout-mobile .itemDetailPage .emby-scroller {
 	padding-inline: 0;
 }
 
@@ -162,8 +169,13 @@ body {
 	mask: url(./assets/img/banner-light.png) left center / contain no-repeat;
 }
 
+.skinHeader {
+	/* give mobile header a transition */
+	transition: background .5s ease-in-out, transform .2s ease-out;
+}
+
 .skinHeader-withBackground {
-	background: #0008;
+	background: color-mix(in hsl, var(--background) 80%, transparent);
 	backdrop-filter: blur(5px);
 }
 
@@ -174,13 +186,26 @@ body {
 /* Modify header */
 
 .skinHeader.semiTransparent {
-	-webkit-backdrop-filter: blur(3px) !important;
 	backdrop-filter: blur(3px) !important;
 }
 
 
 
 /* Modify sidebar */
+
+.mainDrawerButton,
+.headerHomeButton {
+	display: none;
+}
+		
+.navMenuOption-selected:not(:hover) {
+	background: none !important;
+}
+
+.mainDrawer {
+	background: color-mix(in hsl, var(--background) 80%, transparent);
+	backdrop-filter: blur(5px);
+}
 
 .layout-desktop {
 	& .libraryDocument:not(.hide-scroll) {		
@@ -189,16 +214,9 @@ body {
 			left: 50px;
 		}
 		
-		& .mainDrawerButton,
-		& .headerHomeButton {
-			display: none;
-		}
-		
 		& .mainDrawer {
 			left: -22px !important;
 			width: 72px !important;
-			background: #202020;
-			background: #1a1a1a;
 			color: rgba(255, 255, 255, 0.8);
 			transform: none !important;
 			transition: left 0.12s ease-out, width 0.12s ease-out !important;
@@ -207,10 +225,6 @@ body {
 		& .mainDrawer:hover {
 			left: 0 !important;
 			width: 320px !important;
-		}
-		
-		& .navMenuOption-selected:not(:hover) {
-			background: none !important;
 		}
 		
 		& .sidebarHeader {
@@ -227,6 +241,75 @@ body {
 		width: auto;
 		margin-top: -4.3em;
 		align-self: center;
+	}
+}
+
+.layout-mobile {
+	
+	& .mainDrawer {
+		position: fixed;
+		inset: auto 0 0 !important;
+		width: auto !important;
+		height: 6rem;
+		padding: 0 .6rem;
+		transform: translateY(6rem) !important;
+		transition: transform .15s ease-out;
+	}
+	&:not(:has(.headroom--unpinned)) .mainDrawer {
+		transform: translateY(0) !important;
+	}
+	
+	& .scrollContainer {
+		display: flex;
+		gap: .6rem;
+		overflow: hidden;
+	}
+	
+	& .libraryMenuOptions {
+		display: flex;
+		flex-flow: row nowrap;
+		max-width: calc(100% - 7.8rem);
+		height: 6rem;
+		gap: .6rem;
+		overflow-x: scroll;
+		overflow-y: hidden;
+	}
+	
+	& .mainDrawerHandle,
+	& .customMenuOptions:empty,
+	& .adminMenuOptions,
+	& .userMenuOptions,
+	& .sidebarHeader,
+	& div:not([class]) {
+		display: none;
+	}
+	
+	& .navMenuOption {
+		width: 6rem;
+		height: 6rem;
+		flex: 0 0 auto;
+		padding: 0 !important;
+		flex-direction: column;
+		justify-content: center;
+		border-radius: 1rem !important;
+	}
+	& .navMenuOptionIcon {
+		margin: 0;
+	}
+	& .navMenuOptionText {
+		width: 100%;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		font-size: 1.2rem;
+	}
+	
+	/* fix scrolling */
+	.tmla-mask {
+		display: none;
+	}
+	
+	.bodyWithPopupOpen:has(.drawer-open) {
+		overflow-y: scroll !important;
 	}
 }
 
