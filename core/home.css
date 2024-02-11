@@ -22,6 +22,7 @@ HOME PAGE
 	background: #0008;
 	border-radius: 99em;
 	padding: .2rem;
+	backdrop-filter: blur(1px);
 }
 
 .itemProgressBarForeground {

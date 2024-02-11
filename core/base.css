@@ -2,9 +2,15 @@
 
 @import url("https://cdn.jsdelivr.net/gh/prayag17/Jellyfin-Icons/round.css");
 
-/*
-material icons https://fonts.google.com/icons?selected=Material+Icons
-*/
+/* material icons reference https://fonts.google.com/icons?selected=Material+Icons */
+
+/* theme variables */
+
+:root {
+	--active: #9e5fc3;
+	--accent: #00a4dc;
+	--gradient: linear-gradient(-15deg, #0006, #1c1c1c66), radial-gradient(circle at 20% -30%, hsla(150deg, 70%, 50%, 10%), hsla(270deg, 70%, 50%, 15%))
+}
 
 
 

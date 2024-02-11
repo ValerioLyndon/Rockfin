@@ -1,0 +1,66 @@
+/*
+PLAYER
+/video
+*/
+
+
+/* temp */
+
+/* .videoOsdBottom, */
+/* .osdHeader-hidden
+{
+	display: block !important;
+	opacity: 1;
+} */
+
+/* Controls */
+
+/* .osdControls {
+	display: flex;
+	flex-direction: column-reverse;
+} */
+
+
+
+/* Progress Bar */
+
+.mdl-slider-background-flex {
+	background: #0008;
+	padding: .2rem;
+	height: .3rem;
+	backdrop-filter: blur(1px);
+	transform: translateY(-50%);
+	margin: 0;
+}
+
+.mdl-slider-background-flex,
+.mdl-slider-background-lower,
+.mdl-slider-background-upper {
+	border-radius: 99em;
+}
+
+.mdl-slider-background-lower {
+	background: var(--accent);
+}
+
+.mdl-slider-background-upper {
+	background: #fff4;
+}
+
+/* Handle */
+
+.mdl-slider {
+/* 	padding-top: .4rem; */
+}
+
+/* Time Slider */
+
+.sliderBubble {
+	background: var(--gradient);
+	backdrop-filter: blur(5px);
+	border-radius: 1rem;
+}
+
+.sliderBubbleText {
+	padding: 1rem;
+}
