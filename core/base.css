@@ -107,6 +107,49 @@ body {
 	background: #0008;
 }
 
+/* CARDS - LIST STYLE */
+
+.itemsContainer.vertical-list {
+	max-width: 70em;
+	display: grid;
+	grid-template-columns: 1fr 100fr 1fr 1fr;
+	grid-template-areas: "image title rating buttons";
+	grid-auto-flow: row;
+	
+	& .listItem {
+		display: grid;
+		grid-column: 1 / span 4;
+		grid-template-columns: subgrid;
+		grid-row-end: span 1;
+	}
+
+	& .listItemImage {
+		grid-area: image;
+	}
+
+	& .listItemBody {
+		grid-area: title;
+	}
+
+	& .listItemMediaInfo {
+		grid-area: rating;
+	}
+
+	& .mediaInfoOfficialRating {
+		white-space: nowrap;
+	}
+
+	& .starRatingContainer {
+		width: 4em;
+		margin-left: auto;
+	}
+
+	& .listViewUserDataButtons {
+		grid-area: buttons;
+	}
+}
+
+
 /* HEADER */
 
 /* monochrome logo */
