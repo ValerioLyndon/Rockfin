@@ -14,14 +14,11 @@
 	--foreground: hsl(0, 5%, 11%);
 }
 
-
-
 html {
-	background: black;
 	font-size: 10px;
 }
 
-body {
+.layout-desktop body {
 	font-size: 1.5em;
 }
 
@@ -129,46 +126,48 @@ body {
 
 /* Better Filters */
 
-.dynamicFilterDialog {
-	--width: clamp(20em, 80vw, 1200px);
-	top: 5vh !important;
-	left: calc(50% - var(--width)*.5) !important;
-	width: var(--width);
-	height: 85vh;
-	margin: 0 !important;
-}
+.layout-desktop {	
+	& .dynamicFilterDialog {
+		--width: clamp(20em, 80vw, 1200px);
+		top: 5vh !important;
+		left: calc(50% - var(--width)*.5) !important;
+		width: var(--width);
+		height: 85vh;
+		margin: 0 !important;
+	}
 
-.filterDialogContent {
-	& #expandButton {
-		pointer-events: none;
-		
-		& .emby-collapse-expandIcon {
-			display: none;
-		}
-	}
-	
-	& .collapseContent {
-		display: block !important;
-		height: auto !important;
-	}
-	
-	& .checkboxList {
-		display: flex;
-		flex-flow: row wrap;
-		gap: 0 10px;
-		
-		& .emby-checkbox-label {
-			width: auto;
-			height: auto;
-			padding: 0;
-			font-size: 1rem;
+	& .filterDialogContent {
+		& #expandButton {
+			pointer-events: none;
 			
-			& .checkboxOutline {
-				position: static;
-				width: 1.35em;
-				height: 1.35em;
-				order: -1;
-				margin-right: .5em;
+			& .emby-collapse-expandIcon {
+				display: none;
+			}
+		}
+		
+		& .collapseContent {
+			display: block !important;
+			height: auto !important;
+		}
+		
+		& .checkboxList {
+			display: flex;
+			flex-flow: row wrap;
+			gap: 0 10px;
+			
+			& .emby-checkbox-label {
+				width: auto;
+				height: auto;
+				padding: 0;
+				font-size: 1rem;
+				
+				& .checkboxOutline {
+					position: static;
+					width: 1.35em;
+					height: 1.35em;
+					order: -1;
+					margin-right: .5em;
+				}
 			}
 		}
 	}
@@ -346,72 +345,6 @@ body {
 /* Center the mouseover buttons */
 #castContent .cardOverlayButton-br {bottom: 4%; right: 15%; width: 70%;}
 #castContent .cardOverlayButton.cardOverlayButton-hover.itemAction.paper-icon-button-light {margin:auto;}
-
-
-
-/* Episode pages & "more from" section on library pages */
-@media (pointer: fine) {
-	#childrenCollapsible.verticalSection-extrabottompadding .itemsContainer {
-		flex-flow: row wrap;
-		padding-right: 0;
-	}
-
-	#childrenCollapsible.verticalSection-extrabottompadding .listItem {
-		width: 19vw;
-		min-width: 250px;
-		max-width: 350px;
-	}
-
-	#childrenCollapsible.verticalSection-extrabottompadding .listItem-content {
-		flex-flow: column nowrap;
-	}
-
-	#childrenCollapsible.verticalSection-extrabottompadding .listItemImage {
-		width: 100%;
-		min-height: 125px;
-		max-height: 175px;
-		border-radius: .6em;
-		margin: 0;
-		overflow: hidden;
-	}
-
-	#childrenCollapsible.verticalSection-extrabottompadding .listItemImage::before {
-		content: "";
-		position: absolute;
-		top: 0;
-		left: 0;
-		right: 0;
-		bottom: 0;
-		background: rgba(0,0,0,0.7);
-		opacity: 0;
-		transition: opacity .2s ease;
-	}
-	#childrenCollapsible.verticalSection-extrabottompadding .listItem:hover .listItemImage::before {
-		opacity: 1;
-	}
-
-	#childrenCollapsible.verticalSection-extrabottompadding .listItemBody {
-		padding: .25em .5em .85em;
-		order: 1;
-	}
-
-	#childrenCollapsible.verticalSection-extrabottompadding .listViewUserDataButtons {
-		height: 3em;
-		margin-top: -3em;
-		opacity: 0;
-		transition: opacity .2s ease;
-	}
-	#childrenCollapsible.verticalSection-extrabottompadding .listItem:hover .listViewUserDataButtons {
-		opacity: 1;
-	}
-}
-
-/* fix default CSS */
-.listItemProgressBar {
-	position: absolute;
-}
-
-
 
 
 /* Login form */
