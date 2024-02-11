@@ -33,6 +33,28 @@ MEDIA ITEM
 	content: none;
 }
 
+/* Re-arrange details */
+
+.itemDetailsGroup,
+.detailSectionContent {
+	display: contents;
+}
+
+.detailSection {
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 2rem;
+}
+
+.itemGenres:empty {
+	display: none;
+}
+
+.itemExternalLinks {
+	order: 99;
+}
+
+
 .layout-desktop {
 	& .detailPageWrapperContainer {
 		top: var(--s-banner);
@@ -94,9 +116,25 @@ MEDIA ITEM
 	margin: 0;
 }
 
-/* EXTERNAL LINKS */
+/* TAGS */
 
-/* Add website icons */
+/* styles tags the same as genres/writers using some hacky overflow and ::before tricks */
+.itemTags {
+	margin: 0 0 .6em 6.85em !important;
+	font-size: 100% !important;
+	text-indent: -4.5ch; /* VERY INNACURATELY hides the "Tags: " text from the start. */
+	overflow: hidden;
+}
+
+.itemTags::before {
+	content: "Tags";
+	position: absolute;
+	left: 0;
+	width: 6.25em;
+	text-indent: 0;
+}
+
+/* EXTERNAL LINKS */
 
 .itemExternalLinks {
 	display: flex;
@@ -172,7 +210,6 @@ MEDIA ITEM
 }
 
 /* SEASON PAGES */
-
 
 
 /* Episode pages & "more from" section on library pages */
