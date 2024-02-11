@@ -7,9 +7,11 @@
 /* theme variables */
 
 :root {
+	--background: hsl(0, 5%, 6%);
 	--active: #9e5fc3;
 	--accent: #00a4dc;
-	--gradient: linear-gradient(-15deg, #0006, #1c1c1c66), radial-gradient(circle at 20% -30%, hsla(150deg, 70%, 50%, 10%), hsla(270deg, 70%, 50%, 15%))
+	--gradient: linear-gradient(-15deg, #0006, #1c1c1c66), radial-gradient(circle at 20% -30%, hsla(150deg, 70%, 50%, 10%), hsla(270deg, 70%, 50%, 15%));
+	--foreground: hsl(0, 5%, 11%);
 }
 
 
@@ -41,8 +43,8 @@ body {
 
 /* Modify background */
 
-.backdropContainer {
-	filter: blur(5px);
+.backdropImage {
+	filter: blur(50px);
 }
 
 
@@ -325,73 +327,6 @@ body {
 
 
 
-/* Library item page */
-
-#itemBackdrop {
-	position: fixed;
-	top: 0;
-	width: 100%;
-	height: 100%;
-}
-
-.detailPageWrapperContainer {
-	position: relative;
-	top: 7.2em;
-	min-height: calc(100vh + 7.2em);
-	background: #101010c0;
-	-webkit-backdrop-filter: blur(10px);
-	backdrop-filter: blur(10px);
-}
-
-@media (pointer: fine) {
-	.detailPageWrapperContainer {
-		top: 40vh;
-		min-height: calc(60vh + 7.2em);
-	}
-
-	.detailImageContainer .card {
-		top: -10vw;
-		transform: none;
-	}
-	.detailImageContainer .card.backdropCard {
-		top: -3vw;
-	}
-	.detailImageContainer .card.squareCard {
-		top: -5vw;
-	}
-}
-
-.detailPageSecondaryContainer {
-	padding: 1.25em 0;
-	margin: 0;
-}
-
-/* recommended/suggestions section - AKA "more like this" carousel */
-@media (pointer: fine) {
-	#similarCollapsible .card + .card {
-		margin-left: -4em;
-		transition: margin-left 0.1s ease-out;
-	}
-	#similarCollapsible .card:hover + .card {
-		margin-left: -.5em;
-	}
-
-	#similarCollapsible .card + .card .cardScalable {
-		box-shadow: -7px 0 8px -4px black;
-	}
-
-	#similarCollapsible .cardText {
-		-webkit-mask-image: linear-gradient(to left, transparent 1vw, rgba(0,0,0,0.1) 3vw, black 7vw);
-		mask-image: linear-gradient(to left, transparent 1vw, rgba(0,0,0,0.1) 3vw, black 7vw);
-	}
-	#similarCollapsible .card:hover .cardText {
-		-webkit-mask-image: none;
-		mask-image: none;
-	}
-}
-
-
-
 /* Stylized and smaller cast/crew info as per https://jellyfin.org/docs/general/clients/css-customization.html */
 
 /* Shrink and square (or round) cast thumnails */
@@ -476,50 +411,6 @@ body {
 	position: absolute;
 }
 
-
-
-/* Add website icons */
-
-.itemExternalLinks {
-	font-size: 0 !important;
-}
-
-.itemExternalLinks a {
-	font-size: 13.6896px;
-	margin-right: .6em;
-	line-height: 1.8em;
-}
-
-.itemExternalLinks a::before {
-	width: 1em;
-	height: 1em;
-	background-size: contain;
-	margin-right: .4em;
-}
-.itemExternalLinks a[href^="https://anilist.co"]::before {
-	content: "";
-	background-image: url(https://anilist.co/img/icons/favicon-32x32.png);
-}
-.itemExternalLinks a[href^="https://www.imdb.com"]::before {
-	content: "";
-	background-image: url(https://m.media-amazon.com/images/G/01/imdb/images-ANDW73HA/favicon_desktop_32x32._CB1582158068_.png);
-}
-.itemExternalLinks a[href^="https://www.themoviedb.org"]::before {
-	content: "";
-	background-image: url(https://www.themoviedb.org/assets/2/favicon-32x32-543a21832c8931d3494a68881f6afcafc58e96c5d324345377f3197a37b367b5.png);
-}
-.itemExternalLinks a[href^="https://trakt.tv"]::before {
-	content: "";
-	background-image: url(https://walter.trakt.tv/hotlink-ok/public/apple-touch-icon.png);
-}
-.itemExternalLinks a[href^="http://www.tvmaze.com"]::before {
-	content: "";
-	background-image: url(https://static.tvmaze.com/images/favico/favicon-32x32.png);
-}
-.itemExternalLinks a[href^="https://www.thetvdb.com"]::before {
-	content: "";
-	background-image: url(https://www.thetvdb.com/images/icon.png);
-}
 
 
 

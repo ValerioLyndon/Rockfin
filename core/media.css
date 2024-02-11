@@ -1,0 +1,165 @@
+/*
+MEDIA ITEM
+/details
+*/
+
+:root {
+	--s-banner: max(calc(65px + 25rem + 10vh), 50vh);
+	--s-card: clamp(200px, 24vw, 500px);
+	--s-card-pad: calc(1vw + 3rem);
+	--s-card-allowance: calc(var(--s-card) + var(--s-card-pad) * 2);
+}
+
+.detailPageWrapperContainer {
+	position: relative;
+	top: 7.2em;
+	min-height: calc(100vh + 7.2em);
+	background: color-mix(in hsl, var(--background) 80%, transparent);
+	backdrop-filter: blur(10px);
+}
+
+
+/* BACKGROUND IMAGE */
+
+#itemBackdrop {
+	position: fixed;
+	top: 0;
+	width: 100%;
+	height: 100%;
+}
+
+.layout-desktop .itemBackdrop::after {
+	mask-image: linear-gradient(to bottom, transparent, black var(--s-banner));
+	content: none;
+}
+
+.layout-desktop {
+	& .detailPageWrapperContainer {
+		top: var(--s-banner);
+		min-height: calc(60vh + 7.2em);
+		
+		&::before {
+			content: "";
+			position: absolute;
+			inset: auto 0 100%;
+			height: calc(var(--s-banner) * 0.4);
+			background: linear-gradient(0deg, #000, transparent);
+			opacity: .6;
+		}
+	}
+	& .detailPagePrimaryContainer,
+	& .detailPageContent {
+		padding-left: var(--s-card-allowance);
+	}
+
+	& .detailImageContainer .card {
+		top: -9rem;
+		left: var(--s-card-pad);
+		width: var(--s-card);
+		max-width: initial;
+		transform: none;
+	}
+
+	/* HEADER */
+
+	.detailLogo {
+		left: 30vw;
+		top: calc(var(--s-banner) - 20rem);
+		height: 7rem;
+	}
+	
+	/* NEXT UP */
+	/* assumes that there is only one more "next up" item because when would there ever be multiple?.... */
+	
+	& .nextUpSection {
+		position: absolute;
+		top: -25rem;
+		right: 0;
+		
+		.card {
+			width: 26rem;
+		}
+	}
+}
+
+.detailPageSecondaryContainer {
+	padding: 1.25em 0;
+	margin: 0;
+}
+
+/* EXTERNAL LINKS */
+
+/* Add website icons */
+
+.itemExternalLinks {
+	display: flex;
+	gap: .3rem;
+	font-size: 0 !important;
+}
+
+.itemExternalLinks a {
+	display: flex;
+	background: var(--foreground);
+	font-size: 1.4rem;
+	padding: .3rem;
+	border-radius: .3rem;
+	gap: .6rem;
+	line-height: 1.3;
+}
+
+.itemExternalLinks a::before {
+	width: 1em;
+	height: 1em;
+	border-radius: .2rem;
+	background-size: contain;
+}
+.itemExternalLinks a[href^="https://anilist.co"]::before {
+	content: "";
+	background-image: url(https://anilist.co/img/icons/favicon-32x32.png);
+}
+.itemExternalLinks a[href^="https://www.imdb.com"]::before {
+	content: "";
+	background-image: url(https://m.media-amazon.com/images/G/01/imdb/images-ANDW73HA/favicon_desktop_32x32._CB1582158068_.png);
+}
+.itemExternalLinks a[href^="https://www.themoviedb.org"]::before {
+	content: "";
+	background-image: url(https://www.themoviedb.org/assets/2/favicon-32x32-543a21832c8931d3494a68881f6afcafc58e96c5d324345377f3197a37b367b5.png);
+}
+.itemExternalLinks a[href^="https://trakt.tv"]::before {
+	content: "";
+	background-image: url(https://walter.trakt.tv/hotlink-ok/public/apple-touch-icon.png);
+}
+.itemExternalLinks a[href^="http://www.tvmaze.com"]::before {
+	content: "";
+	background-image: url(https://static.tvmaze.com/images/favico/favicon-32x32.png);
+}
+.itemExternalLinks a[href^="https://www.thetvdb.com"]::before {
+	content: "";
+	background-image: url(https://www.thetvdb.com/images/icon.png);
+}
+
+
+/* recommended/suggestions section - AKA "more like this" carousel - only affects mouse input because it would be hell on mobile */
+
+@media (pointer: fine) {
+	#similarCollapsible .card + .card {
+		margin-left: -4em;
+		transition: margin-left 0.1s ease-out;
+	}
+	#similarCollapsible .card:hover + .card {
+		margin-left: -.5em;
+	}
+	
+	#similarCollapsible .card:not(:hover) .cardImageContainer {
+		mask-image: linear-gradient(to left, rgba(0,0,0,0.5) 3em, black 4em);
+	}
+
+	#similarCollapsible .card + .card .cardScalable {
+		box-shadow: -7px 0 8px -4px black;
+	}
+
+	#similarCollapsible .card:not(:hover) .cardText {
+		-webkit-mask-image: linear-gradient(to left, transparent 1vw, rgba(0,0,0,0.1) 3vw, black 7vw);
+		mask-image: linear-gradient(to left, transparent 1vw, rgba(0,0,0,0.1) 3vw, black 7vw);
+	}
+}
