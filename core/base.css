@@ -46,8 +46,12 @@ body {
 
 /* Modify background */
 
+.backgroundContainer.withBackdrop {
+	background: color-mix(in hsl, var(--background) 80%, transparent);
+}
+
 .backdropImage {
-	filter: blur(50px);
+	filter: blur(10px);
 }
 
 
