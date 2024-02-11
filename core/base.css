@@ -38,6 +38,12 @@ html {
 }
 
 
+/* Scrollers */
+
+.layout-mobile .emby-scroller {
+	padding-inline: 0;
+}
+
 /* Modify background */
 
 .backdropImage {

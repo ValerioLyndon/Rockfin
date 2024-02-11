@@ -208,6 +208,12 @@ MEDIA ITEM
 		mask-image: linear-gradient(to left, transparent 1vw, rgba(0,0,0,0.1) 3vw, black 7vw);
 	}
 }
+@media not (pointer: fine) {
+	#similarCollapsible .itemsContainer {
+		display: grid;
+		grid-template-columns: repeat(3, 31.2vw);
+	}
+}
 
 /* SEASON PAGES */
 
