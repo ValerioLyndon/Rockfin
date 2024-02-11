@@ -4,14 +4,24 @@
 
 /* material icons reference https://fonts.google.com/icons?selected=Material+Icons */
 
+/* resets */
+
+* {
+	contain: initial !important;
+}
+
 /* theme variables */
 
 :root {
-	--background: hsl(0, 5%, 6%);
+	/* Colours */
+	--background: hsl(0, 0%, 3%);
 	--active: #9e5fc3;
-	--accent: #00a4dc;
+	--accent: #8a9f22;
 	--gradient: linear-gradient(-15deg, #0006, #1c1c1c66), radial-gradient(circle at 20% -30%, hsla(150deg, 70%, 50%, 10%), hsla(270deg, 70%, 50%, 15%));
 	--foreground: hsl(0, 5%, 11%);
+	
+	/* Sizes */
+	--s-page-pad: calc(1vw + 3rem);
 }
 
 html {
@@ -22,6 +32,14 @@ body {
 	font-size: 1.5em;
 }
 
+/* BASIC ELEMENTS */
+
+.padded-left {
+	padding-left: var(--s-page-pad);
+}
+.padded-right {
+	padding-right: var(--s-page-pad);
+}
 
 /* CHANGES FOR ALL PAGES */
 
@@ -38,8 +56,55 @@ body {
 }
 
 
+.backgroundContainer, .dialog, .nowPlayingPlaylist, .nowPlayingContextMenu, html, .preload {
+	background: var(--background);
+}
+
+/* CARDS */
+
+/* Multiple media indicator */
+
+/* removing this indicator because I could actually not care less about it when browsing */
+.mediaSourceIndicator {
+	display: none;
+}
+
+/* Indicators */
+
+.cardIndicators, .listItemIndicators {
+	top: .3rem;
+	right: .3rem;
+}
+
+.indicator {
+	border: 0;
+	border-radius: .7em !important;
+	background: #0008;
+}
+
+/* HEADER */
+
+/* monochrome logo */
+/* .pageTitleWithLogo {
+	filter: grayscale(1) brightness(3);
+} */
+/* red logo */
+.pageTitleWithDefaultLogo {
+	background: var(--accent);
+	mask: url(./assets/img/banner-light.png) left center / contain no-repeat;
+}
+
+.skinHeader-withBackground {
+	background: #0008;
+	backdrop-filter: blur(5px);
+}
+
+
 /* Scrollers */
 
+.emby-scroller {
+	margin-inline:  var(--s-page-pad);
+}
 .layout-mobile .emby-scroller {
 	padding-inline: 0;
 }
@@ -87,6 +152,7 @@ body {
 			color: rgba(255, 255, 255, 0.8);
 			transform: none !important;
 			transition: left 0.12s ease-out, width 0.12s ease-out !important;
+			background: #000;
 		}
 		& .mainDrawer:hover {
 			left: 0 !important;
@@ -193,23 +259,7 @@ body {
 	background: rgba(0,0,0,0.7);
 }
 
-/* indicators */
-.cardIndicators, .listItemIndicators {
-	top: 0;
-	right: 0;
-}
-.indicator {
-	padding: .125em;
-	box-shadow: -0.75px 1.5px 6px 0.5px rgba(0,0,0,0.7);
-	border-width: 0 0 1px 1px;
-	border-radius: 0 0 0 .6em !important;
-}
-.countIndicator {
-	background: rgba(25, 25, 125, 0.85);
-}
-.playedIndicator {
-	background: rgba(25, 125, 25, 0.85);
-}
+
 
 /* buttons */
 .playstatebutton-icon-played {

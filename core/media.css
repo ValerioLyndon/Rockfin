@@ -6,7 +6,7 @@ MEDIA ITEM
 :root {
 	--s-banner: max(calc(65px + 25rem + 10vh), 50vh);
 	--s-card: clamp(200px, 24vw, 500px);
-	--s-card-pad: calc(1vw + 3rem);
+	--s-card-pad: var(--s-page-pad);
 	--s-card-allowance: calc(var(--s-card) + var(--s-card-pad) * 2);
 }
 .layout-mobile {
@@ -26,6 +26,11 @@ MEDIA ITEM
 	opacity: .6;
 }
 
+.detailPagePrimaryContent {
+	padding-right: var(--s-page-pad);
+	/* give details a maximum width for readability */
+	max-width: 90ch;
+}
 
 /* BACKGROUND IMAGE */
 
@@ -48,6 +53,8 @@ MEDIA ITEM
 	background: #000;
 } */
 
+/* DETAILS */
+
 /* Re-arrange details */
 
 .itemDetailsGroup,
@@ -65,11 +72,16 @@ MEDIA ITEM
 	display: none;
 }
 
+.tagline ~ .overview {
+	margin-top: 0;
+}
+
 .itemExternalLinks {
 	order: 99;
 }
 
 .detailRibbon {
+	background: #000;
 	margin-top: 0 !important;
 }
 
@@ -97,7 +109,7 @@ MEDIA ITEM
 	& .detailLogo {
 		z-index: 1;
 		left: var(--s-card-allowance);
-		width: calc(100% - var(--s-card-allowance));
+		width: calc(100% - var(--s-card-allowance) - var(--s-page-pad) - 2rem);
 		top: calc(var(--s-banner) - 9rem);
 		height: 7rem;
 		background-position-x: 33%;
