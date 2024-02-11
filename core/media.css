@@ -299,3 +299,7 @@ MEDIA ITEM
 	inset: 0;
 	backdrop-filter: blur(15px);
 }
+
+.listItemImageButton {
+	z-index: 1;
+}
