@@ -34,13 +34,16 @@ MEDIA ITEM
 
 /* BACKGROUND IMAGE */
 
-#itemBackdrop {
+.itemBackdrop {
 	position: static;
 	top: 0;
 	width: 100%;
 	height: var(--s-banner);
 	background-attachment: scroll;
 	background-position: center 20%;
+}
+.itemBackdrop:not([style]) {
+	--s-banner: 17rem;
 }
 
 .layout-desktop .itemBackdrop::after {
