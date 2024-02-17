@@ -5,15 +5,28 @@
 /* material icons reference https://fonts.google.com/icons?selected=Material+Icons */
 
 
-/* VARIABLES */
+/* VARIABLES *\
+
+Prefix meanings:
+c- colour
+hsl- raw hsl value
+g- gradient
+i- image
+f- font
+s- size
+*/
 
 :root {
 	/* Colours */
-	--background: hsl(0, 0%, 3%);
-	--active: #9e5fc3;
-	--accent: #8a9f22;
-	--gradient: linear-gradient(-15deg, #0006, #1c1c1c66), radial-gradient(circle at 20% -30%, hsla(150deg, 70%, 50%, 10%), hsla(270deg, 70%, 50%, 15%));
-	--foreground: hsl(0, 5%, 11%);
+	--hsl-background: 0, 0%, 3%;
+	--hsl-active: 278, 45%, 57%;
+	--hsl-accent: 70, 65%, 38%;
+	--hsl-foreground: 0, 14%, 19%;
+	--c-background: hsl(var(--hsl-background));
+	--c-active: hsl(var(--hsl-active));
+	--c-accent: hsl(var(--hsl-accent));
+	--c-foreground: hsl(var(--hsl-foreground));
+	--g-background: linear-gradient(-15deg, #0006, #1c1c1c66), radial-gradient(circle at 20% -30%, hsla(150deg, 70%, 50%, 10%), hsla(270deg, 70%, 50%, 15%));
 	
 	/* Sizes */
 	--s-page-pad: calc(1vw + 3rem);
@@ -65,7 +78,7 @@ body {
 /* BACKGROUND */
 
 .backgroundContainer.withBackdrop {
-	background: color-mix(in hsl, var(--background) 91%, transparent);
+	background: hsla(var(--hsl-background), 91%);
 }
 
 .backdropImage {
@@ -89,7 +102,7 @@ body {
 
 
 .backgroundContainer, .dialog, .nowPlayingPlaylist, .nowPlayingContextMenu, html, .preload {
-	background: var(--background);
+	background: var(--c-background);
 }
 
 /* CARDS */
@@ -122,38 +135,38 @@ body {
 	grid-template-columns: 1fr 100fr 1fr 1fr;
 	grid-template-areas: "image title rating buttons";
 	grid-auto-flow: row;
+}
 	
-	& .listItem {
-		display: grid;
-		grid-column: 1 / span 4;
-		grid-template-columns: subgrid;
-		grid-row-end: span 1;
-	}
+.itemsContainer.vertical-list .listItem {
+	display: grid;
+	grid-column: 1 / span 4;
+	grid-template-columns: subgrid;
+	grid-row-end: span 1;
+}
 
-	& .listItemImage {
-		grid-area: image;
-	}
+.itemsContainer.vertical-list .listItemImage {
+	grid-area: image;
+}
 
-	& .listItemBody {
-		grid-area: title;
-	}
+.itemsContainer.vertical-list .listItemBody {
+	grid-area: title;
+}
 
-	& .listItemMediaInfo {
-		grid-area: rating;
-	}
+.itemsContainer.vertical-list .listItemMediaInfo {
+	grid-area: rating;
+}
 
-	& .mediaInfoOfficialRating {
-		white-space: nowrap;
-	}
+.itemsContainer.vertical-list .mediaInfoOfficialRating {
+	white-space: nowrap;
+}
 
-	& .starRatingContainer {
-		width: 4em;
-		margin-left: auto;
-	}
+.itemsContainer.vertical-list .starRatingContainer {
+	width: 4em;
+	margin-left: auto;
+}
 
-	& .listViewUserDataButtons {
-		grid-area: buttons;
-	}
+.itemsContainer.vertical-list .listViewUserDataButtons {
+	grid-area: buttons;
 }
 
 
@@ -165,7 +178,7 @@ body {
 } */
 /* red logo */
 .pageTitleWithDefaultLogo {
-	background: var(--accent);
+	background: var(--c-accent);
 	mask: url(./assets/img/banner-light.png) left center / contain no-repeat;
 }
 
@@ -175,7 +188,7 @@ body {
 }
 
 .skinHeader-withBackground {
-	background: color-mix(in hsl, var(--background) 80%, transparent);
+	background: hsla(var(--hsl-background), 80%);
 	backdrop-filter: blur(5px);
 }
 
@@ -203,114 +216,107 @@ body {
 }
 
 .mainDrawer {
-	background: color-mix(in hsl, var(--background) 80%, transparent);
+	background: hsla(var(--hsl-background), 80%);
 	backdrop-filter: blur(5px);
 }
 
-.layout-desktop {
-	& .libraryDocument:not(.hide-scroll) {		
-		& .skinHeader,
-		& .page {
-			left: 50px;
-		}
-		
-		& .mainDrawer {
-			left: -22px !important;
-			width: 72px !important;
-			color: rgba(255, 255, 255, 0.8);
-			transform: none !important;
-			transition: left 0.12s ease-out, width 0.12s ease-out !important;
-			background: #000;
-		}
-		& .mainDrawer:hover {
-			left: 0 !important;
-			width: 320px !important;
-		}
-		
-		& .sidebarHeader {
-			opacity: 0;
-			transition: opacity 0.12s ease-out;
-		}
-		& .mainDrawer:hover .sidebarHeader {
-			opacity: 1;
-		}
-	}
-	
-	/* move header texts up since they have more space */
-	& .headerTabs {
-		width: auto;
-		margin-top: -4.3em;
-		align-self: center;
-	}
+.layout-desktop .libraryDocument:not(.hide-scroll) .skinHeader,
+.layout-desktop .libraryDocument:not(.hide-scroll) .page {
+	left: 50px;
 }
 
-.layout-mobile {
-	
-	& .mainDrawer {
-		position: fixed;
-		inset: auto 0 0 !important;
-		width: auto !important;
-		height: 6rem;
-		padding: 0 .6rem;
-		transform: translateY(6rem) !important;
-		transition: transform .15s ease-out;
-	}
-	&:not(:has(.headroom--unpinned)) .mainDrawer {
-		transform: translateY(0) !important;
-	}
-	
-	& .scrollContainer {
-		display: flex;
-		gap: .6rem;
-		overflow: hidden;
-	}
-	
-	& .libraryMenuOptions {
-		display: flex;
-		flex-flow: row nowrap;
-		max-width: calc(100% - 7.8rem);
-		height: 6rem;
-		gap: .6rem;
-		overflow-x: scroll;
-		overflow-y: hidden;
-	}
-	
-	& .mainDrawerHandle,
-	& .customMenuOptions:empty,
-	& .adminMenuOptions,
-	& .userMenuOptions,
-	& .sidebarHeader,
-	& div:not([class]) {
-		display: none;
-	}
-	
-	& .navMenuOption {
-		width: 6rem;
-		height: 6rem;
-		flex: 0 0 auto;
-		padding: 0 !important;
-		flex-direction: column;
-		justify-content: center;
-		border-radius: 1rem !important;
-	}
-	& .navMenuOptionIcon {
-		margin: 0;
-	}
-	& .navMenuOptionText {
-		width: 100%;
-		overflow: hidden;
-		text-overflow: ellipsis;
-		font-size: 1.2rem;
-	}
-	
-	/* fix scrolling */
-	.tmla-mask {
-		display: none;
-	}
-	
-	.bodyWithPopupOpen:has(.drawer-open) {
-		overflow-y: scroll !important;
-	}
+.layout-desktop .libraryDocument:not(.hide-scroll) .mainDrawer {
+	left: -22px !important;
+	width: 72px !important;
+	color: rgba(255, 255, 255, 0.8);
+	transform: none !important;
+	transition: left 0.12s ease-out, width 0.12s ease-out !important;
+	background: #000;
+}
+.layout-desktop .libraryDocument:not(.hide-scroll) .mainDrawer:hover {
+	left: 0 !important;
+	width: 320px !important;
+}
+
+.layout-desktop .libraryDocument:not(.hide-scroll) .sidebarHeader {
+	opacity: 0;
+	transition: opacity 0.12s ease-out;
+}
+.layout-desktop .libraryDocument:not(.hide-scroll) .mainDrawer:hover .sidebarHeader {
+	opacity: 1;
+}
+
+/* move header texts up since they have more space */
+.layout-desktop .headerTabs {
+	width: auto;
+	margin-top: -4.3em;
+	align-self: center;
+}
+
+.layout-mobile .mainDrawer {
+	position: fixed;
+	inset: auto 0 0 !important;
+	width: auto !important;
+	height: 6rem;
+	padding: 0 .6rem;
+	transform: translateY(6rem) !important;
+	transition: transform .15s ease-out;
+}
+.layout-mobile:not(:has(.headroom--unpinned)) .mainDrawer {
+	transform: translateY(0) !important;
+}
+
+.layout-mobile .scrollContainer {
+	display: flex;
+	gap: .6rem;
+	overflow: hidden;
+}
+
+.layout-mobile .libraryMenuOptions {
+	display: flex;
+	flex-flow: row nowrap;
+	max-width: calc(100% - 7.8rem);
+	height: 6rem;
+	gap: .6rem;
+	overflow-x: scroll;
+	overflow-y: hidden;
+}
+
+.layout-mobile .mainDrawerHandle,
+.layout-mobile .customMenuOptions:empty,
+.layout-mobile .adminMenuOptions,
+.layout-mobile .userMenuOptions,
+.layout-mobile .sidebarHeader,
+.layout-mobile div:not([class]) {
+	display: none;
+}
+
+.layout-mobile .navMenuOption {
+	width: 6rem;
+	height: 6rem;
+	flex: 0 0 auto;
+	padding: 0 !important;
+	flex-direction: column;
+	justify-content: center;
+	border-radius: 1rem !important;
+}
+.layout-mobile .navMenuOptionIcon {
+	margin: 0;
+}
+.layout-mobile .navMenuOptionText {
+	width: 100%;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	font-size: 1.2rem;
+}
+
+/* fix scrolling */
+.tmla-mask {
+	display: none;
+}
+
+.bodyWithPopupOpen:has(.drawer-open) {
+	overflow-y: scroll !important;
 }
 
 
@@ -335,51 +341,44 @@ body {
 
 /* Better Filters */
 
-.layout-desktop {	
-	& .dynamicFilterDialog {
-		--width: clamp(20em, 80vw, 1200px);
-		top: 5vh !important;
-		left: calc(50% - var(--width)*.5) !important;
-		width: var(--width);
-		height: 85vh;
-		margin: 0 !important;
-	}
+.layout-desktop .dynamicFilterDialog {
+	--width: clamp(20em, 80vw, 1200px);
+	top: 5vh !important;
+	left: calc(50% - var(--width)*.5) !important;
+	width: var(--width);
+	height: 85vh;
+	margin: 0 !important;
+}
 
-	& .filterDialogContent {
-		& #expandButton {
-			pointer-events: none;
-			
-			& .emby-collapse-expandIcon {
-				display: none;
-			}
-		}
-		
-		& .collapseContent {
-			display: block !important;
-			height: auto !important;
-		}
-		
-		& .checkboxList {
-			display: flex;
-			flex-flow: row wrap;
-			gap: 0 10px;
-			
-			& .emby-checkbox-label {
-				width: auto;
-				height: auto;
-				padding: 0;
-				font-size: 1rem;
-				
-				& .checkboxOutline {
-					position: static;
-					width: 1.35em;
-					height: 1.35em;
-					order: -1;
-					margin-right: .5em;
-				}
-			}
-		}
-	}
+.layout-desktop .filterDialogContent #expandButton {
+	pointer-events: none;
+}
+.layout-desktop .filterDialogContent #expandButton .emby-collapse-expandIcon {
+	display: none;
+}
+
+.layout-desktop .filterDialogContent .collapseContent {
+	display: block !important;
+	height: auto !important;
+}
+
+.layout-desktop .filterDialogContent .checkboxList {
+	display: flex;
+	flex-flow: row wrap;
+	gap: 0 10px;
+}
+.layout-desktop .filterDialogContent .checkboxList .emby-checkbox-label {
+	width: auto;
+	height: auto;
+	padding: 0;
+	font-size: 1rem;	
+}
+.layout-desktop .filterDialogContent .checkboxList .emby-checkbox-label .checkboxOutline {
+	position: static;
+	width: 1.35em;
+	height: 1.35em;
+	order: -1;
+	margin-right: .5em;
 }
 
 /* blur cards on hover
@@ -405,8 +404,8 @@ body {
 
 .paper-icon-button-light[data-action="resume"]:hover:not(:disabled) {
 	background: #0008;
-	color: var(--accent);
-	text-shadow: 1px 1px 5px color-mix(in hsl, var(--accent) 66%, transparent);
+	color: var(--c-accent);
+	text-shadow: 1px 1px 5px hsla(var(--hsl-accent), 66%);
 }
 
 .paper-icon-button-light[data-action="resume"]::before {
@@ -416,7 +415,7 @@ body {
 	left: 0;
 	width: 100%;
 	height: 100%;
-	box-shadow: inset 0 3px 0 var(--accent), inset 0 1px 3px var(--accent);
+	box-shadow: inset 0 3px 0 var(--c-accent), inset 0 1px 3px var(--c-accent);
 	border-radius: 100%;
 	opacity: 0;
 }

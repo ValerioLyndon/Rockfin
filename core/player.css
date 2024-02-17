@@ -40,7 +40,7 @@ PLAYER
 }
 
 .mdl-slider-background-lower {
-	background: var(--accent);
+	background: var(--c-accent);
 }
 
 .mdl-slider-background-upper {
@@ -56,7 +56,7 @@ PLAYER
 /* Time Slider */
 
 .sliderBubble {
-	background: var(--gradient);
+	background: var(--g-background);
 	backdrop-filter: blur(5px);
 	border-radius: 1rem;
 }

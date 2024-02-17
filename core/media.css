@@ -89,46 +89,44 @@ MEDIA ITEM
 }
 
 
-.layout-desktop {
-	& .detailPagePrimaryContainer,
-	& .detailPageContent {
-		padding-left: var(--s-card-allowance);
-	}
-	
-	& .detailPagePrimaryContainer {
-		position: static;
-	}
+.layout-desktop .detailPagePrimaryContainer,
+.layout-desktop .detailPageContent {
+	padding-left: var(--s-card-allowance);
+}
 
-	& .detailImageContainer .card {
-		top: -9rem;
-		left: var(--s-card-pad);
-		width: var(--s-card);
-		max-width: initial;
-		transform: none;
-	}
+.layout-desktop .detailPagePrimaryContainer {
+	position: static;
+}
 
-	/* HEADER */
+.layout-desktop .detailImageContainer .card {
+	top: -9rem;
+	left: var(--s-card-pad);
+	width: var(--s-card);
+	max-width: initial;
+	transform: none;
+}
 
-	& .detailLogo {
-		z-index: 1;
-		left: var(--s-card-allowance);
-		width: calc(100% - var(--s-card-allowance) - var(--s-page-pad) - 2rem);
-		top: calc(var(--s-banner) - 9rem);
-		height: 7rem;
-		background-position-x: 33%;
-	}
+/* HEADER */
+
+.layout-desktop .detailLogo {
+	z-index: 1;
+	left: var(--s-card-allowance);
+	width: calc(100% - var(--s-card-allowance) - var(--s-page-pad) - 2rem);
+	top: calc(var(--s-banner) - 9rem);
+	height: 7rem;
+	background-position-x: 33%;
+}
+
+/* NEXT UP */
+/* assumes that there is only one more "next up" item because when would there ever be multiple?.... */
+
+.layout-desktop .nextUpSection {
+	position: absolute;
+	top: -25rem;
+	right: 0;
 	
-	/* NEXT UP */
-	/* assumes that there is only one more "next up" item because when would there ever be multiple?.... */
-	
-	& .nextUpSection {
-		position: absolute;
-		top: -25rem;
-		right: 0;
-		
-		.card {
-			width: 26rem;
-		}
+	.card {
+		width: 26rem;
 	}
 }
 
@@ -169,7 +167,7 @@ MEDIA ITEM
 
 .itemExternalLinks a {
 	display: flex;
-	background: var(--foreground);
+	background: var(--c-foreground);
 	font-size: 1.4rem;
 	padding: .3rem;
 	border-radius: .3rem;
@@ -244,82 +242,80 @@ MEDIA ITEM
 
 
 /* Episode pages & "more from" section on library pages */
-.layout-desktop {
-	& #childrenCollapsible.verticalSection-extrabottompadding .itemsContainer {
-		flex-flow: row wrap;
-		padding-right: 0;
-	}
+.layout-desktop  #childrenCollapsible.verticalSection-extrabottompadding .itemsContainer {
+	flex-flow: row wrap;
+	padding-right: 0;
+}
 
-	& #childrenCollapsible.verticalSection-extrabottompadding .listItem {
-		position: relative;
-		width: 30rem;
-		overflow: visible;
-		contain: initial;
-	}
+.layout-desktop  #childrenCollapsible.verticalSection-extrabottompadding .listItem {
+	position: relative;
+	width: 30rem;
+	overflow: visible;
+	contain: initial;
+}
 
-	& #childrenCollapsible.verticalSection-extrabottompadding .listItem-content {
-		flex-flow: column nowrap;
-	}
+.layout-desktop  #childrenCollapsible.verticalSection-extrabottompadding .listItem-content {
+	flex-flow: column nowrap;
+}
 
-	& #childrenCollapsible.verticalSection-extrabottompadding .listItemImage {
-		width: 100%;
-		height: calc(30rem * 9/16);
-		border-radius: 1rem;
-		margin: 0;
-		overflow: hidden;
-	}
+.layout-desktop  #childrenCollapsible.verticalSection-extrabottompadding .listItemImage {
+	width: 100%;
+	height: calc(30rem * 9/16);
+	border-radius: 1rem;
+	margin: 0;
+	overflow: hidden;
+}
+
+.layout-desktop  .listItemBody {
+	width: 100%;
+}
+
+.layout-desktop  #childrenCollapsible.verticalSection-extrabottompadding .listItemImage::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: rgba(0,0,0,0.7);
+	opacity: 0;
+	transition: opacity .2s ease;
+}
+.layout-desktop  #childrenCollapsible.verticalSection-extrabottompadding .listItem:hover .listItemImage::before {
+	opacity: 1;
+}
+
+.layout-desktop  #childrenCollapsible.verticalSection-extrabottompadding .listItemBody {
+	padding: .25em .5em .85em;
+	order: 1;
+	overflow: visible;
+	contain: initial;
+}
+
+.layout-desktop  #childrenCollapsible.verticalSection-extrabottompadding .listViewUserDataButtons {
+	height: 3em;
+	margin-top: -3em;
+	opacity: 0;
+	transition: opacity .2s ease;
+}
+.layout-desktop  #childrenCollapsible.verticalSection-extrabottompadding .listItem:hover .listViewUserDataButtons {
+	opacity: 1;
+}
 	
-	& .listItemBody {
-		width: 100%;
-	}
+/* descriptions */
 
-	& #childrenCollapsible.verticalSection-extrabottompadding .listItemImage::before {
-		content: "";
-		position: absolute;
-		top: 0;
-		left: 0;
-		right: 0;
-		bottom: 0;
-		background: rgba(0,0,0,0.7);
-		opacity: 0;
-		transition: opacity .2s ease;
-	}
-	& #childrenCollapsible.verticalSection-extrabottompadding .listItem:hover .listItemImage::before {
-		opacity: 1;
-	}
-
-	& #childrenCollapsible.verticalSection-extrabottompadding .listItemBody {
-		padding: .25em .5em .85em;
-		order: 1;
-		overflow: visible;
-		contain: initial;
-	}
-
-	& #childrenCollapsible.verticalSection-extrabottompadding .listViewUserDataButtons {
-		height: 3em;
-		margin-top: -3em;
-		opacity: 0;
-		transition: opacity .2s ease;
-	}
-	& #childrenCollapsible.verticalSection-extrabottompadding .listItem:hover .listViewUserDataButtons {
-		opacity: 1;
-	}
-	
-	/* descriptions */
-	
-	& .listItem-overview {
-		position: absolute;
-		bottom: 100%;
-		z-index: 5;
-		background: var(--foreground);
-		padding: .6em;
-		border-radius: .6em;
-		pointer-events: none;
-		opacity: 0;
-	}
-	& .listItem:hover .listItem-overview {
-		opacity: 1;
-	}
+.layout-desktop  .listItem-overview {
+	position: absolute;
+	bottom: 100%;
+	z-index: 5;
+	background: var(--c-foreground);
+	padding: .6em;
+	border-radius: .6em;
+	pointer-events: none;
+	opacity: 0;
+}
+.layout-desktop  .listItem:hover .listItem-overview {
+	opacity: 1;
 }
 
 /* Blur unwatched episodes, but not partially watched */

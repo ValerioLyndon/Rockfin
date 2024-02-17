@@ -29,5 +29,5 @@ HOME PAGE
 	position: static;
 	height: 100%;
 	border-radius: 99em;
-	background: var(--accent);
+	background: var(--c-accent);
 }
