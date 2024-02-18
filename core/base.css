@@ -129,7 +129,7 @@ body {
 
 /* CARDS - LIST STYLE */
 
-.itemsContainer.vertical-list {
+#tvRecommendedPage .itemsContainer.vertical-list {
 	max-width: 70em;
 	display: grid;
 	grid-template-columns: 1fr 100fr 1fr 1fr;
@@ -137,35 +137,35 @@ body {
 	grid-auto-flow: row;
 }
 	
-.itemsContainer.vertical-list .listItem {
+#tvRecommendedPage .itemsContainer.vertical-list .listItem {
 	display: grid;
 	grid-column: 1 / span 4;
 	grid-template-columns: subgrid;
 	grid-row-end: span 1;
 }
 
-.itemsContainer.vertical-list .listItemImage {
+#tvRecommendedPage .itemsContainer.vertical-list .listItemImage {
 	grid-area: image;
 }
 
-.itemsContainer.vertical-list .listItemBody {
+#tvRecommendedPage .itemsContainer.vertical-list .listItemBody {
 	grid-area: title;
 }
 
-.itemsContainer.vertical-list .listItemMediaInfo {
+#tvRecommendedPage .itemsContainer.vertical-list .listItemMediaInfo {
 	grid-area: rating;
 }
 
-.itemsContainer.vertical-list .mediaInfoOfficialRating {
+#tvRecommendedPage .itemsContainer.vertical-list .mediaInfoOfficialRating {
 	white-space: nowrap;
 }
 
-.itemsContainer.vertical-list .starRatingContainer {
+#tvRecommendedPage .itemsContainer.vertical-list .starRatingContainer {
 	width: 4em;
 	margin-left: auto;
 }
 
-.itemsContainer.vertical-list .listViewUserDataButtons {
+#tvRecommendedPage .itemsContainer.vertical-list .listViewUserDataButtons {
 	grid-area: buttons;
 }
 
