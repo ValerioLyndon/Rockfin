@@ -6,8 +6,8 @@ media metadata
 @supports selector(html:has(body)) {
 	/* TEMP */
 
-	#fldDateAdded .fieldDescription,
-	.seriesDisplayOrderDescription {
+	.layout-desktop #fldDateAdded .fieldDescription,
+	.layout-desktop .seriesDisplayOrderDescription {
 		display: none;
 	}
 
@@ -25,7 +25,7 @@ media metadata
 		padding: 0 1rem;
 	}
 
-	.dialog:has(.editItemMetadataForm) .formDialogFooter {
+	.layout-desktop .dialog:has(.editItemMetadataForm) .formDialogFooter {
 		position: absolute;
 		inset: 0 0 auto auto;
 		flex-wrap: nowrap;
@@ -33,12 +33,12 @@ media metadata
 		flex-direction: row-reverse;
 	}
 
-	.dialog:has(.editItemMetadataForm) .formDialogFooterItem {
+	.layout-desktop .dialog:has(.editItemMetadataForm) .formDialogFooterItem {
 		flex-basis: max-content;
 		margin: 0 !important;
 	}
 
-	.editItemMetadataForm {
+	.layout-desktop .editItemMetadataForm {
 		width: clamp(600px, 80vw, 800px);
 		max-width: initial;
 	}
@@ -46,23 +46,23 @@ media metadata
 	/* Lock Item Checks */
 
 	@media (width > 1400px) {
-		.editItemMetadataForm {
+		.layout-desktop .editItemMetadataForm {
 			padding-right: 300px;
 		}
 		
-		.checkboxContainer:has(#chkLockData) {
+		.layout-desktop .checkboxContainer:has(#chkLockData) {
 			position: absolute;
 			top: 7rem;
 			left: calc(50% + 250px + 3rem);
 			width: calc(300px - 3rem);
 		}
-		.checkboxContainer:has(#chkLockData) + .checkboxList {
+		.layout-desktop .checkboxContainer:has(#chkLockData) + .checkboxList {
 			position: absolute;
 			top: 11rem;
 			left: calc(50% + 250px + 3rem);
 			width: calc(300px - 3rem);
 		}
-		.checkboxContainer:has(#chkLockData) + .checkboxList.hide {
+		.layout-desktop .checkboxContainer:has(#chkLockData) + .checkboxList.hide {
 			display: block !important;
 			pointer-events: none;
 			opacity: .2;
@@ -72,19 +72,19 @@ media metadata
 
 	/* Fields */
 
-	.metadataFormFields {
+	.layout-desktop .metadataFormFields {
 		font-size: 13px;
 		line-height: 1.25;
 	}
 
-	.metadataFormFields:has(#fldTagline.hide) {
+	.layout-desktop .metadataFormFields:has(#fldTagline.hide) {
 		--tv-column: "date-added air-time runtime null" "air-days air-days air-days air-days"
 	}
-	.metadataFormFields:has(#fldTagline:not(.hide)) {
+	.layout-desktop .metadataFormFields:has(#fldTagline:not(.hide)) {
 		--movie-column: "tagline tagline tagline tagline";
 	}
 
-	.metadataFormFields > div:first-of-type {
+	.layout-desktop .metadataFormFields > div:first-of-type {
 		display: grid;
 		grid-template-columns: repeat(4, calc(25% - .6rem));
 		grid-template-areas:
@@ -99,29 +99,29 @@ media metadata
 		gap: .6rem;
 	}
 
-	.externalIds {
+	.layout-desktop .externalIds {
 		display: grid;
 		grid-template-columns: repeat(3, calc(33.3334% - .6rem));
 		gap: .6rem;
 	}
 
-	.metadataFormFields .inlineForm {
+	.layout-desktop .metadataFormFields .inlineForm {
 		display: contents;
 	}
-	.metadataFormFields .inlineForm .inputContainer,
-	.metadataFormFields .inlineForm .selectContainer {
+	.layout-desktop .metadataFormFields .inlineForm .inputContainer,
+	.layout-desktop .metadataFormFields .inlineForm .selectContainer {
 		margin: 0;
 	}
 
 	/* Path */
 
-	#fldPath {
+	.layout-desktop #fldPath {
 		grid-area: header
 	}
-	#fldPath label {
+	.layout-desktop #fldPath label {
 		display: none;
 	}
-	#fldPath input {
+	.layout-desktop #fldPath input {
 		background: none;
 		border: none;
 		padding: 0;
@@ -130,55 +130,55 @@ media metadata
 
 	/* Titles */
 
-	.inputContainer:has(#txtName) {
+	.layout-desktop .inputContainer:has(#txtName) {
 		grid-area: title
 	}
-	#fldOriginalName {
+	.layout-desktop #fldOriginalName {
 		grid-area: og-title
 	}
-	.inputContainer:has(#txtSortName) {
+	.layout-desktop .inputContainer:has(#txtSortName) {
 		grid-area: sort-title
 	}
 
 	/* Tagline */
 
-	#fldTagline {
+	.layout-desktop #fldTagline {
 		grid-area: tagline
 	}
 
 	/* Dates */
 
-	#fldPremiereDate {
+	.layout-desktop #fldPremiereDate {
 		grid-area: date-start
 	}
-	#fldEndDate {
+	.layout-desktop #fldEndDate {
 		grid-area: date-end
 	}
-	#fldYear {
+	.layout-desktop #fldYear {
 		grid-area: year
 	}
-	#fldPlaceOfBirth,
-	#fldStatus {
+	.layout-desktop #fldPlaceOfBirth,
+	.layout-desktop #fldStatus {
 		grid-area: status
 	}
 
-	#fldDateAdded {
+	.layout-desktop #fldDateAdded {
 		grid-area: date-added
 	}
-	.metadataFormFields:has(#fldEndDate.hide) #fldDateAdded {
+	.layout-desktop .metadataFormFields:has(#fldEndDate.hide) #fldDateAdded {
 		grid-area: date-end;
 		grid-row: date-end / span 2;
 	}
-	#fldAirTime {
+	.layout-desktop #fldAirTime {
 		grid-area: air-time
 	}
-	#fldAirDays {
+	.layout-desktop #fldAirDays {
 		grid-area: air-days
 	}
-	#fldAirDays p {
+	.layout-desktop #fldAirDays p {
 		margin: 0;
 	}
-	#fldAirDays .checkboxList {
+	.layout-desktop #fldAirDays .checkboxList {
 		display: flex;
 		width: fit-content;
 		gap: 1rem;
@@ -186,34 +186,34 @@ media metadata
 
 	/* Ratings */
 
-	#fldOfficialRating {
+	.layout-desktop #fldOfficialRating {
 		grid-area: rating-official
 	}
-	#fldCustomRating {
+	.layout-desktop #fldCustomRating {
 		grid-area: rating-custom
 	}
-	#fldCommunityRating {
+	.layout-desktop #fldCommunityRating {
 		grid-area: score
 	}
-	#fldCriticRating,
-	#fldDisplayOrder {
+	.layout-desktop #fldCriticRating,
+	.layout-desktop #fldDisplayOrder {
 		grid-area: after-ratings
 	}
 
 	/* Misc */
 
-	#fld3dFormat,
-	#fldOriginalAspectRatio {
+	.layout-desktop #fld3dFormat,
+	.layout-desktop #fldOriginalAspectRatio {
 		grid-row: -1;
 	}
 
 
 	/* Description/overview */
 
-	.overviewContainer {
+	.layout-desktop .overviewContainer {
 		grid-area: desc;
 	}
-	#txtOverview {
+	.layout-desktop #txtOverview {
 		resize: vertical;
 	}
 }
