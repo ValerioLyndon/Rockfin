@@ -147,6 +147,10 @@ h2 {
 	border-top: .1rem solid var(--c-border) !important;
 }
 
+.layout-desktop .listItemBodyText {
+	margin: 0;
+}
+
 
 /* BACKGROUND */
 

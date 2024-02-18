@@ -10,3 +10,8 @@ PROFILE
 #myPreferencesMenuPage h2 {
 	color: var(--c-accent);
 }
+
+#myPreferencesMenuPage .listItem {
+	padding-inline: 2rem;
+	border-radius: var(--r-large);
+}
