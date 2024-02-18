@@ -25,7 +25,7 @@ PLAYER
 /* Progress Bar */
 
 .mdl-slider-background-flex {
-	background: #0008;
+	background: hsla(var(--hsl-foreground-stark), var(--o-medium));
 	padding: .2rem;
 	height: .3rem;
 	backdrop-filter: blur(1px);

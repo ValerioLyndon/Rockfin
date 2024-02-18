@@ -14,25 +14,33 @@ g- gradient
 i- image
 f- font
 s- size
+o- opacity
+t- timings
+e- ease functions
 */
 
 :root {
-	/* Colours */
+	--t-quick: 120ms;
+	
+	--o-light: 40%;
+	--o-medium: 65%;
+	--o-heavy: 80%;
+	
 	--hsl-background: 0, 0%, 3%;
 	--hsl-active: 278, 45%, 57%;
 	--hsl-accent: 70, 65%, 38%;
+	--hsl-foreground-stark: 0, 0%, 0%;
 	--hsl-foreground: 0, 14%, 19%;
 	--c-background: hsl(var(--hsl-background));
 	--c-active: hsl(var(--hsl-active));
 	--c-accent: hsl(var(--hsl-accent));
+	--c-foreground-stark: hsl(var(--hsl-foreground-stark));
 	--c-foreground: hsl(var(--hsl-foreground));
 	--g-background: linear-gradient(-15deg, #0006, #1c1c1c66), radial-gradient(circle at 20% -30%, hsla(150deg, 70%, 50%, 10%), hsla(270deg, 70%, 50%, 15%));
 	
-	/* Sizes */
 	--s-page-pad: calc(1vw + 3rem);
 }
 .layout-mobile {
-	/* Sizes */
 	--s-page-pad: 3.3%;
 }
 
@@ -74,6 +82,33 @@ body {
 	padding-inline: 0;
 }
 
+/* Buttons */
+
+.emby-button {
+	transition-duration: var(--t-quick);
+}
+
+.emby-tab-button:hover,
+.button-flat:hover {
+	color: var(--c-accent);
+}
+
+/* Card Action Buttons */
+
+.cardOverlayButton-br {
+	right: .3rem;
+	bottom: .3rem;
+	gap: .3rem;
+}
+
+.cardOverlayButton {
+	padding: 0;
+}
+.paper-icon-button-light:hover:not(:disabled) {
+	color: var(--c-accent);
+	background-color: hsla(var(--hsl-foreground-stark), var(--o-medium));
+}
+
 
 /* BACKGROUND */
 
@@ -94,7 +129,6 @@ body {
 }
 .dialogBackdropOpened {
 	opacity: .7;
-/* 	background: repeating-linear-gradient(160deg, #000c, #000c 1em, #000a 1em, #000a 2em); */
 }
 .layout-desktop .dialog {
 	animation-duration: 0.01s !important; /* cannot fully remove animation or closing dialogs breaks?..... */
@@ -124,7 +158,7 @@ body {
 .indicator {
 	border: 0;
 	border-radius: .7em !important;
-	background: #0008;
+	background: hsla(var(--hsl-foreground-stark), var(--o-medium));
 }
 
 /* CARDS - LIST STYLE */
@@ -188,7 +222,7 @@ body {
 }
 
 .skinHeader-withBackground {
-	background: hsla(var(--hsl-background), 80%);
+	background: hsla(var(--hsl-background), var(--o-heavy));
 	backdrop-filter: blur(5px);
 }
 
@@ -213,6 +247,11 @@ body {
 		
 .navMenuOption-selected:not(:hover) {
 	background: none !important;
+	
+}
+.navMenuOption:hover {
+	background: var(--c-foreground-stark) !important;
+	color: var(--c-accent);
 }
 
 .mainDrawer {
@@ -230,8 +269,8 @@ body {
 	width: 72px !important;
 	color: rgba(255, 255, 255, 0.8);
 	transform: none !important;
-	transition: left 0.12s ease-out, width 0.12s ease-out !important;
-	background: #000;
+	transition: left var(--t-quick) ease-out, width var(--t-quick) ease-out !important;
+	background: hsla(var(--hsl-foreground-stark), var(--o-medium));
 }
 .layout-desktop .libraryDocument:not(.hide-scroll) .mainDrawer:hover {
 	left: 0 !important;
@@ -403,9 +442,9 @@ body {
 /* Fancy play animation */
 
 .paper-icon-button-light[data-action="resume"]:hover:not(:disabled) {
-	background: #0008;
+	background: hsla(var(--hsl-foreground-stark), var(--o-medium));
 	color: var(--c-accent);
-	text-shadow: 1px 1px 5px hsla(var(--hsl-accent), 66%);
+	text-shadow: 1px 1px 5px hsla(var(--hsl-accent), var(--o-medium));
 }
 
 .paper-icon-button-light[data-action="resume"]::before {

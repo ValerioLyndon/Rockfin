@@ -22,7 +22,7 @@ MEDIA ITEM
 	position: absolute;
 	inset: auto 0 100%;
 	height: calc(var(--s-banner) * 0.3);
-	background: linear-gradient(0deg, #000, transparent);
+	background: linear-gradient(0deg, var(--c-foreground-stark), transparent);
 	opacity: .6;
 }
 
@@ -49,12 +49,6 @@ MEDIA ITEM
 .layout-desktop .itemBackdrop::after {
 	content: none;
 }
-
-/* Top Banner */
-
-/* .detailPagePrimaryContainer {
-	background: #000;
-} */
 
 /* DETAILS */
 
@@ -84,7 +78,7 @@ MEDIA ITEM
 }
 
 .detailRibbon {
-	background: #000;
+	background: var(--c-foreground-stark);
 	margin-top: 0 !important;
 }
 
@@ -108,7 +102,7 @@ MEDIA ITEM
 
 .layout-desktop .detailImageContainer .card {
 	position: sticky !important;
-	top: 6rem;
+	top: 10rem;
 	left: 0 !important;
 	width: var(--s-card);
 	max-width: initial;
@@ -268,23 +262,22 @@ MEDIA ITEM
 @media (pointer: fine) {
 	#similarCollapsible .card + .card {
 		margin-left: -4em;
-		transition: margin-left 0.1s ease-out;
+		transition: translate 0.1s ease-out;
 	}
-	#similarCollapsible .card:hover + .card {
-		margin-left: -.5em;
+	#similarCollapsible .card:hover ~ .card {
+		translate: 3.5em 0;
 	}
 	
-	#similarCollapsible .card:not(:hover) .cardImageContainer {
-		mask-image: linear-gradient(to left, rgba(0,0,0,0.5) 3em, black 4em);
-	}
-
 	#similarCollapsible .card + .card .cardScalable {
-		box-shadow: -7px 0 8px -4px black;
+		box-shadow: -1.5rem 0 1rem -1rem #000b;
 	}
-
-	#similarCollapsible .card:not(:hover) .cardText {
-		-webkit-mask-image: linear-gradient(to left, transparent 1vw, rgba(0,0,0,0.1) 3vw, black 7vw);
+	#similarCollapsible .card:not(:hover):not(:last-of-type) .cardText {
 		mask-image: linear-gradient(to left, transparent 1vw, rgba(0,0,0,0.1) 3vw, black 7vw);
+	}
+	
+	#similarCollapsible .cardIndicators {
+		right: auto;
+		left: .3rem;
 	}
 }
 @media not (pointer: fine) {
