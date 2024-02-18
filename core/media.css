@@ -126,6 +126,52 @@ MEDIA ITEM
 	background-position-x: 33%;
 }
 
+/* HEADER BUTTONS */
+
+/* button text */
+.detailButton {
+	flex-flow: row;
+	gap: .6rem;
+}
+.detailButton::after {
+	content: var(--txt, none);
+	position: absolute;
+	top: calc(100% - .6rem);
+	left: 50%;
+	text-transform: uppercase;
+	transform: translateX(-50%) scale(0);
+	transform-origin: center top;
+	transition: transform .2s ease;
+}
+.detailButton:hover::after {
+	transform: translateX(-50%) scale(1);
+}
+.btnPlay::after {
+	position: static !important;
+	transform: none !important;
+}
+.btnPlay {
+	--txt: "Play";
+}
+.btnPlayTrailer {
+	--txt: "Trailer";
+}
+.btnDownload {
+	--txt: "Download";
+}
+.btnShuffle {
+	--txt: "Shuffle";
+}
+.btnPlaystate {
+	--txt: "Done";
+}
+.btnUserRating {
+	--txt: "Love";
+}
+.btnMoreCommands {
+	--txt: "More";
+}
+
 /* NEXT UP */
 /* assumes that there is only one more "next up" item because when would there ever be multiple?.... */
 
@@ -133,6 +179,7 @@ MEDIA ITEM
 	position: absolute;
 	top: -25rem;
 	right: 0;
+	z-index: 1;
 	
 	.card {
 		width: 26rem;
