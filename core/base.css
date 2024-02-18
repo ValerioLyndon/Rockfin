@@ -265,16 +265,18 @@ body {
 }
 
 .layout-desktop .libraryDocument:not(.hide-scroll) .mainDrawer {
-	left: -22px !important;
-	width: 72px !important;
-	color: rgba(255, 255, 255, 0.8);
-	transform: none !important;
-	transition: left var(--t-quick) ease-out, width var(--t-quick) ease-out !important;
-	background: hsla(var(--hsl-foreground-stark), var(--o-medium));
-}
-.layout-desktop .libraryDocument:not(.hide-scroll) .mainDrawer:hover {
 	left: 0 !important;
 	width: 320px !important;
+	background: hsla(var(--hsl-foreground-stark), var(--o-medium));
+	color: rgba(255, 255, 255, 0.8);
+	clip-path: inset(0 248px 0 0);
+	transform: none !important;
+	translate: -22px;
+	transition: translate var(--t-quick) ease-out, clip-path var(--t-quick) ease-out !important;
+}
+.layout-desktop .libraryDocument:not(.hide-scroll) .mainDrawer:hover {
+	translate: 0;
+	clip-path: inset(0 0px 0 0);
 }
 
 .layout-desktop .libraryDocument:not(.hide-scroll) .sidebarHeader {
