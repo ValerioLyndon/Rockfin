@@ -50,6 +50,12 @@ MEDIA ITEM
 	content: none;
 }
 
+/* HEADER */
+
+.mediaInfoOfficialRating {
+	border-radius: var(--r-small);
+}
+
 /* DETAILS */
 
 /* Re-arrange details */
@@ -261,7 +267,30 @@ MEDIA ITEM
 }
 
 
-/* recommended/suggestions section - AKA "more like this" carousel - only affects mouse input because it would be hell on mobile */
+/* CAST & CREW */
+
+/* Stylized and smaller cast/crew info as per https://jellyfin.org/docs/general/clients/css-customization.html */
+
+/* Shrink and square (or round) cast thumnails */
+#castContent .card.overflowPortraitCard.personCard.card-hoverable.card-withuserdata {width: 4.2cm !important; font-size: 90% !important;}
+#castContent .card.overflowPortraitCard.personCard.card-withuserdata {width: 4.2cm !important; font-size: 90% !important;}
+
+/* Correct image aspect ratio behaviour, set border-radius to zero for square tiles */
+#castContent .cardContent-button.cardImageContainer.coveredImage.cardContent.cardContent-shadow.itemAction.lazy {background-size: cover; !important; border-radius: 2.5cm;}
+#castContent .cardContent-button.cardImageContainer.coveredImage.defaultCardBackground.defaultCardBackground1.cardContent.cardContent-shadow.itemAction {background-size: cover; !important; border-radius: 2.5cm;}
+#castContent .cardContent-button.cardImageContainer.coveredImage.defaultCardBackground.defaultCardBackground2.cardContent.cardContent-shadow.itemAction {background-size: cover; !important; border-radius: 2.5cm;}
+#castContent .cardContent-button.cardImageContainer.coveredImage.defaultCardBackground.defaultCardBackground3.cardContent.cardContent-shadow.itemAction {background-size: cover; !important; border-radius: 2.5cm;}
+#castContent .cardContent-button.cardImageContainer.coveredImage.defaultCardBackground.defaultCardBackground4.cardContent.cardContent-shadow.itemAction {background-size: cover; !important; border-radius: 2.5cm;}
+#castContent .cardContent-button.cardImageContainer.coveredImage.defaultCardBackground.defaultCardBackground5.cardContent.cardContent-shadow.itemAction {background-size: cover; !important; border-radius: 2.5cm;}
+#castContent .cardScalable {width: 3.8cm !important; height: 3.8cm !important; border-radius: 2.5cm;}
+#castContent .cardOverlayContainer.itemAction {border-radius: var(--r-round);}
+
+/* Center the mouseover buttons */
+#castContent .cardOverlayButton-br {bottom: 4%; right: 15%; width: 70%;}
+#castContent .cardOverlayButton.cardOverlayButton-hover.itemAction.paper-icon-button-light {margin:auto;}
+
+
+/* MORE LIKE THIS - recommended/suggestions section - only affects mouse input because it would be hell on mobile */
 
 @media (pointer: fine) {
 	#similarCollapsible .card + .card {
