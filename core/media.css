@@ -98,9 +98,18 @@ MEDIA ITEM
 	position: static;
 }
 
-.layout-desktop .detailImageContainer .card {
+.layout-desktop .detailImageContainer {
+	position: absolute;
 	top: -9rem;
 	left: var(--s-card-pad);
+	bottom: 0;
+	padding: 0;
+}
+
+.layout-desktop .detailImageContainer .card {
+	position: sticky !important;
+	top: 6rem;
+	left: 0 !important;
 	width: var(--s-card);
 	max-width: initial;
 	transform: none;
