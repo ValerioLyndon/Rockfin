@@ -174,10 +174,14 @@ MEDIA ITEM
 	top: -25rem;
 	right: 0;
 	z-index: 1;
-	
-	.card {
-		width: 26rem;
+}
+@media (width > 1600px) {
+	.layout-desktop .nextUpSection {
+		top: 11rem;
 	}
+}
+.layout-desktop .nextUpSection .card {
+	width: 26rem;
 }
 
 .detailPageSecondaryContainer {
