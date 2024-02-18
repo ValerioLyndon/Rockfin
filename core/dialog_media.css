@@ -1,0 +1,219 @@
+/*
+DIALOG
+media metadata
+*/
+
+@supports selector(html:has(body)) {
+	/* TEMP */
+
+	#fldDateAdded .fieldDescription,
+	.seriesDisplayOrderDescription {
+		display: none;
+	}
+
+	/* Base */
+
+	html:has(body) .dialog:has(.editItemMetadataForm) {
+		width: max-content;
+		height: calc(100% - 2rem);
+	}
+
+	/* Header & Footer */
+
+	html:has(body) .formDialogHeader,
+	html:has(body) .formDialogFooter {
+		padding: 0 1rem;
+	}
+
+	.dialog:has(.editItemMetadataForm) .formDialogFooter {
+		position: absolute;
+		inset: 0 0 auto auto;
+		flex-wrap: nowrap;
+		gap: 1rem;
+		flex-direction: row-reverse;
+	}
+
+	.dialog:has(.editItemMetadataForm) .formDialogFooterItem {
+		flex-basis: max-content;
+		margin: 0 !important;
+	}
+
+	.editItemMetadataForm {
+		width: clamp(600px, 80vw, 800px);
+		max-width: initial;
+	}
+
+	/* Lock Item Checks */
+
+	@media (width > 1400px) {
+		.editItemMetadataForm {
+			padding-right: 300px;
+		}
+		
+		.checkboxContainer:has(#chkLockData) {
+			position: absolute;
+			top: 7rem;
+			left: calc(50% + 250px + 3rem);
+			width: calc(300px - 3rem);
+		}
+		.checkboxContainer:has(#chkLockData) + .checkboxList {
+			position: absolute;
+			top: 11rem;
+			left: calc(50% + 250px + 3rem);
+			width: calc(300px - 3rem);
+		}
+		.checkboxContainer:has(#chkLockData) + .checkboxList.hide {
+			display: block !important;
+			pointer-events: none;
+			opacity: .2;
+			filter: grayscale(1);
+		}
+	}
+
+	/* Fields */
+
+	.metadataFormFields {
+		font-size: 13px;
+		line-height: 1.25;
+	}
+
+	.metadataFormFields:has(#fldTagline.hide) {
+		--tv-column: "date-added air-time runtime null" "air-days air-days air-days air-days"
+	}
+	.metadataFormFields:has(#fldTagline:not(.hide)) {
+		--movie-column: "tagline tagline tagline tagline";
+	}
+
+	.metadataFormFields > div:first-of-type {
+		display: grid;
+		grid-template-columns: repeat(4, calc(25% - .6rem));
+		grid-template-areas:
+			"header header header header"
+			"title title og-title sort-title"
+			var(--movie-column,)
+			"desc desc desc desc"
+			"date-start date-end year status"
+			var(--tv-column,)
+			"rating-official rating-custom score after-ratings"
+		;
+		gap: .6rem;
+	}
+
+	.externalIds {
+		display: grid;
+		grid-template-columns: repeat(3, calc(33.3334% - .6rem));
+		gap: .6rem;
+	}
+
+	.metadataFormFields .inlineForm {
+		display: contents;
+	}
+	.metadataFormFields .inlineForm .inputContainer,
+	.metadataFormFields .inlineForm .selectContainer {
+		margin: 0;
+	}
+
+	/* Path */
+
+	#fldPath {
+		grid-area: header
+	}
+	#fldPath label {
+		display: none;
+	}
+	#fldPath input {
+		background: none;
+		border: none;
+		padding: 0;
+		opacity: 0.5;
+	}
+
+	/* Titles */
+
+	.inputContainer:has(#txtName) {
+		grid-area: title
+	}
+	#fldOriginalName {
+		grid-area: og-title
+	}
+	.inputContainer:has(#txtSortName) {
+		grid-area: sort-title
+	}
+
+	/* Tagline */
+
+	#fldTagline {
+		grid-area: tagline
+	}
+
+	/* Dates */
+
+	#fldPremiereDate {
+		grid-area: date-start
+	}
+	#fldEndDate {
+		grid-area: date-end
+	}
+	#fldYear {
+		grid-area: year
+	}
+	#fldPlaceOfBirth,
+	#fldStatus {
+		grid-area: status
+	}
+
+	#fldDateAdded {
+		grid-area: date-added
+	}
+	.metadataFormFields:has(#fldEndDate.hide) #fldDateAdded {
+		grid-area: date-end;
+		grid-row: date-end / span 2;
+	}
+	#fldAirTime {
+		grid-area: air-time
+	}
+	#fldAirDays {
+		grid-area: air-days
+	}
+	#fldAirDays p {
+		margin: 0;
+	}
+	#fldAirDays .checkboxList {
+		display: flex;
+		width: fit-content;
+		gap: 1rem;
+	}
+
+	/* Ratings */
+
+	#fldOfficialRating {
+		grid-area: rating-official
+	}
+	#fldCustomRating {
+		grid-area: rating-custom
+	}
+	#fldCommunityRating {
+		grid-area: score
+	}
+	#fldCriticRating,
+	#fldDisplayOrder {
+		grid-area: after-ratings
+	}
+
+	/* Misc */
+
+	#fld3dFormat,
+	#fldOriginalAspectRatio {
+		grid-row: -1;
+	}
+
+
+	/* Description/overview */
+
+	.overviewContainer {
+		grid-area: desc;
+	}
+	#txtOverview {
+		resize: vertical;
+	}
+}
