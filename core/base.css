@@ -138,6 +138,15 @@ h2 {
 	background-color: hsla(var(--hsl-foreground-stark), var(--o-medium));
 }
 
+/* List Items */
+
+.listItem-border {
+	border-bottom: .1rem solid var(--c-border) !important;
+}
+.listItem-border:not(.listItem-border + .listItem-border) {
+	border-top: .1rem solid var(--c-border) !important;
+}
+
 
 /* BACKGROUND */
 

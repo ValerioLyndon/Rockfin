@@ -1,0 +1,12 @@
+/*
+PROFILE
+/mypreferencesmenu.html
+*/
+
+#myPreferencesMenuPage .listItem-border {
+	border: none !important;
+}
+
+#myPreferencesMenuPage h2 {
+	color: var(--c-accent);
+}
