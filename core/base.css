@@ -118,6 +118,10 @@ h2 {
 	color: var(--c-accent);
 }
 
+.button-submit {
+	background: var(--c-accent);
+}
+
 /* Card Action Buttons */
 
 .cardOverlayButton-br {
@@ -147,8 +151,33 @@ h2 {
 	margin: 0;
 }
 
+.listItemIcon:not(.listItemIcon-transparent) {
+	background-color: var(--c-accent);
+}
+
 
 /* INPUTS */
+
+/* Checkboxes */
+
+.emby-checkbox:checked + span + .checkboxOutline, .itemProgressBarForeground {
+	background-color: var(--c-accent);
+}
+
+.emby-checkbox:checked + span + .checkboxOutline,
+.emby-checkbox:focus:not(:checked) + span + .checkboxOutline {
+	border-color: var(--c-accent);
+}
+
+/* Fields */
+
+.inputLabelFocused, .selectLabelFocused, .textareaLabelFocused {
+	color: var(--c-accent);
+}
+
+.emby-input:focus, .emby-textarea:focus {
+	border-color: var(--c-accent);
+}
 
 /* Slider */
 

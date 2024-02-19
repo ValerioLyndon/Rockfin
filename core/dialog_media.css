@@ -46,23 +46,23 @@ media metadata
 	/* Lock Item Checks */
 
 	@media (width > 1400px) {
-		.layout-desktop .editItemMetadataForm {
+		.layout-desktop .dialog .editItemMetadataForm {
 			padding-right: 300px;
 		}
 		
-		.layout-desktop .checkboxContainer:has(#chkLockData) {
+		.layout-desktop .dialog .checkboxContainer:has(#chkLockData) {
 			position: absolute;
 			top: 7rem;
 			left: calc(50% + 250px + 3rem);
 			width: calc(300px - 3rem);
 		}
-		.layout-desktop .checkboxContainer:has(#chkLockData) + .checkboxList {
+		.layout-desktop .dialog .checkboxContainer:has(#chkLockData) + .checkboxList {
 			position: absolute;
 			top: 11rem;
 			left: calc(50% + 250px + 3rem);
 			width: calc(300px - 3rem);
 		}
-		.layout-desktop .checkboxContainer:has(#chkLockData) + .checkboxList.hide {
+		.layout-desktop .dialog .checkboxContainer:has(#chkLockData) + .checkboxList.hide {
 			display: block !important;
 			pointer-events: none;
 			opacity: .2;

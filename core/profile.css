@@ -15,3 +15,21 @@ PROFILE
 	padding-inline: 2rem;
 	border-radius: var(--r-large);
 }
+
+/* only works on newer browsers */
+/* .layout-desktop #userProfilePage form div:not([class]):has(div>.emby-button) {
+	display: flex;
+	gap: 1rem;
+}
+
+.layout-desktop .userPreferencesPage .button-submit {
+	width: fit-content;
+} */
+
+.subtitleappearance-preview {
+	border-radius: var(--r-round);
+	background:
+		linear-gradient(-15deg, #0002, #1c1c1c44),
+		radial-gradient(circle at 20% -30%, hsla(70deg, 65%, 65%, 70%), hsla(230deg, 50%, 50%, 65%) 60%, hsla(200deg, 70%, 50%, 45%))
+		!important;
+}
