@@ -3,3 +3,8 @@ HOME PAGE
 /home.html
 */
 
+/* display more libraries */
+
+.card:is([data-collectiontype="playlists"],[data-type="CollectionFolder"]) {
+	flex: 1 0 10rem;
+}

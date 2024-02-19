@@ -54,7 +54,7 @@ t-   timings
 	--r-small: calc(.3rem * var(--r-factor));
 	--r-medium: calc(.6rem * var(--r-factor));
 	--r-large: calc(1rem * var(--r-factor));
-	--r-round: 9999px;
+	--r-round: calc(9999px * var(--r-factor));
 	
 	--s-page-pad: calc(1vw + 3rem);
 
