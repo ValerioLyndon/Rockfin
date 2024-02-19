@@ -13,6 +13,10 @@ MEDIA ITEM
 	--s-banner: max(200px, 25vh);
 }
 
+:where(#itemDetailPage) .padded-left {
+	padding-left: 0;
+}
+
 .detailPageWrapperContainer {
 	position: relative;
 	top: 0 !important;;
