@@ -395,3 +395,74 @@ MEDIA ITEM
 .listItemImageButton {
 	z-index: 1;
 }
+
+/* PLAYLISTS */
+
+.listItem[data-playlistitemid] {
+	display: grid;
+}
+
+.listItem[data-playlistitemid] {
+	display: grid;
+	grid-template-columns: 0fr 1fr 100fr 1fr 1fr;
+	grid-template-areas: "handle image title info buttons";
+}
+
+.listItem[data-playlistitemid] .listViewDragHandle {
+	grid-area: handle;
+}
+
+.listItem[data-playlistitemid] .listItemImage {
+	grid-area: image;
+}
+
+.listItem[data-playlistitemid] .listItemBody {
+	grid-area: title;
+}
+
+.listItem[data-playlistitemid] .listViewUserDataButtons {
+	grid-area: buttons;
+}
+
+/* media info */
+
+.listItem[data-playlistitemid] .listItemMediaInfo {
+	grid-area: info;
+	display: grid;
+	grid-template-columns: 9rem 7rem 4em 4em 2em;
+	grid-template-areas: "date duration rating score cc";
+	gap: .6rem;
+}
+
+.listItem[data-playlistitemid] .listItemMediaInfo {
+	grid-area: info;
+	display: grid;
+	grid-template-columns: 7rem 9rem 4em 4em 2em;
+	grid-template-areas: "date duration rating score cc";
+	gap: .6rem;
+}
+
+
+.listItem[data-playlistitemid] .mediaInfoItem {
+	margin: 0;
+}
+
+.listItem[data-playlistitemid] .mediaInfoOfficialRating {
+	grid-area: rating;
+	white-space: nowrap;
+}
+
+.listItem[data-playlistitemid] .starRatingContainer {
+	grid-area: score;
+}
+
+.listItem[data-playlistitemid] .closedCaptionMediaInfoText {
+	grid-area: cc;
+}
+
+/* swap date with duration because neither has a distinguishing class and it's more likely that the date will be missing
+this should prevent some layout issues */
+.listItem[data-playlistitemid] [class="mediaInfoItem"] + [class="mediaInfoItem"] {
+	order: -1;
+}
+
