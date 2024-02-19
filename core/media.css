@@ -104,6 +104,7 @@ MEDIA ITEM
 	left: var(--s-card-pad);
 	bottom: 0;
 	padding: 0;
+	pointer-events: none;
 }
 
 .layout-desktop .detailImageContainer .card {
@@ -113,6 +114,7 @@ MEDIA ITEM
 	width: var(--s-card);
 	max-width: initial;
 	transform: none;
+	pointer-events: auto;
 }
 
 /* HEADER */
