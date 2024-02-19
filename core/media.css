@@ -174,29 +174,6 @@ MEDIA ITEM
 	--txt: "More";
 }
 
-/* NEXT UP */
-/* assumes that there is only one more "next up" item because when would there ever be multiple?.... */
-
-.layout-desktop .nextUpSection {
-	position: absolute;
-	top: -25rem;
-	right: 0;
-	z-index: 1;
-}
-@media (width > 1600px) {
-	.layout-desktop .nextUpSection {
-		top: 11rem;
-	}
-}
-.layout-desktop .nextUpSection .card {
-	width: 26rem;
-}
-
-.detailPageSecondaryContainer {
-	padding: 1.25em 0;
-	margin: 0;
-}
-
 /* TAGS */
 
 /* styles tags the same as genres/writers using some hacky overflow and ::before tricks */
