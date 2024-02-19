@@ -354,7 +354,12 @@ h2 {
 /* red logo */
 .pageTitleWithDefaultLogo {
 	background: var(--c-accent);
+	-webkit-mask: url(./assets/img/banner-light.png) left center / contain no-repeat;
 	mask: url(./assets/img/banner-light.png) left center / contain no-repeat;
+}
+html:not(:has(script[src^="file:///"])) .pageTitleWithDefaultLogo {
+	-webkit-mask-image: url(./assets/img/banner-light.png);
+	mask-image: url(./assets/img/banner-light.png);
 }
 
 .skinHeader {

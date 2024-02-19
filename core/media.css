@@ -288,6 +288,7 @@ MEDIA ITEM
 		box-shadow: -1.5rem 0 1rem -1rem #000b;
 	}
 	#similarCollapsible .card:not(:hover):not(:last-of-type) .cardText {
+		-webkit-mask-image: linear-gradient(to left, transparent 1vw, rgba(0,0,0,0.1) 3vw, black 7vw);
 		mask-image: linear-gradient(to left, transparent 1vw, rgba(0,0,0,0.1) 3vw, black 7vw);
 	}
 	
