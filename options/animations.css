@@ -1,0 +1,71 @@
+/*
+ANIMATIONS
+*/
+
+.btnPlaystate:hover .detailButton-icon {
+	animation: check-slap .5s cubic-bezier(.37,-0.34,.75,1.36);
+}
+
+@keyframes check-slap {
+	0%, 100% {
+		rotate: 0deg;
+		transform-origin: 25 50%;
+	}
+	20% {
+		rotate: 3deg;
+		scale: 1.1;
+	}
+	45% {
+		rotate: -5deg;
+		scale: 1.05;
+		translate: 0 0;
+	}
+	60% {
+		translate: 1% -1%;
+	}
+}
+
+.btnPlaystate:hover .detailButton-icon::before {
+	transition-delay: .5s;
+}
+.btnPlaystate:hover .detailButton-icon::after {
+	content: "\e5ca";
+	display: inline-block;
+	color: var(--c-accent);
+	transform: translateX(-100%);
+	animation: check .5s ease-in-out;
+	opacity: 0;
+}
+
+@keyframes check {
+	0% {
+		clip-path: polygon(0% 0%, 30% 0%, 0% 30%, 0% 100%);
+		opacity: 1;
+	}
+	50% {
+		clip-path: polygon(0% 0%, 75% 25%, 25% 75%, 0% 100%);
+		opacity: 1;
+	}
+	100% {
+		clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+		opacity: 1;
+	}
+}
+
+.btnUserRating:hover .detailButton-icon {
+	animation: bouncy .5s cubic-bezier(.37,-0.34,.75,1.36);
+}
+
+@keyframes bouncy {
+	0%, 100% {
+		scale: 1;
+	}
+	60% {
+		scale: 1.07;
+		rotate: 15deg;
+	}
+	80% {
+		scale: .95;
+		rotate: -5deg;
+	}
+}
