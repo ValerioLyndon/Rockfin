@@ -109,6 +109,10 @@ h2 {
 
 /* Buttons */
 
+.button-link {
+	color: var(--c-accent);
+}
+
 .emby-button {
 	transition-duration: var(--t-quick);
 }
