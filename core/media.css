@@ -46,7 +46,7 @@ MEDIA ITEM
 	background-attachment: scroll;
 	background-position: center 20%;
 }
-.itemBackdrop:not([style]) {
+.itemBackdrop:not([style]):not(.lazy-hidden) {
 	--s-banner: 17rem;
 }
 
