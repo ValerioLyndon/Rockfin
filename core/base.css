@@ -23,11 +23,14 @@ t-   timings
 
 :root {
 	--t-quick: 120ms;
+	--t-average: 240ms;
+	--t-slow: 360ms;
 	
 	--o-light: 40%;
 	--o-medium: 65%;
 	--o-heavy: 80%;
 	--o-background: 91%;
+	--o-darken: 70%;
 	
 	--hsl-background: 0, 0%, 3%;
 	--hsl-active: 278, 45%, 57%;
@@ -36,6 +39,7 @@ t-   timings
 	--hsl-foreground: 0, 0%, 12%;
 	--hsl-border: 0, 0%, 12%;
 	--hsl-text: 0, 0%, 84%;
+	--hsl-darken: 0, 0%, 0%;
 	--c-background: hsl(var(--hsl-background));
 	--c-active: hsl(var(--hsl-active));
 	--c-accent: hsl(var(--hsl-accent));
@@ -43,6 +47,7 @@ t-   timings
 	--c-foreground: hsl(var(--hsl-foreground));
 	--c-text: hsl(var(--hsl-text));
 	--c-border: hsl(var(--hsl-border));
+	--c-darken: hsl(var(--hsl-darken));
 	--g-background: linear-gradient(-15deg, #0006, #1c1c1c66), radial-gradient(circle at 20% -30%, hsla(150deg, 70%, 50%, 10%), hsla(270deg, 70%, 50%, 15%));
 	
 	--r-factor: 1;
@@ -52,6 +57,9 @@ t-   timings
 	--r-round: 9999px;
 	
 	--s-page-pad: calc(1vw + 3rem);
+
+	--f-default: Noto Sans,Noto Sans HK,Noto Sans JP,Noto Sans KR,Noto Sans SC,Noto Sans TC,sans-serif;
+	--f-icon: 'Material Icons Round';
 }
 .layout-mobile {
 	--s-page-pad: 3.3%;
@@ -522,7 +530,7 @@ h2 {
 
 /* increase darkening */
 .cardOverlayContainer {
-	background: rgba(0,0,0,0.7);
+	background: hsla(var(--hsl-darken), var(--o-darken));
 }
 
 
@@ -571,6 +579,36 @@ h2 {
 	background: var(--c-accent);
 }
 
+/* Add play icon to cards that don't have one already */
+
+.cardScalable:has([data-action="resume"]):not(:has(.cardOverlayButton)):hover {
+	--opacity: 1;
+}
+
+.cardScalable:has([data-action="resume"]):not(:has(.cardOverlayButton))::before,
+.cardScalable:has([data-action="resume"]):not(:has(.cardOverlayButton))::after {
+	content: "";
+	position: absolute;
+	z-index: 1;
+	opacity: var(--opacity, 0);
+	transition: opacity var(--t-average) ease;
+}
+.cardScalable:has([data-action="resume"]):not(:has(.cardOverlayButton))::before {
+	inset: 0;
+	background: hsla(var(--hsl-darken), var(--o-darken));
+}
+.cardScalable:has([data-action="resume"]):not(:has(.cardOverlayButton))::after {
+	content: "\e037";
+	inset: 50% 50% auto auto;
+	width: 5vw;
+	height: 5vw;
+	background: hsla(var(--hsl-foreground-stark), var(--o-medium));
+	border-radius: var(--r-round);
+	color: var(--c-accent);
+	font: 3vw/5vw var(--f-icon);
+	text-align: center;
+	translate: 50% -50%;
+}
 
 /* Fancy play animation */
 
