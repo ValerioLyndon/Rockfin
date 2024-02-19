@@ -72,12 +72,6 @@ body {
 
 /* BASIC ELEMENTS */
 
-/* Resets */
-
-* {
-	contain: initial !important;
-}
-
 /* Sizings */
 
 .padded-left {
@@ -91,12 +85,6 @@ body {
 
 h2 {
 	font-weight: 900;
-}
-.dialogContainer h2 {
-	color: var(--c-accent);
-	font-size: 1em;
-	letter-spacing: .03em;
-	text-transform: uppercase;
 }
 
 /* Scrollers */
@@ -152,6 +140,42 @@ h2 {
 }
 
 
+/* INPUTS */
+
+/* Slider */
+
+/* Create a new handle for slider */
+
+/* .mdl-slider {
+	opacity: 0;
+}
+
+.mdl-slider-background-flex {
+	overflow: visible;
+}
+
+.mdl-slider-background-lower::after {
+	content: "";
+	position: absolute;
+	top: calc(50% - 1rem);
+	right: -1rem;
+	width: 2rem;
+	height: 2rem;
+	border-radius: var(--r-round);
+	background: var(--c-accent);
+} */
+
+.mdl-slider::-webkit-slider-thumb {
+	background-color: var(--c-accent) !important;
+}
+.mdl-slider::-moz-range-thumb {
+	background-color: var(--c-accent) !important;
+}
+.mdl-slider::-ms-thumb {
+	background-color: var(--c-accent) !important;
+}
+
+
 /* BACKGROUND */
 
 .backgroundContainer.withBackdrop {
@@ -167,9 +191,14 @@ h2 {
 
 .dialog {
 	border-radius: var(--r-medium);
-	contain: content !important;
 	background: hsla(var(--hsl-foreground-stark), var(--o-heavy)) !important;
-/* 	overflow: hidden; */
+}
+
+.actionSheet h2 {
+	color: var(--c-accent);
+	font-size: 1em;
+	letter-spacing: .03em;
+	text-transform: uppercase;
 }
 
 .actionsheetDivider {
@@ -232,7 +261,7 @@ h2 {
 
 .indicator {
 	border: 0;
-	border-radius: .7em !important;
+	border-radius: calc(var(--r-large) - .3rem) !important;
 	background: hsla(var(--hsl-foreground-stark), var(--o-medium));
 }
 
@@ -444,17 +473,6 @@ h2 {
 	display: none;
 }
 
-/* rounded images */
-.visualCardBox,
-.cardScalable {
-	border-radius: .6em;
-	overflow: hidden;
-}
-
-.visualCardBox .cardScalable {
-	border-radius: .6em .6em 0 0;
-}
-
 /* Better Filters */
 
 .layout-desktop .dynamicFilterDialog {
@@ -516,6 +534,44 @@ h2 {
 
 
 
+/* CARDS */
+
+.visualCardBox,
+.cardScalable {
+	border-radius: var(--r-large);
+	overflow: hidden;
+}
+
+.visualCardBox .cardScalable {
+	border-radius: var(--r-large) var(--r-large) 0 0;
+}
+
+/* Progress Bars */
+
+.innerCardFooter {
+	overflow: visible;
+}
+
+.itemProgressBar {
+	position: absolute;
+	left: .5rem;
+	right: .5rem;
+	bottom: .3rem;
+	height: .4rem;
+	background: #0008;
+	border-radius: 99em;
+	padding: .2rem;
+	backdrop-filter: blur(1px);
+}
+
+.itemProgressBarForeground {
+	position: static;
+	height: 100%;
+	border-radius: 99em;
+	background: var(--c-accent);
+}
+
+
 /* Fancy play animation */
 
 .paper-icon-button-light[data-action="resume"]:hover:not(:disabled) {
@@ -565,8 +621,6 @@ h2 {
 	display: none;
 }
 
-
-
 /* Hide collection count */
 .card[data-path*="/data/collections/"] .indicator {
 	display: none;
@@ -614,7 +668,6 @@ h2 {
 @media (min-width:131.25em) {
 	.collectionItems .portraitCard {
 		width: 11.11111111111111%;
-/* 		width: 10%; */
 	}
 }
 
