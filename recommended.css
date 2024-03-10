@@ -420,12 +420,11 @@ html:not(:has(script[src^="file:///"])) .pageTitleWithDefaultLogo {
 	background: hsla(var(--hsl-foreground-stark), var(--o-medium));
 	color: rgba(255, 255, 255, 0.8);
 	clip-path: inset(0 248px 0 0);
-	transform: none !important;
-	translate: -22px;
-	transition: translate var(--t-quick) ease-out, clip-path var(--t-quick) ease-out !important;
+	transform: translateX(-22px) !important;
+	transition: transform var(--t-quick) ease-out, clip-path var(--t-quick) ease-out !important;
 }
 .layout-desktop .libraryDocument:not(.hide-scroll) .mainDrawer:hover {
-	translate: 0;
+	transform: none !important;
 	clip-path: inset(0 0px 0 0);
 }
 
