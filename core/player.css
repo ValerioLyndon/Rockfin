@@ -64,3 +64,39 @@ PLAYER
 .sliderBubbleText {
 	padding: 1rem;
 }
+
+/* Next Up */
+
+.upNextContainer {
+	border-radius: var(--r-large);
+}
+
+.upNextDialog-countdownText {
+	color: var(--c-accent);
+	font-weight: inherit;
+}
+
+.upNextDialog-button {
+	background: none;
+	padding: .2em .5em;
+	text-transform: uppercase;
+	color: var(--c-accent);
+}
+.upNextDialog-button:hover {
+	background: hsla(var(--hsl-foreground-stark), var(--o-heavy));
+}
+.upNextDialog-button::before,
+.upNextDialog-button::after {
+	margin-right: .3rem;
+	font-family: var(--f-icon);
+	font-size: 2em;
+	line-height: inherit;
+}
+
+.upNextDialog-button.btnStartNow::before {
+	content: "\e044 ";
+}
+
+.upNextDialog-button.btnHide::before {
+	content: "\e5cd ";
+}

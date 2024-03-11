@@ -114,6 +114,7 @@ h2 {
 }
 
 .emby-button {
+	border-radius: var(--r-medium);
 	transition-duration: var(--t-quick);
 }
 
