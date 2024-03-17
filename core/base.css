@@ -39,7 +39,7 @@ t-   timings
 	--hsl-foreground-stark: 0, 0%, 0%;
 	--hsl-foreground: 70, 30%, 9%;
 	--hsl-foreground: 310, 30%, 15%;
-	--hsl-border: 0, 0%, 12%;
+	--hsl-border: 0, 0%, 3%;
 	--hsl-text: 0, 0%, 84%;
 	--hsl-darken: 0, 0%, 0%;
 	--c-background: hsl(var(--hsl-background));
@@ -52,6 +52,10 @@ t-   timings
 	--c-border: hsl(var(--hsl-border));
 	--c-darken: hsl(var(--hsl-darken));
 	--g-background: linear-gradient(-15deg, #0006, #1c1c1c66), radial-gradient(circle at 20% -30%, hsla(150deg, 70%, 50%, 10%), hsla(270deg, 70%, 50%, 15%));
+	--g-page: 
+		linear-gradient(-15deg, hsla(var(--hsl-background), var(--o-light)), hsla(var(--hsl-background), var(--o-heavy))),
+		radial-gradient(circle at 34% -30%, hsla(var(--hsl-accent), var(--o-medium)), hsla(var(--hsl-complementary), var(--o-medium))),
+		radial-gradient(circle at 90% 110%, hsla(var(--hsl-accent), var(--o-medium)), hsla(var(--hsl-complementary), var(--o-heavy)));
 	
 	--r-factor: 1;
 	--r-small: calc(.3rem * var(--r-factor));
@@ -83,6 +87,14 @@ body {
 
 /* BASIC ELEMENTS */
 
+.fab, .raised {
+	background: var(--c-foreground-stark);
+	color: var(--c-text);
+}
+.fab {
+	background: var(--c-foreground);
+}
+
 /* Sizings */
 
 .padded-left {
@@ -90,6 +102,31 @@ body {
 }
 .padded-right {
 	padding-right: var(--s-page-pad);
+}
+
+/* Misc */
+
+.collapseContent,
+.visualCardBox {
+	background: var(--c-foreground-stark);
+}
+
+/* Lists in Dialogs - maybe elsewhere? */
+
+.paperList {
+	background: none;
+	border-radius: var(--r-large) !important;
+	overflow: hidden;
+}
+.paperList .listItem {
+	background: hsla(var(--hsl-foreground), var(--o-medium)) padding-box;
+}
+.paperList .listItem ~ .listItem {
+	border-top: 2px solid transparent;
+}
+
+.listItemIcon[style*="background-color"] {
+	background: var(--c-foreground-stark) !important;
 }
 
 /* Headers */
@@ -189,7 +226,15 @@ h2 {
 	color: var(--c-accent);
 }
 
-.emby-input:focus, .emby-textarea:focus {
+.emby-input,
+.emby-textarea {
+	background: hsla(var(--hsl-foreground), var(--o-medium));
+/* 	border: none; */
+	border-color: var(--c-foreground);
+}
+
+.emby-input:focus,
+.emby-textarea:focus {
 	border-color: var(--c-accent);
 }
 
@@ -201,7 +246,8 @@ h2 {
 
 .emby-select-withcolor {
 	background: hsla(var(--hsl-foreground), var(--o-medium));
-	border: none;
+/* 	border: none; */
+	border-color: var(--c-foreground);
 	padding-left: .8rem !important;
 	border-radius: var(--r-small);
 }
@@ -257,6 +303,11 @@ h2 {
 
 /* DIALOGS */
 
+.formDialogFooter:not(.formDialogFooter-clear),
+.formDialogHeader:not(.formDialogHeader-clear) {
+	background: var(--c-foreground-stark);
+}
+
 .dialog {
 	border-radius: var(--r-medium);
 	background: hsla(var(--hsl-foreground-stark), var(--o-heavy)) !important;
@@ -284,10 +335,11 @@ h2 {
 
 /* Overlays */
 .dialogBackdrop {
-	transition: none !important;
+	background: var(--g-page);
+	transition-duration: var(--t-quick) !important;
 }
 .dialogBackdropOpened {
-	opacity: .7;
+	opacity: var(--o-heavy);
 }
 .layout-desktop .dialog {
 	animation-duration: 0.01s !important; /* cannot fully remove animation or closing dialogs breaks?..... */
@@ -578,7 +630,7 @@ html:not(:has(script[src^="file:///"])) .pageTitleWithDefaultLogo {
 	width: auto;
 	height: auto;
 	padding: 0;
-	font-size: 1rem;	
+	font-size: 1.4rem;
 }
 .layout-desktop .filterDialogContent .checkboxList .emby-checkbox-label .checkboxOutline {
 	position: static;
