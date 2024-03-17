@@ -35,14 +35,17 @@ t-   timings
 	--hsl-background: 0, 0%, 3%;
 	--hsl-active: 278, 45%, 57%;
 	--hsl-accent: 70, 65%, 38%;
+	--hsl-complementary: 310, 65%, 65%;
 	--hsl-foreground-stark: 0, 0%, 0%;
-	--hsl-foreground: 0, 0%, 12%;
+	--hsl-foreground: 70, 30%, 9%;
+	--hsl-foreground: 310, 30%, 15%;
 	--hsl-border: 0, 0%, 12%;
 	--hsl-text: 0, 0%, 84%;
 	--hsl-darken: 0, 0%, 0%;
 	--c-background: hsl(var(--hsl-background));
 	--c-active: hsl(var(--hsl-active));
 	--c-accent: hsl(var(--hsl-accent));
+	--c-complementary: hsl(var(--hsl-complementary));
 	--c-foreground-stark: hsl(var(--hsl-foreground-stark));
 	--c-foreground: hsl(var(--hsl-foreground));
 	--c-text: hsl(var(--hsl-text));
@@ -113,9 +116,14 @@ h2 {
 	color: var(--c-accent);
 }
 
-.emby-button {
-	border-radius: var(--r-medium);
+.emby-button,
+.paper-icon-button-light {
 	transition-duration: var(--t-quick);
+}
+
+.emby-button,
+.cardOverlayButton {
+	border-radius: var(--r-medium);
 }
 
 .emby-tab-button:hover,
@@ -176,12 +184,30 @@ h2 {
 
 /* Fields */
 
-.inputLabelFocused, .selectLabelFocused, .textareaLabelFocused {
+.inputLabelFocused,
+.textareaLabelFocused {
 	color: var(--c-accent);
 }
 
 .emby-input:focus, .emby-textarea:focus {
 	border-color: var(--c-accent);
+}
+
+/* Selects */
+
+.selectLabelFocused {
+	color: var(--c-text);
+}
+
+.emby-select-withcolor {
+	background: hsla(var(--hsl-foreground), var(--o-medium));
+	border: none;
+	padding-left: .8rem !important;
+	border-radius: var(--r-small);
+}
+
+.emby-select-withcolor > option {
+	background: inherit;
 }
 
 /* Slider */
@@ -430,6 +456,7 @@ html:not(:has(script[src^="file:///"])) .pageTitleWithDefaultLogo {
 }
 
 .layout-desktop .libraryDocument:not(.hide-scroll) .sidebarHeader {
+	font-weight: 900;
 	opacity: 0;
 	transition: opacity 0.12s ease-out;
 }
@@ -649,6 +676,10 @@ html:not(:has(script[src^="file:///"])) .pageTitleWithDefaultLogo {
 }
 
 /* Fancy play animation */
+
+.paper-icon-button-light[data-action="resume"] {
+	border-radius: var(--r-round);
+}
 
 .paper-icon-button-light[data-action="resume"]:hover:not(:disabled) {
 	background: hsla(var(--hsl-foreground-stark), var(--o-medium));

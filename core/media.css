@@ -214,19 +214,23 @@ MEDIA ITEM
 }
 
 .itemExternalLinks a {
-	display: flex;
-	background: var(--c-foreground);
-	font-size: 1.4rem;
-	padding: .3rem;
+	padding: .3rem .6rem;
+	background: hsla(var(--hsl-foreground), var(--o-medium));
 	border-radius: .3rem;
-	gap: .6rem;
+	font-size: 1.4rem;
 	line-height: 1.3;
+}
+.itemExternalLinks a:hover {
+	background: hsla(var(--hsl-foreground), var(--o-medium));
+	text-decoration: none;
+	color: var(--c-accent);
 }
 
 .itemExternalLinks a::before {
 	width: 1em;
 	height: 1em;
 	border-radius: .2rem;
+	margin-right: .6rem;
 	background-size: contain;
 }
 .itemExternalLinks a[href^="https://anilist.co"]::before {
@@ -254,6 +258,11 @@ MEDIA ITEM
 	background-image: url(https://www.thetvdb.com/images/icon.png);
 }
 
+.itemExternalLinks a[href*="themoviedb.org/collection"]::after {
+	content: " Collection";
+	white-space: pre;
+}
+
 
 /* CAST & CREW */
 
@@ -271,7 +280,10 @@ MEDIA ITEM
 #castContent .cardContent-button.cardImageContainer.coveredImage.defaultCardBackground.defaultCardBackground4.cardContent.cardContent-shadow.itemAction {background-size: cover; !important; border-radius: 2.5cm;}
 #castContent .cardContent-button.cardImageContainer.coveredImage.defaultCardBackground.defaultCardBackground5.cardContent.cardContent-shadow.itemAction {background-size: cover; !important; border-radius: 2.5cm;}
 #castContent .cardScalable {width: 3.8cm !important; height: 3.8cm !important; border-radius: 2.5cm;}
-#castContent .cardOverlayContainer.itemAction {border-radius: var(--r-round);}
+#castContent .cardOverlayContainer.itemAction,
+#castContent .cardOverlayButton {
+	border-radius: var(--r-round);
+}
 
 /* Center the mouseover buttons */
 #castContent .cardOverlayButton-br {bottom: 4%; right: 15%; width: 70%;}
