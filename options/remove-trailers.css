@@ -1,0 +1,6 @@
+/*
+REMOVE TRAILERS & UPCOMING
+*/
+.libraryDocument:has(.libraryPage:not(.hide,.liveTvPage)) .emby-tab-button[data-index="2"] {
+	display: none;
+}

@@ -593,11 +593,6 @@ html:not(:has(script[src^="file:///"])) .pageTitleWithDefaultLogo {
 
 /* Library browsing */
 
-/* remove trailers & upcoming */
-.libraryDocument .emby-tab-button[data-index="2"] {
-	display: none;
-}
-
 /* Better Filters */
 
 .layout-desktop .dynamicFilterDialog {
