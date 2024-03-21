@@ -35,20 +35,27 @@ t-   timings
 	--hsl-background: 0, 0%, 3%;
 	--hsl-active: 278, 45%, 57%;
 	--hsl-accent: 70, 65%, 38%;
+	--hsl-complementary: 310, 65%, 65%;
 	--hsl-foreground-stark: 0, 0%, 0%;
-	--hsl-foreground: 0, 0%, 12%;
-	--hsl-border: 0, 0%, 12%;
+	--hsl-foreground: 70, 30%, 9%;
+	--hsl-foreground: 310, 30%, 15%;
+	--hsl-border: 0, 0%, 3%;
 	--hsl-text: 0, 0%, 84%;
 	--hsl-darken: 0, 0%, 0%;
 	--c-background: hsl(var(--hsl-background));
 	--c-active: hsl(var(--hsl-active));
 	--c-accent: hsl(var(--hsl-accent));
+	--c-complementary: hsl(var(--hsl-complementary));
 	--c-foreground-stark: hsl(var(--hsl-foreground-stark));
 	--c-foreground: hsl(var(--hsl-foreground));
 	--c-text: hsl(var(--hsl-text));
 	--c-border: hsl(var(--hsl-border));
 	--c-darken: hsl(var(--hsl-darken));
 	--g-background: linear-gradient(-15deg, #0006, #1c1c1c66), radial-gradient(circle at 20% -30%, hsla(150deg, 70%, 50%, 10%), hsla(270deg, 70%, 50%, 15%));
+	--g-page: 
+		linear-gradient(-15deg, hsla(var(--hsl-background), var(--o-light)), hsla(var(--hsl-background), var(--o-heavy))),
+		radial-gradient(circle at 34% -30%, hsla(var(--hsl-accent), var(--o-medium)), hsla(var(--hsl-complementary), var(--o-medium))),
+		radial-gradient(circle at 90% 110%, hsla(var(--hsl-accent), var(--o-medium)), hsla(var(--hsl-complementary), var(--o-heavy)));
 	
 	--r-factor: 1;
 	--r-small: calc(.3rem * var(--r-factor));
@@ -80,6 +87,14 @@ body {
 
 /* BASIC ELEMENTS */
 
+.fab, .raised {
+	background: var(--c-foreground-stark);
+	color: var(--c-text);
+}
+.fab {
+	background: var(--c-foreground);
+}
+
 /* Sizings */
 
 .padded-left {
@@ -87,6 +102,31 @@ body {
 }
 .padded-right {
 	padding-right: var(--s-page-pad);
+}
+
+/* Misc */
+
+.collapseContent,
+.visualCardBox {
+	background: var(--c-foreground-stark);
+}
+
+/* Lists in Dialogs - maybe elsewhere? */
+
+.paperList {
+	background: none;
+	border-radius: var(--r-large) !important;
+	overflow: hidden;
+}
+.paperList .listItem {
+	background: hsla(var(--hsl-foreground), var(--o-medium)) padding-box;
+}
+.paperList .listItem ~ .listItem {
+	border-top: 2px solid transparent;
+}
+
+.listItemIcon[style*="background-color"] {
+	background: var(--c-foreground-stark) !important;
 }
 
 /* Headers */
@@ -113,9 +153,14 @@ h2 {
 	color: var(--c-accent);
 }
 
-.emby-button {
-	border-radius: var(--r-medium);
+.emby-button,
+.paper-icon-button-light {
 	transition-duration: var(--t-quick);
+}
+
+.emby-button,
+.cardOverlayButton {
+	border-radius: var(--r-medium);
 }
 
 .emby-tab-button:hover,
@@ -176,12 +221,39 @@ h2 {
 
 /* Fields */
 
-.inputLabelFocused, .selectLabelFocused, .textareaLabelFocused {
+.inputLabelFocused,
+.textareaLabelFocused {
 	color: var(--c-accent);
 }
 
-.emby-input:focus, .emby-textarea:focus {
+.emby-input,
+.emby-textarea {
+	background: hsla(var(--hsl-foreground), var(--o-medium));
+/* 	border: none; */
+	border-color: var(--c-foreground);
+}
+
+.emby-input:focus,
+.emby-textarea:focus {
 	border-color: var(--c-accent);
+}
+
+/* Selects */
+
+.selectLabelFocused {
+	color: var(--c-text);
+}
+
+.emby-select-withcolor {
+	background: hsla(var(--hsl-foreground), var(--o-medium));
+/* 	border: none; */
+	border-color: var(--c-foreground);
+	padding-left: .8rem !important;
+	border-radius: var(--r-small);
+}
+
+.emby-select-withcolor > option {
+	background: inherit;
 }
 
 /* Slider */
@@ -231,6 +303,11 @@ h2 {
 
 /* DIALOGS */
 
+.formDialogFooter:not(.formDialogFooter-clear),
+.formDialogHeader:not(.formDialogHeader-clear) {
+	background: var(--c-foreground-stark);
+}
+
 .dialog {
 	border-radius: var(--r-medium);
 	background: hsla(var(--hsl-foreground-stark), var(--o-heavy)) !important;
@@ -258,10 +335,11 @@ h2 {
 
 /* Overlays */
 .dialogBackdrop {
-	transition: none !important;
+	background: var(--g-page);
+	transition-duration: var(--t-quick) !important;
 }
 .dialogBackdropOpened {
-	opacity: .7;
+	opacity: var(--o-heavy);
 }
 .layout-desktop .dialog {
 	animation-duration: 0.01s !important; /* cannot fully remove animation or closing dialogs breaks?..... */
@@ -430,6 +508,7 @@ html:not(:has(script[src^="file:///"])) .pageTitleWithDefaultLogo {
 }
 
 .layout-desktop .libraryDocument:not(.hide-scroll) .sidebarHeader {
+	font-weight: 900;
 	opacity: 0;
 	transition: opacity 0.12s ease-out;
 }
@@ -551,7 +630,7 @@ html:not(:has(script[src^="file:///"])) .pageTitleWithDefaultLogo {
 	width: auto;
 	height: auto;
 	padding: 0;
-	font-size: 1rem;	
+	font-size: 1.4rem;
 }
 .layout-desktop .filterDialogContent .checkboxList .emby-checkbox-label .checkboxOutline {
 	position: static;
@@ -649,6 +728,10 @@ html:not(:has(script[src^="file:///"])) .pageTitleWithDefaultLogo {
 }
 
 /* Fancy play animation */
+
+.paper-icon-button-light[data-action="resume"] {
+	border-radius: var(--r-round);
+}
 
 .paper-icon-button-light[data-action="resume"]:hover:not(:disabled) {
 	background: hsla(var(--hsl-foreground-stark), var(--o-medium));
@@ -1298,19 +1381,23 @@ MEDIA ITEM
 }
 
 .itemExternalLinks a {
-	display: flex;
-	background: var(--c-foreground);
-	font-size: 1.4rem;
-	padding: .3rem;
+	padding: .3rem .6rem;
+	background: hsla(var(--hsl-foreground), var(--o-medium));
 	border-radius: .3rem;
-	gap: .6rem;
+	font-size: 1.4rem;
 	line-height: 1.3;
+}
+.itemExternalLinks a:hover {
+	background: hsla(var(--hsl-foreground), var(--o-medium));
+	text-decoration: none;
+	color: var(--c-accent);
 }
 
 .itemExternalLinks a::before {
 	width: 1em;
 	height: 1em;
 	border-radius: .2rem;
+	margin-right: .6rem;
 	background-size: contain;
 }
 .itemExternalLinks a[href^="https://anilist.co"]::before {
@@ -1338,6 +1425,11 @@ MEDIA ITEM
 	background-image: url(https://www.thetvdb.com/images/icon.png);
 }
 
+.itemExternalLinks a[href*="themoviedb.org/collection"]::after {
+	content: " Collection";
+	white-space: pre;
+}
+
 
 /* CAST & CREW */
 
@@ -1355,7 +1447,10 @@ MEDIA ITEM
 #castContent .cardContent-button.cardImageContainer.coveredImage.defaultCardBackground.defaultCardBackground4.cardContent.cardContent-shadow.itemAction {background-size: cover; !important; border-radius: 2.5cm;}
 #castContent .cardContent-button.cardImageContainer.coveredImage.defaultCardBackground.defaultCardBackground5.cardContent.cardContent-shadow.itemAction {background-size: cover; !important; border-radius: 2.5cm;}
 #castContent .cardScalable {width: 3.8cm !important; height: 3.8cm !important; border-radius: 2.5cm;}
-#castContent .cardOverlayContainer.itemAction {border-radius: var(--r-round);}
+#castContent .cardOverlayContainer.itemAction,
+#castContent .cardOverlayButton {
+	border-radius: var(--r-round);
+}
 
 /* Center the mouseover buttons */
 #castContent .cardOverlayButton-br {bottom: 4%; right: 15%; width: 70%;}
