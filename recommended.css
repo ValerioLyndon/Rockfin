@@ -97,11 +97,11 @@ body {
 
 /* Sizings */
 
-.padded-left {
-	padding-left: var(--s-page-pad);
+.padded-left.padded-left {
+	padding-left: max(env(safe-area-inset-left),var(--s-page-pad))
 }
-.padded-right {
-	padding-right: var(--s-page-pad);
+.padded-right.padded-right {
+	padding-right: max(env(safe-area-inset-left),var(--s-page-pad))
 }
 
 /* Misc */
@@ -138,10 +138,8 @@ h2 {
 /* Scrollers */
 
 .emby-scroller {
-	margin-inline: var(--s-page-pad);
-}
-.layout-mobile .emby-scroller {
-	padding-inline: var(--s-page-pad);
+	padding-left: max(env(safe-area-inset-left),var(--s-page-pad));
+	padding-right: max(env(safe-area-inset-right),var(--s-page-pad));
 }
 .layout-mobile .itemDetailPage .emby-scroller {
 	padding-inline: 0;
@@ -389,29 +387,26 @@ h2 {
 
 #tvRecommendedPage .itemsContainer.vertical-list {
 	max-width: 70em;
-	display: grid;
-	grid-template-columns: 1fr 100fr 1fr 1fr;
-	grid-template-areas: "image title rating buttons";
-	grid-auto-flow: row;
+	display: table;
 }
 	
 #tvRecommendedPage .itemsContainer.vertical-list .listItem {
-	display: grid;
-	grid-column: 1 / span 4;
-	grid-template-columns: subgrid;
-	grid-row-end: span 1;
+	display: table-row;
+}
+	
+#tvRecommendedPage .itemsContainer.vertical-list .listItem > * {
+	display: table-cell;
+	vertical-align: middle;
 }
 
 #tvRecommendedPage .itemsContainer.vertical-list .listItemImage {
-	grid-area: image;
 }
 
 #tvRecommendedPage .itemsContainer.vertical-list .listItemBody {
-	grid-area: title;
+	width: auto;
 }
 
 #tvRecommendedPage .itemsContainer.vertical-list .listItemMediaInfo {
-	grid-area: rating;
 }
 
 #tvRecommendedPage .itemsContainer.vertical-list .mediaInfoOfficialRating {
@@ -424,7 +419,7 @@ h2 {
 }
 
 #tvRecommendedPage .itemsContainer.vertical-list .listViewUserDataButtons {
-	grid-area: buttons;
+	
 }
 
 
@@ -556,8 +551,7 @@ html:not(:has(script[src^="file:///"])) .pageTitleWithDefaultLogo {
 .layout-mobile .customMenuOptions:empty,
 .layout-mobile .adminMenuOptions,
 .layout-mobile .userMenuOptions,
-.layout-mobile .sidebarHeader,
-.layout-mobile div:not([class]) {
+.layout-mobile .sidebarHeader {
 	display: none;
 }
 
@@ -1159,7 +1153,14 @@ HOME PAGE
 /* display more libraries */
 
 .card:is([data-collectiontype="playlists"],[data-type="CollectionFolder"]) {
-	flex: 1 0 10rem;
+	flex: 1 0 auto;
+	width: 20rem;
+}
+
+.card:is([data-collectiontype="playlists"],[data-type="CollectionFolder"]) .cardText {
+	max-width: 100%;
+	white-space: normal;
+	text-overflow: ellipsis;
 }/*
 MEDIA ITEM
 /details
@@ -1170,6 +1171,9 @@ MEDIA ITEM
 	--s-card: clamp(200px, 24vw, 500px);
 	--s-card-pad: var(--s-page-pad);
 	--s-card-allowance: calc(var(--s-card) + var(--s-card-pad) * 2);
+}
+.layout-desktop:has(.itemBackdrop:not([style]):not(.lazy-hidden)) {
+	--s-banner: 17rem;
 }
 .layout-mobile {
 	--s-banner: max(200px, 25vh);
@@ -1207,9 +1211,6 @@ MEDIA ITEM
 	height: var(--s-banner);
 	background-attachment: scroll;
 	background-position: center 20%;
-}
-.itemBackdrop:not([style]):not(.lazy-hidden) {
-	--s-banner: 17rem;
 }
 
 .layout-desktop .itemBackdrop::after {
@@ -1353,6 +1354,9 @@ MEDIA ITEM
 	font-size: 100% !important;
 	text-indent: -4.5ch; /* VERY INNACURATELY hides the "Tags: " text from the start. */
 	overflow: hidden;
+}
+.itemTags > * {
+	text-indent: 0;
 }
 .layout-mobile .itemTags {
 	margin-left: 5.1em !important;

@@ -9,6 +9,9 @@ MEDIA ITEM
 	--s-card-pad: var(--s-page-pad);
 	--s-card-allowance: calc(var(--s-card) + var(--s-card-pad) * 2);
 }
+.layout-desktop:has(.itemBackdrop:not([style]):not(.lazy-hidden)) {
+	--s-banner: 17rem;
+}
 .layout-mobile {
 	--s-banner: max(200px, 25vh);
 }
@@ -45,9 +48,6 @@ MEDIA ITEM
 	height: var(--s-banner);
 	background-attachment: scroll;
 	background-position: center 20%;
-}
-.itemBackdrop:not([style]):not(.lazy-hidden) {
-	--s-banner: 17rem;
 }
 
 .layout-desktop .itemBackdrop::after {
@@ -191,6 +191,9 @@ MEDIA ITEM
 	font-size: 100% !important;
 	text-indent: -4.5ch; /* VERY INNACURATELY hides the "Tags: " text from the start. */
 	overflow: hidden;
+}
+.itemTags > * {
+	text-indent: 0;
 }
 .layout-mobile .itemTags {
 	margin-left: 5.1em !important;

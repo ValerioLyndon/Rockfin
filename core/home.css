@@ -6,5 +6,12 @@ HOME PAGE
 /* display more libraries */
 
 .card:is([data-collectiontype="playlists"],[data-type="CollectionFolder"]) {
-	flex: 1 0 10rem;
+	flex: 1 0 auto;
+	width: 20rem;
+}
+
+.card:is([data-collectiontype="playlists"],[data-type="CollectionFolder"]) .cardText {
+	max-width: 100%;
+	white-space: normal;
+	text-overflow: ellipsis;
 }
