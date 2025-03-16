@@ -415,10 +415,16 @@ html:not(:has(script[src^="file:///"])) .pageTitleWithDefaultLogo {
 	padding: 1.2rem 1.5rem !important;
 	margin-inline: 1.5rem !important;
 	border-radius: var(--r-medium) !important;
+	color: var(--c-text);
 }
-.navMenuOption:hover {
+.navMenuOption:hover,
+.navMenuOption-selected,
+html:has(#indexPage:not(.hide)) .navMenuOption[href$="/home.html"],
+html:has(.libraryPage:not(.hide) .card[data-type="BoxSet"]) .navMenuOption:has(.folder),
+html:has(.libraryPage:not(.hide) .card[data-type="Playlist"]) .navMenuOption:has(.view_list),
+html:has(#myPreferencesMenuPage:not(.hide)) .navMenuOption[data-itemid="settings"] {
 	background: hsla(var(--hsl-foreground), var(--o-medium)) !important;
-	color: var(--c-accent);
+	color: var(--c-accent) !important;
 }
 
 .navMenuOptionIcon.navMenuOptionIcon {
