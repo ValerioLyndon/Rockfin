@@ -1,6 +1,7 @@
 /*
 DASHBOARD
 /dashboard
+/metadata
 */
 
 .MuiListSubheader-gutters {
@@ -13,4 +14,21 @@ DASHBOARD
 
 .MuiListItemText-secondary {
 	font-size: .875em;
+}
+
+
+/* ==-Metadata-Menus-======================================================= */
+
+.metadataEditorPage .metadataSidebarIcon {
+	color: var(--c-complementary);
+}
+
+.metadataEditorPage .jstree-default :is(.jstree-wholerow-clicked,.jstree-wholerow-hovered) {
+	background: hsla(var(--hsl-foreground), var(--o-medium)) !important;
+}
+.metadataEditorPage .jstree-wholerow-clicked ~ a {
+	color: var(--c-accent) !important;
+}
+.metadataEditorPage .jstree-wholerow-clicked ~ a .metadataSidebarIcon {
+	color: var(--c-accent) !important;
 }

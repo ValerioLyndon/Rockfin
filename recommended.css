@@ -379,12 +379,14 @@ html:not(:has(script[src^="file:///"])) .pageTitleWithDefaultLogo {
 	mask-image: url(./assets/img/banner-light.png);
 }
 
-.skinHeader {
+.skinHeader,
+.MuiAppBar-colorPrimary {
 	/* give mobile header a transition */
-	transition: background .5s ease-in-out, transform .2s ease-out;
+	transition: background-color .5s ease-in-out, transform .2s ease-out;
 }
 
-.skinHeader-withBackground {
+.skinHeader-withBackground,
+.MuiAppBar-positionFixed {
 	background: hsla(var(--hsl-background), var(--o-heavy));
 	backdrop-filter: blur(5px);
 }
@@ -964,6 +966,7 @@ html:not(:has(script[src^="file:///"])) .pageTitleWithDefaultLogo {
 } *//*
 DASHBOARD
 /dashboard
+/metadata
 */
 
 .MuiListSubheader-gutters {
@@ -976,6 +979,23 @@ DASHBOARD
 
 .MuiListItemText-secondary {
 	font-size: .875em;
+}
+
+
+/* ==-Metadata-Menus-======================================================= */
+
+.metadataEditorPage .metadataSidebarIcon {
+	color: var(--c-complementary);
+}
+
+.metadataEditorPage .jstree-default :is(.jstree-wholerow-clicked,.jstree-wholerow-hovered) {
+	background: hsla(var(--hsl-foreground), var(--o-medium)) !important;
+}
+.metadataEditorPage .jstree-wholerow-clicked ~ a {
+	color: var(--c-accent) !important;
+}
+.metadataEditorPage .jstree-wholerow-clicked ~ a .metadataSidebarIcon {
+	color: var(--c-accent) !important;
 }/*
 DIALOG
 media metadata
