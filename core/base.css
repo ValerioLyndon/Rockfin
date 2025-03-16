@@ -361,67 +361,6 @@ h2 {
 	background: var(--c-background);
 }
 
-/* CARDS */
-
-/* Multiple media indicator */
-
-/* removing this indicator because I could actually not care less about it when browsing */
-.mediaSourceIndicator {
-	display: none;
-}
-
-/* Indicators */
-
-.cardIndicators, .listItemIndicators {
-	top: .3rem;
-	right: .3rem;
-}
-
-.indicator {
-	border: 0;
-	border-radius: calc(var(--r-large) - .3rem) !important;
-	background: hsla(var(--hsl-foreground-stark), var(--o-medium));
-}
-
-/* CARDS - LIST STYLE */
-
-#tvRecommendedPage .itemsContainer.vertical-list {
-	max-width: 70em;
-	display: table;
-}
-	
-#tvRecommendedPage .itemsContainer.vertical-list .listItem {
-	display: table-row;
-}
-	
-#tvRecommendedPage .itemsContainer.vertical-list .listItem > * {
-	display: table-cell;
-	vertical-align: middle;
-}
-
-#tvRecommendedPage .itemsContainer.vertical-list .listItemImage {
-}
-
-#tvRecommendedPage .itemsContainer.vertical-list .listItemBody {
-	width: auto;
-}
-
-#tvRecommendedPage .itemsContainer.vertical-list .listItemMediaInfo {
-}
-
-#tvRecommendedPage .itemsContainer.vertical-list .mediaInfoOfficialRating {
-	white-space: nowrap;
-}
-
-#tvRecommendedPage .itemsContainer.vertical-list .starRatingContainer {
-	width: 4em;
-	margin-left: auto;
-}
-
-#tvRecommendedPage .itemsContainer.vertical-list .listViewUserDataButtons {
-	
-}
-
 
 /* HEADER */
 
@@ -685,6 +624,49 @@ html:not(:has(script[src^="file:///"])) .pageTitleWithDefaultLogo {
 	background: var(--c-accent);
 }
 
+/* Multiple media indicator */
+
+/* TODO: move this to an option */
+/* removing this indicator because I could actually not care less about it when browsing */
+.mediaSourceIndicator {
+	display: none;
+}
+
+/* Indicators */
+
+.cardIndicators, .listItemIndicators {
+	top: .3rem;
+	right: .3rem;
+}
+
+.indicator {
+	border: 0;
+	border-radius: calc(var(--r-large) - .3rem) !important;
+	background: hsla(var(--hsl-foreground-stark), var(--o-medium));
+}
+
+/* Selection Overlay */
+
+.itemSelectionPanel {
+	border: 2px solid var(--c-text);
+	border-radius: var(--r-large);
+}
+.itemSelectionPanel:has(.chkItemSelect:checked) {
+	border-color: var(--c-accent);
+}
+
+.itemSelectionPanel .checkboxOutline {
+	top: .3rem !important;
+	left: .3rem;
+	border-radius: calc(var(--r-large) - .3rem) !important;
+}
+
+/* Hide all play buttons when they are un-interactable, such as during multi selection */
+.card-hoverable:has(.itemSelectionPanel) .cardOverlayButton-hover {
+	opacity: 0;
+}
+
+
 /* Add play icon to cards that don't have one already */
 
 .cardScalable:has([data-action="resume"]):not(:has(.cardOverlayButton)):hover {
@@ -760,6 +742,58 @@ html:not(:has(script[src^="file:///"])) .pageTitleWithDefaultLogo {
 	} to {
 		transform: rotate(405deg);
 	}
+}
+
+/* CARDS - LIST STYLE */
+
+#tvRecommendedPage .itemsContainer.vertical-list {
+	max-width: 70em;
+	display: table;
+}
+	
+#tvRecommendedPage .itemsContainer.vertical-list .listItem {
+	display: table-row;
+}
+	
+#tvRecommendedPage .itemsContainer.vertical-list .listItem > * {
+	display: table-cell;
+	vertical-align: middle;
+}
+
+#tvRecommendedPage .itemsContainer.vertical-list .listItemImage {
+}
+
+#tvRecommendedPage .itemsContainer.vertical-list .listItemBody {
+	width: auto;
+}
+
+#tvRecommendedPage .itemsContainer.vertical-list .listItemMediaInfo {
+}
+
+#tvRecommendedPage .itemsContainer.vertical-list .mediaInfoOfficialRating {
+	white-space: nowrap;
+}
+
+#tvRecommendedPage .itemsContainer.vertical-list .starRatingContainer {
+	width: 4em;
+	margin-left: auto;
+}
+
+#tvRecommendedPage .itemsContainer.vertical-list .listViewUserDataButtons {
+	
+}
+
+
+
+/* Multi-Selection Dialogs */
+
+.selectionCommandsPanel {
+	background: var(--c-accent);
+}
+
+.itemSelectionCount::after {
+	content: " Selected";
+	cursor: text;
 }
 
 
