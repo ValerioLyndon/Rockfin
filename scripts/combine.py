@@ -1,4 +1,5 @@
 import os
+from pathlib import Path
 
 def concatenate_css_files(directory, output_file, custom_order=None):
     if not os.path.exists(directory):
@@ -16,4 +17,6 @@ def concatenate_css_files(directory, output_file, custom_order=None):
             with open(os.path.join(directory, css_file), 'r') as infile:
                 outfile.write(infile.read())
 
-concatenate_css_files("../core", "../recommended.css", custom_order=["base.css"])
+if __name__ == '__main__':
+	os.chdir(Path(__file__).parent)
+	concatenate_css_files("../core", "../recommended.css", custom_order=["base.css"])
