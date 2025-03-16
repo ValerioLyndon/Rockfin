@@ -403,19 +403,6 @@ MEDIA ITEM
 	opacity: 1;
 }
 
-/* Blur unwatched episodes, but not partially watched */
-
-.listItemImage:not(:has(.playedIndicator),:has(.listItemProgressBar))::after {
-	content: "";
-	position: absolute;
-	inset: 0;
-	backdrop-filter: blur(15px);
-}
-
-.listItemImageButton {
-	z-index: 1;
-}
-
 /* PLAYLISTS */
 
 .listItem[data-playlistitemid] {
