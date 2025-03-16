@@ -9,11 +9,14 @@ PROFILE
 
 #myPreferencesMenuPage h2 {
 	color: var(--c-accent);
+	margin-block: 2rem;
 }
 
 #myPreferencesMenuPage .listItem {
 	padding-inline: 2rem;
 	border-radius: var(--r-large);
+	transition-property: background-color, color;
+	transition-duration: var(--t-quick);
 }
 
 /* only works on newer browsers */

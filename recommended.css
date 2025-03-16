@@ -409,14 +409,21 @@ html:not(:has(script[src^="file:///"])) .pageTitleWithDefaultLogo {
 .headerHomeButton {
 	display: none;
 }
-		
-.navMenuOption-selected:not(:hover) {
-	background: none !important;
-	
+
+.navMenuOption.navMenuOption,
+.navMenuOption-selected {
+	padding: 1.2rem 1.5rem !important;
+	margin-inline: 1.5rem !important;
+	border-radius: var(--r-medium) !important;
 }
 .navMenuOption:hover {
 	background: hsla(var(--hsl-foreground), var(--o-medium)) !important;
 	color: var(--c-accent);
+}
+
+.navMenuOptionIcon.navMenuOptionIcon {
+	width: 2rem;
+	margin-right: 1.5rem;
 }
 
 .mainDrawer {
@@ -424,9 +431,13 @@ html:not(:has(script[src^="file:///"])) .pageTitleWithDefaultLogo {
 	backdrop-filter: blur(5px);
 }
 
+.layout-desktop .mainDrawer:not(:hover) .navMenuOption {
+	border-radius: 0 !important;
+}
+
 .layout-desktop .libraryDocument:not(.hide-scroll) .skinHeader,
 .layout-desktop .libraryDocument:not(.hide-scroll) .page {
-	left: 50px;
+	left: 5rem;
 }
 
 .layout-desktop .libraryDocument:not(.hide-scroll) .mainDrawer {
@@ -434,16 +445,19 @@ html:not(:has(script[src^="file:///"])) .pageTitleWithDefaultLogo {
 	width: 320px !important;
 	background: hsla(var(--hsl-foreground-stark), var(--o-medium));
 	color: rgba(255, 255, 255, 0.8);
-	clip-path: inset(0 248px 0 0);
-	transform: translateX(-22px) !important;
+	clip-path: inset(0 calc(100% - 6.5rem) 0 0);
+	transform: translateX(-1.5rem) !important;
 	transition: transform var(--t-quick) ease-out, clip-path var(--t-quick) ease-out !important;
 }
 .layout-desktop .libraryDocument:not(.hide-scroll) .mainDrawer:hover {
 	transform: none !important;
-	clip-path: inset(0 0px 0 0);
+	clip-path: inset(0 0rem 0 0);
 }
 
 .layout-desktop .libraryDocument:not(.hide-scroll) .sidebarHeader {
+	margin-block: 2rem 1rem;
+	padding-inline: 1.5rem;
+	color: var(--c-accent);
 	font-weight: 900;
 	opacity: 0;
 	transition: opacity 0.12s ease-out;
@@ -1846,11 +1860,14 @@ PROFILE
 
 #myPreferencesMenuPage h2 {
 	color: var(--c-accent);
+	margin-block: 2rem;
 }
 
 #myPreferencesMenuPage .listItem {
 	padding-inline: 2rem;
 	border-radius: var(--r-large);
+	transition-property: background-color, color;
+	transition-duration: var(--t-quick);
 }
 
 /* only works on newer browsers */
