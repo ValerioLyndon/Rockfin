@@ -928,6 +928,21 @@ html:not(:has(script[src^="file:///"])) .pageTitleWithDefaultLogo {
 [id$="Collapsible"] .listItem:hover .listItemBody + button {
 	opacity: 1;
 } *//*
+DASHBOARD
+/dashboard
+*/
+
+.MuiListSubheader-gutters {
+	font-size: inherit;
+}
+
+.MuiListItemText-primary {
+	font-size: inherit;
+}
+
+.MuiListItemText-secondary {
+	font-size: .875em;
+}/*
 DIALOG
 media metadata
 */

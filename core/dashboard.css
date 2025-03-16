@@ -1,0 +1,16 @@
+/*
+DASHBOARD
+/dashboard
+*/
+
+.MuiListSubheader-gutters {
+	font-size: inherit;
+}
+
+.MuiListItemText-primary {
+	font-size: inherit;
+}
+
+.MuiListItemText-secondary {
+	font-size: .875em;
+}
