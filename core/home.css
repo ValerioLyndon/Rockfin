@@ -3,6 +3,8 @@ HOME PAGE
 /home.html
 */
 
+/* Large library widget */
+
 /* display more libraries */
 
 .card:is([data-collectiontype="playlists"],[data-type="CollectionFolder"]) {
@@ -14,4 +16,11 @@ HOME PAGE
 	max-width: 100%;
 	white-space: normal;
 	text-overflow: ellipsis;
+}
+
+/* Small libary widget */
+
+.homeLibraryButton:hover {
+	background-color: hsla(var(--hsl-foreground), var(--o-medium));
+	color: var(--c-accent);
 }
