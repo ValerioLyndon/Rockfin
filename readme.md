@@ -9,6 +9,7 @@ Currently, all the recommended or "core" CSS is combined into the ["recommended.
 ## Current features
 
 - Compact editing UI for easier changes to your media metadata.
+- Always-accessible sidebar for quick navigation.
 - Remade mobile interface with bottom navigation.
 - Other changes to things that annoyed me. A more comprehensive list will come as it develops.
 
