@@ -269,6 +269,11 @@ MEDIA ITEM
 
 /* CAST & CREW */
 
+/* move cast to bottom of page, below special features */
+#castCollapsible {
+	order: 99;
+}
+
 /* Stylized and smaller cast/crew info as per https://jellyfin.org/docs/general/clients/css-customization.html */
 
 /* Shrink and square (or round) cast thumnails */
