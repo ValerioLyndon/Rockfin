@@ -25,7 +25,8 @@ Currently, all the recommended or "core" CSS is combined into the ["recommended.
 
 These screenshots display designs that may have already changed or be subject to change later.
 
-![](gallery/library.webp)
-![](gallery/media.webp)
-![](gallery/dialog_metadata.webp)
-![](gallery/mobile.jpg)
+| _ | _ |
+|:---:|:---:|
+| ![](gallery/library.webp) | ![](gallery/media.webp) |
+| ![](gallery/login_visual.webp) | ![](gallery/login_manual.webp)|
+| ![](gallery/mobile.jpg) | ![](gallery/dialog_metadata.webp) |
