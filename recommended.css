@@ -889,75 +889,6 @@ html:has(#myPreferencesMenuPage:not(.hide)) .navMenuOption[data-itemid="settings
 }
 
 
-/* Login form */
-
-.visualLoginForm > h1,
-.btnForgotPassword {
-	display: none !important;
-}
-
-#loginPage .cardPadder {
-	background: none !important;
-}
-
-#loginPage .defaultCardBackground {
-	background: rgba(0,0,0,0.4);
-}
-
-#loginPage > div {
-	position: relative;
-	padding-top: 2.5em;
-	padding-bottom: 0 !important;
-}
-
-.btnManual {
-	width: auto !important;
-	margin: 0 auto !important;
-}
-
-#loginPage::before {
-	content: "";
-	position: absolute;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	background: linear-gradient(170deg, #b32424 100px, #500152, #340034, #27001f);
-	opacity: 0.25;
-}
-
-.manualLoginForm {
-	max-width: 300px;
-	background: rgba(0,0,0,0.3);
-	border-radius: 10px;
-	padding: 15px;
-}
-
-/* temporary measure - explain how to sign in over LAN */
-/*.manualLoginForm .inputContainer + .inputContainer::after {
-	content: "\e88e  use your birth year while on the local network";
-	display: block;
-	margin-top: .25em;
-	font-family: "Noto Sans", "Material Icons";
-	opacity: 0.65;
-	animation: 4.5s cubic-bezier(.26,.1,.34,1.15) 3s infinite attention;
-}
-@keyframes attention {
-	0%, 87.5%, 76.75%, 96%, 99%, 100% {
-		transform: translateX(0px);
-	}
-	90% {
-		transform: translateX(5px);
-	}
-	94.75% {
-		transform: translateX(3px);
-	}
-	97.75% {
-		transform: translateX(1.5px);
-	}
-}*/
-
-
 
 /* [id$="Collapsible"] .listItem {
 	position: relative;
@@ -1259,6 +1190,101 @@ HOME PAGE
 .homeLibraryButton:hover {
 	background-color: hsla(var(--hsl-foreground), var(--o-medium));
 	color: var(--c-accent);
+}/*
+LOGIN PAGE
+/login.html
+*/
+
+/* Containers */
+
+#loginPage {
+	display: grid;
+	place-items: center;
+	padding: 5rem !important;
+	overflow: auto;
+}
+
+#loginPage h1 {
+	display: none !important;
+}
+
+#loginPage .cardPadder {
+	background: none !important;
+}
+
+#loginPage .defaultCardBackground {
+	background: hsla(var(--hsl-foreground), var(--o-medium));
+}
+
+#loginPage > div {
+	position: relative;
+	max-width: 40rem;
+	background: var(--c-foreground-stark);
+	border-radius: var(--r-large);
+	padding: 2rem !important;
+	margin: 0 auto;
+}
+
+#loginPage .manualLoginForm {
+	width: 30rem;
+	max-width: initial;
+}
+
+/* Background */
+
+#loginPage::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: linear-gradient(170deg, #b32424 100px, #500152, #340034, #27001f);
+	opacity: 0.25;
+}
+
+/* User Icons */
+
+#loginPage #divUsers {
+	gap: 2rem;
+	justify-content: left;
+}
+
+#loginPage .card {
+	width: 12rem;
+}
+#loginPage .cardBox {
+	margin: 0 !important;
+}
+
+/* Buttons */
+
+#loginPage .readOnlyContent {
+	margin: 0 !important;
+}
+
+#loginPage .raised {
+	margin-top: 1rem !important;
+	margin-block: 0;
+}
+#loginPage .raised:not(.button-submit) {
+	background: hsla(var(--hsl-foreground), var(--o-medium));
+}
+
+/* Disclaimer */
+
+#loginPage .loginDisclaimerContainer {
+	margin: 0;
+	order: -1;
+}
+#loginPage .loginDisclaimer p {
+	margin: 2rem 0 1rem;
+}
+
+/* Hide useless header - this code is a bit delicate due to the over-complicated selector... hope it doesn't break! */
+
+#reactRoot:has(#loginPage:not(.hide)) > div:not([class]) {
+	display: none !important;
 }/*
 MEDIA ITEM
 /details
