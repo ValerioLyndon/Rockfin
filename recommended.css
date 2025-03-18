@@ -1218,6 +1218,7 @@ LOGIN PAGE
 
 #loginPage > div {
 	position: relative;
+	min-width: 26rem;
 	max-width: 40rem;
 	background: var(--c-foreground-stark);
 	border-radius: var(--r-large);
@@ -1226,7 +1227,6 @@ LOGIN PAGE
 }
 
 #loginPage .manualLoginForm {
-	width: 30rem;
 	max-width: initial;
 }
 
