@@ -64,6 +64,7 @@ t-   timings
 	--r-round: calc(9999px * var(--r-factor));
 	
 	--s-page-pad: calc(1vw + 3rem);
+	--s-sidebar-allowance: 5rem;
 
 	--f-default: Noto Sans,Noto Sans HK,Noto Sans JP,Noto Sans KR,Noto Sans SC,Noto Sans TC,sans-serif;
 	--f-icon: 'Material Icons Round';
@@ -443,7 +444,7 @@ html:has(#myPreferencesMenuPage:not(.hide)) .navMenuOption[data-itemid="settings
 
 .layout-desktop .libraryDocument:not(.hide-scroll) .skinHeader,
 .layout-desktop .libraryDocument:not(.hide-scroll) .page {
-	left: 5rem;
+	left: var(--s-sidebar-allowance);
 }
 
 .layout-desktop .libraryDocument:not(.hide-scroll) .mainDrawer {
