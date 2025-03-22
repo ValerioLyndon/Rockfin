@@ -3,7 +3,7 @@ DIALOG
 media metadata
 */
 
-@supports selector(html:has(body)) {
+@supports selector(:has(*)) {
 	/* TEMP */
 
 	.layout-desktop #fldDateAdded .fieldDescription,

@@ -72,8 +72,7 @@ LOGIN PAGE
 }
 
 #loginPage .raised {
-	margin-top: 1rem !important;
-	margin-block: 0;
+	margin: 1rem 0 0 !important;
 }
 #loginPage .raised:not(.button-submit) {
 	background: hsla(var(--hsl-foreground), var(--o-medium));
@@ -91,6 +90,7 @@ LOGIN PAGE
 
 /* Hide useless header - this code is a bit delicate due to the over-complicated selector... hope it doesn't break! */
 
+/* TODO: probably going to remove this and add the logo back but aligned with the login dialog */
 #reactRoot:has(#loginPage:not(.hide)) > div:not([class]) {
 	display: none !important;
 }

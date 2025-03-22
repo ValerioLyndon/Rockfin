@@ -9,17 +9,22 @@ PROFILE
 
 #myPreferencesMenuPage h2 {
 	color: var(--c-accent);
-	margin-block: 2rem;
+	margin: 2rem 0;
 }
 
 #myPreferencesMenuPage .listItem {
-	padding-inline: 2rem;
+	padding: 1.5rem 2rem;
 	border-radius: var(--r-large);
 	transition-property: background-color, color;
 	transition-duration: var(--t-quick);
 }
 
-/* only works on newer browsers */
+#myPreferencesMenuPage .listItemBody {
+	padding-top: 0;
+	padding-bottom: 0;
+}
+
+/* smaller buttons - only works on newer browsers, disabled for now */
 /* .layout-desktop #userProfilePage form div:not([class]):has(div>.emby-button) {
 	display: flex;
 	gap: 1rem;

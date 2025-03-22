@@ -4,13 +4,15 @@
 
 /* Blur unwatched episodes, but not partially watched */
 
-.listItemImage:not(:has(.playedIndicator),:has(.listItemProgressBar))::after {
-	content: "";
-	position: absolute;
-	inset: 0;
-	backdrop-filter: blur(15px);
-}
+@supports selector(:has(*)) {
+	.listItemImage:not(:has(.playedIndicator),:has(.listItemProgressBar))::after {
+		content: "";
+		position: absolute;
+		inset: 0;
+		backdrop-filter: blur(15px);
+	}
 
-.listItemImageButton {
-	z-index: 1;
+	.listItemImageButton {
+		z-index: 1;
+	}
 }
