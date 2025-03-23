@@ -30,7 +30,7 @@ t-   timings
 	--o-medium: 65%;
 	--o-heavy: 80%;
 	--o-background: 91%;
-	--o-darken: 70%;
+	--o-darken: 75%;
 	
 	--hsl-background: 0, 0%, 3%;
 	--hsl-active: 278, 45%, 57%;
@@ -62,9 +62,12 @@ t-   timings
 	--r-medium: calc(.6rem * var(--r-factor));
 	--r-large: calc(1rem * var(--r-factor));
 	--r-round: calc(9999px * var(--r-factor));
+	--r-card-buttons: calc(var(--r-large) - var(--s-card-margin));
 	
 	--s-page-pad: calc(1vw + 3rem);
 	--s-sidebar-allowance: 5rem;
+	--s-card-margin: .3rem;
+	--s-font-small: 1.3rem;
 
 	--f-default: Noto Sans,Noto Sans HK,Noto Sans JP,Noto Sans KR,Noto Sans SC,Noto Sans TC,sans-serif;
 	--f-icon: 'Material Icons Round';
@@ -170,22 +173,6 @@ h2 {
 
 .button-submit {
 	background: var(--c-accent);
-}
-
-/* Card Action Buttons */
-
-.cardOverlayButton-br {
-	right: .3rem;
-	bottom: .3rem;
-	gap: .3rem;
-}
-
-.cardOverlayButton {
-	padding: 0;
-}
-.paper-icon-button-light:hover:not(:disabled) {
-	color: var(--c-accent);
-	background-color: hsla(var(--hsl-foreground-stark), var(--o-medium));
 }
 
 /* List Items */
@@ -604,23 +591,6 @@ h2 {
 	margin-right: .5em;
 }
 
-/* blur cards on hover
-.card:hover .cardImageContainer {
-	filter: blur(1px);
-}*/
-
-/* increase darkening */
-.cardOverlayContainer {
-	background: hsla(var(--hsl-darken), var(--o-darken));
-}
-
-
-
-/* buttons */
-.playstatebutton-icon-played {
-	color: green;
-}
-
 
 
 /* CARDS */
@@ -631,8 +601,74 @@ h2 {
 	overflow: hidden;
 }
 
+/* change border for "Poster Card" layout */
 .visualCardBox .cardScalable {
 	border-radius: var(--r-large) var(--r-large) 0 0;
+}
+
+/* card darkening - uses pseudo element so that indicators stay above darkening */
+
+.cardOverlayContainer {
+	background: none;
+}
+
+.coveredImage::before {
+	content: "";
+	position: absolute;
+	bottom: 0;
+	top: 0;
+	left: 0;
+	right: 0;
+	background-color: transparent;
+	transition: background-color var(--t-quick) ease;
+}
+.card:hover .coveredImage::before {
+	background-color: hsla(var(--hsl-darken), var(--o-darken));
+}
+
+/* adjust card "hitbox" so there is less clickable empty space */
+
+.card {
+	pointer-events: none;
+}
+.card > * {
+	pointer-events: auto;
+}
+
+/* Buttons */
+
+/* Card Action Buttons */
+
+*:not(#castContent) > .card .cardOverlayButton-br {
+	left: var(--s-card-margin);
+	top: var(--s-card-margin);
+	bottom: auto !important;
+	right: auto !important;
+	gap: var(--s-card-margin);
+	background: hsla(var(--hsl-foreground-stark), var(--o-medium));
+	border-radius: var(--r-card-buttons);
+	opacity: 1;
+	transition: transform var(--t-quick) ease;
+}
+*:not(#castContent) > .card:not(:hover) .cardOverlayButton-br {
+	transform: translateX(calc(-100% - var(--s-card-margin)));
+}
+
+.cardOverlayButton {
+	padding: 0;
+	border-radius: var(--r-card-buttons);
+}
+*:not(#castContent) > .card .cardOverlayButton-br .cardOverlayButtonIcon {
+	font-size: 1.75rem !important;
+}
+
+.paper-icon-button-light:hover:not(:disabled) {
+	color: var(--c-accent);
+	background-color: hsla(var(--hsl-foreground-stark), var(--o-medium));
+}
+
+.playstatebutton-icon-played {
+	color: green;
 }
 
 /* Progress Bars */
@@ -645,7 +681,7 @@ h2 {
 	position: absolute;
 	left: .5rem;
 	right: .5rem;
-	bottom: .3rem;
+	bottom: var(--s-card-margin);
 	height: .4rem;
 	background: #0008;
 	border-radius: 99em;
@@ -670,15 +706,18 @@ h2 {
 
 /* Indicators */
 
-.cardIndicators, .listItemIndicators {
-	top: .3rem;
-	right: .3rem;
+.cardIndicators,
+.listItemIndicators {
+	top: var(--s-card-margin);
+	right: var(--s-card-margin) !important;
 }
 
 .indicator {
 	border: 0;
-	border-radius: calc(var(--r-large) - .3rem) !important;
+	border-radius: var(--r-card-buttons) !important;
 	background: hsla(var(--hsl-foreground-stark), var(--o-medium));
+	box-shadow: none;
+	font-size: var(--s-font-small);
 }
 
 /* Selection Overlay */
@@ -697,15 +736,16 @@ h2 {
 }
 
 .itemSelectionPanel .checkboxOutline {
-	top: .3rem !important;
-	left: .3rem;
-	border-radius: calc(var(--r-large) - .3rem) !important;
+	top: var(--s-card-margin) !important;
+	left: var(--s-card-margin);
+	border-radius: var(--r-card-buttons) !important;
 }
 
 /* Hide all play buttons when they are un-interactable, such as during multi selection */
 @supports selector(:has(*)) {
+	.card-hoverable:has(.itemSelectionPanel) .cardOverlayButton-br,
 	.card-hoverable:has(.itemSelectionPanel) .cardOverlayButton-hover {
-		opacity: 0;
+		display: none;
 	}
 }
 

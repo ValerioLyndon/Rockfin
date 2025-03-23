@@ -330,12 +330,15 @@ html:has(#itemDetailPage:not(.hide)) .backdropImage {
 /* MORE LIKE THIS - recommended/suggestions section - only affects mouse input because it would be hell on mobile */
 
 @media (pointer: fine) {
+	#similarCollapsible .card {
+		pointer-events: auto; /* revert hitbox changes from base.css to prevent visual errors */
+	}
 	#similarCollapsible .card + .card {
 		margin-left: -4em;
-		transition: translate 0.1s ease-out;
+		transition: transform 0.1s ease-out;
 	}
 	#similarCollapsible .card:hover ~ .card {
-		translate: 3.5em 0;
+		transform: translateX(3.5em);
 	}
 	
 	#similarCollapsible .card + .card .cardScalable {
@@ -343,6 +346,14 @@ html:has(#itemDetailPage:not(.hide)) .backdropImage {
 	}
 	#similarCollapsible .card:not(:hover):not(:last-of-type) .cardText {
 		mask-image: linear-gradient(to left, transparent 1vw, rgba(0,0,0,0.1) 3vw, black 7vw);
+	}
+	
+	#similarCollapsible#similarCollapsible .cardOverlayButton-br {
+		right: .3rem !important;
+		left: auto;
+	}
+	#similarCollapsible#similarCollapsible .card:not(:hover) .cardOverlayButton-br {
+		transform: translateX(calc(100% + var(--s-card-margin)));
 	}
 	
 	#similarCollapsible .cardIndicators {

@@ -30,7 +30,7 @@ t-   timings
 	--o-medium: 65%;
 	--o-heavy: 80%;
 	--o-background: 91%;
-	--o-darken: 70%;
+	--o-darken: 75%;
 	
 	--hsl-background: 0, 0%, 3%;
 	--hsl-active: 278, 45%, 57%;
@@ -62,9 +62,12 @@ t-   timings
 	--r-medium: calc(.6rem * var(--r-factor));
 	--r-large: calc(1rem * var(--r-factor));
 	--r-round: calc(9999px * var(--r-factor));
+	--r-card-buttons: calc(var(--r-large) - var(--s-card-margin));
 	
 	--s-page-pad: calc(1vw + 3rem);
 	--s-sidebar-allowance: 5rem;
+	--s-card-margin: .3rem;
+	--s-font-small: 1.3rem;
 
 	--f-default: Noto Sans,Noto Sans HK,Noto Sans JP,Noto Sans KR,Noto Sans SC,Noto Sans TC,sans-serif;
 	--f-icon: 'Material Icons Round';
@@ -170,22 +173,6 @@ h2 {
 
 .button-submit {
 	background: var(--c-accent);
-}
-
-/* Card Action Buttons */
-
-.cardOverlayButton-br {
-	right: .3rem;
-	bottom: .3rem;
-	gap: .3rem;
-}
-
-.cardOverlayButton {
-	padding: 0;
-}
-.paper-icon-button-light:hover:not(:disabled) {
-	color: var(--c-accent);
-	background-color: hsla(var(--hsl-foreground-stark), var(--o-medium));
 }
 
 /* List Items */
@@ -604,23 +591,6 @@ h2 {
 	margin-right: .5em;
 }
 
-/* blur cards on hover
-.card:hover .cardImageContainer {
-	filter: blur(1px);
-}*/
-
-/* increase darkening */
-.cardOverlayContainer {
-	background: hsla(var(--hsl-darken), var(--o-darken));
-}
-
-
-
-/* buttons */
-.playstatebutton-icon-played {
-	color: green;
-}
-
 
 
 /* CARDS */
@@ -631,8 +601,74 @@ h2 {
 	overflow: hidden;
 }
 
+/* change border for "Poster Card" layout */
 .visualCardBox .cardScalable {
 	border-radius: var(--r-large) var(--r-large) 0 0;
+}
+
+/* card darkening - uses pseudo element so that indicators stay above darkening */
+
+.cardOverlayContainer {
+	background: none;
+}
+
+.coveredImage::before {
+	content: "";
+	position: absolute;
+	bottom: 0;
+	top: 0;
+	left: 0;
+	right: 0;
+	background-color: transparent;
+	transition: background-color var(--t-quick) ease;
+}
+.card:hover .coveredImage::before {
+	background-color: hsla(var(--hsl-darken), var(--o-darken));
+}
+
+/* adjust card "hitbox" so there is less clickable empty space */
+
+.card {
+	pointer-events: none;
+}
+.card > * {
+	pointer-events: auto;
+}
+
+/* Buttons */
+
+/* Card Action Buttons */
+
+*:not(#castContent) > .card .cardOverlayButton-br {
+	left: var(--s-card-margin);
+	top: var(--s-card-margin);
+	bottom: auto !important;
+	right: auto !important;
+	gap: var(--s-card-margin);
+	background: hsla(var(--hsl-foreground-stark), var(--o-medium));
+	border-radius: var(--r-card-buttons);
+	opacity: 1;
+	transition: transform var(--t-quick) ease;
+}
+*:not(#castContent) > .card:not(:hover) .cardOverlayButton-br {
+	transform: translateX(calc(-100% - var(--s-card-margin)));
+}
+
+.cardOverlayButton {
+	padding: 0;
+	border-radius: var(--r-card-buttons);
+}
+*:not(#castContent) > .card .cardOverlayButton-br .cardOverlayButtonIcon {
+	font-size: 1.75rem !important;
+}
+
+.paper-icon-button-light:hover:not(:disabled) {
+	color: var(--c-accent);
+	background-color: hsla(var(--hsl-foreground-stark), var(--o-medium));
+}
+
+.playstatebutton-icon-played {
+	color: green;
 }
 
 /* Progress Bars */
@@ -645,7 +681,7 @@ h2 {
 	position: absolute;
 	left: .5rem;
 	right: .5rem;
-	bottom: .3rem;
+	bottom: var(--s-card-margin);
 	height: .4rem;
 	background: #0008;
 	border-radius: 99em;
@@ -670,15 +706,18 @@ h2 {
 
 /* Indicators */
 
-.cardIndicators, .listItemIndicators {
-	top: .3rem;
-	right: .3rem;
+.cardIndicators,
+.listItemIndicators {
+	top: var(--s-card-margin);
+	right: var(--s-card-margin) !important;
 }
 
 .indicator {
 	border: 0;
-	border-radius: calc(var(--r-large) - .3rem) !important;
+	border-radius: var(--r-card-buttons) !important;
 	background: hsla(var(--hsl-foreground-stark), var(--o-medium));
+	box-shadow: none;
+	font-size: var(--s-font-small);
 }
 
 /* Selection Overlay */
@@ -697,15 +736,16 @@ h2 {
 }
 
 .itemSelectionPanel .checkboxOutline {
-	top: .3rem !important;
-	left: .3rem;
-	border-radius: calc(var(--r-large) - .3rem) !important;
+	top: var(--s-card-margin) !important;
+	left: var(--s-card-margin);
+	border-radius: var(--r-card-buttons) !important;
 }
 
 /* Hide all play buttons when they are un-interactable, such as during multi selection */
 @supports selector(:has(*)) {
+	.card-hoverable:has(.itemSelectionPanel) .cardOverlayButton-br,
 	.card-hoverable:has(.itemSelectionPanel) .cardOverlayButton-hover {
-		opacity: 0;
+		display: none;
 	}
 }
 
@@ -937,257 +977,6 @@ h2 {
 [id$="Collapsible"] .listItem:hover .listItemBody + button {
 	opacity: 1;
 } *//*
-DASHBOARD
-/dashboard
-/metadata
-*/
-
-.MuiListSubheader-gutters {
-	font-size: inherit;
-}
-
-.MuiListItemText-primary {
-	font-size: inherit;
-}
-
-.MuiListItemText-secondary {
-	font-size: .875em;
-}
-
-
-/* ==-Metadata-Menus-======================================================= */
-
-.metadataEditorPage .metadataSidebarIcon {
-	color: var(--c-complementary);
-}
-
-.metadataEditorPage .jstree-default :is(.jstree-wholerow-clicked,.jstree-wholerow-hovered) {
-	background: hsla(var(--hsl-foreground), var(--o-medium)) !important;
-}
-.metadataEditorPage .jstree-wholerow-clicked ~ a {
-	color: var(--c-accent) !important;
-}
-.metadataEditorPage .jstree-wholerow-clicked ~ a .metadataSidebarIcon {
-	color: var(--c-accent) !important;
-}/*
-DIALOG
-media metadata
-*/
-
-@supports selector(:has(*)) {
-	/* TEMP */
-
-	.layout-desktop #fldDateAdded .fieldDescription,
-	.layout-desktop .seriesDisplayOrderDescription {
-		display: none;
-	}
-
-	/* Base */
-
-	html:has(body) .dialog:has(.editItemMetadataForm) {
-		width: max-content;
-		height: calc(100% - 2rem);
-	}
-
-	/* Header & Footer */
-
-	html:has(body) .formDialogHeader,
-	html:has(body) .formDialogFooter {
-		padding: 0 1rem;
-	}
-
-	.layout-desktop .dialog:has(.editItemMetadataForm) .formDialogFooter {
-		position: absolute;
-		inset: 0 0 auto auto;
-		flex-wrap: nowrap;
-		gap: 1rem;
-		flex-direction: row-reverse;
-	}
-
-	.layout-desktop .dialog:has(.editItemMetadataForm) .formDialogFooterItem {
-		flex-basis: max-content;
-		margin: 0 !important;
-	}
-
-	.layout-desktop .editItemMetadataForm {
-		width: clamp(600px, 80vw, 800px);
-		max-width: initial;
-	}
-
-	/* Lock Item Checks */
-
-	@media (width > 1400px) {
-		.layout-desktop .dialog .editItemMetadataForm {
-			padding-right: 300px;
-		}
-		
-		.layout-desktop .dialog .checkboxContainer:has(#chkLockData) {
-			position: absolute;
-			top: 7rem;
-			left: calc(50% + 250px + 3rem);
-			width: calc(300px - 3rem);
-		}
-		.layout-desktop .dialog .checkboxContainer:has(#chkLockData) + .checkboxList {
-			position: absolute;
-			top: 11rem;
-			left: calc(50% + 250px + 3rem);
-			width: calc(300px - 3rem);
-		}
-		.layout-desktop .dialog .checkboxContainer:has(#chkLockData) + .checkboxList.hide {
-			display: block !important;
-			pointer-events: none;
-			opacity: .2;
-			filter: grayscale(1);
-		}
-	}
-
-	/* Fields */
-
-	.layout-desktop .metadataFormFields {
-		font-size: 13px;
-		line-height: 1.25;
-	}
-
-	.layout-desktop .metadataFormFields:has(#fldTagline.hide) {
-		--tv-column: "date-added air-time runtime null" "air-days air-days air-days air-days"
-	}
-	.layout-desktop .metadataFormFields:has(#fldTagline:not(.hide)) {
-		--movie-column: "tagline tagline tagline tagline";
-	}
-
-	.layout-desktop .metadataFormFields > div:first-of-type {
-		display: grid;
-		grid-template-columns: repeat(4, calc(25% - .6rem));
-		grid-template-areas:
-			"header header header header"
-			"title title og-title sort-title"
-			var(--movie-column,)
-			"desc desc desc desc"
-			"date-start date-end year status"
-			var(--tv-column,)
-			"rating-official rating-custom score after-ratings"
-		;
-		gap: .6rem;
-	}
-
-	.layout-desktop .externalIds {
-		display: grid;
-		grid-template-columns: repeat(3, calc(33.3334% - .6rem));
-		gap: .6rem;
-	}
-
-	.layout-desktop .metadataFormFields .inlineForm {
-		display: contents;
-	}
-	.layout-desktop .metadataFormFields .inlineForm .inputContainer,
-	.layout-desktop .metadataFormFields .inlineForm .selectContainer {
-		margin: 0;
-	}
-
-	/* Path */
-
-	.layout-desktop #fldPath {
-		grid-area: header
-	}
-	.layout-desktop #fldPath label {
-		display: none;
-	}
-	.layout-desktop #fldPath input {
-		background: none;
-		border: none;
-		padding: 0;
-		opacity: 0.5;
-	}
-
-	/* Titles */
-
-	.layout-desktop .inputContainer:has(#txtName) {
-		grid-area: title
-	}
-	.layout-desktop #fldOriginalName {
-		grid-area: og-title
-	}
-	.layout-desktop .inputContainer:has(#txtSortName) {
-		grid-area: sort-title
-	}
-
-	/* Tagline */
-
-	.layout-desktop #fldTagline {
-		grid-area: tagline
-	}
-
-	/* Dates */
-
-	.layout-desktop #fldPremiereDate {
-		grid-area: date-start
-	}
-	.layout-desktop #fldEndDate {
-		grid-area: date-end
-	}
-	.layout-desktop #fldYear {
-		grid-area: year
-	}
-	.layout-desktop #fldPlaceOfBirth,
-	.layout-desktop #fldStatus {
-		grid-area: status
-	}
-
-	.layout-desktop #fldDateAdded {
-		grid-area: date-added
-	}
-	.layout-desktop .metadataFormFields:has(#fldEndDate.hide) #fldDateAdded {
-		grid-area: date-end;
-		grid-row: date-end / span 2;
-	}
-	.layout-desktop #fldAirTime {
-		grid-area: air-time
-	}
-	.layout-desktop #fldAirDays {
-		grid-area: air-days
-	}
-	.layout-desktop #fldAirDays p {
-		margin: 0;
-	}
-	.layout-desktop #fldAirDays .checkboxList {
-		display: flex;
-		width: fit-content;
-		gap: 1rem;
-	}
-
-	/* Ratings */
-
-	.layout-desktop #fldOfficialRating {
-		grid-area: rating-official
-	}
-	.layout-desktop #fldCustomRating {
-		grid-area: rating-custom
-	}
-	.layout-desktop #fldCommunityRating {
-		grid-area: score
-	}
-	.layout-desktop #fldCriticRating,
-	.layout-desktop #fldDisplayOrder {
-		grid-area: after-ratings
-	}
-
-	/* Misc */
-
-	.layout-desktop #fld3dFormat,
-	.layout-desktop #fldOriginalAspectRatio {
-		grid-row: -1;
-	}
-
-
-	/* Description/overview */
-
-	.layout-desktop .overviewContainer {
-		grid-area: desc;
-	}
-	.layout-desktop #txtOverview {
-		resize: vertical;
-	}
-}/*
 HOME PAGE
 /home.html
 */
@@ -1330,6 +1119,107 @@ body.hideMainDrawer .skinHeader {
 	mask: url(./assets/img/banner-light.png) left center / contain no-repeat;
 	width: 24rem;
 	height: 3rem;
+}/*
+PLAYER
+/video
+*/
+
+
+/* temp */
+
+/* .videoOsdBottom, */
+/* .osdHeader-hidden
+{
+	display: block !important;
+	opacity: 1;
+} */
+
+/* Controls */
+
+/* .osdControls {
+	display: flex;
+	flex-direction: column-reverse;
+} */
+
+
+
+/* Progress Bar */
+
+.mdl-slider-background-flex {
+	background: hsla(var(--hsl-foreground-stark), var(--o-medium));
+	padding: .2rem;
+	height: .3rem;
+	backdrop-filter: blur(1px);
+	transform: translateY(-50%);
+	margin: 0;
+}
+
+.mdl-slider-background-flex,
+.mdl-slider-background-lower,
+.mdl-slider-background-upper {
+	border-radius: 99em;
+}
+
+.mdl-slider-background-lower {
+	background: var(--c-accent);
+}
+
+.mdl-slider-background-upper {
+	background: #fff4;
+}
+
+/* Handle */
+
+.mdl-slider {
+	padding-top: .1rem;
+}
+
+/* Time Slider */
+
+.sliderBubble {
+	background: var(--g-background);
+	backdrop-filter: blur(5px);
+	border-radius: 1rem;
+}
+
+.sliderBubbleText {
+	padding: 1rem;
+}
+
+/* Next Up */
+
+.upNextContainer {
+	border-radius: var(--r-large);
+}
+
+.upNextDialog-countdownText {
+	color: var(--c-accent);
+	font-weight: inherit;
+}
+
+.upNextDialog-button {
+	background: none;
+	padding: .2em .5em;
+	text-transform: uppercase;
+	color: var(--c-accent);
+}
+.upNextDialog-button:hover {
+	background: hsla(var(--hsl-foreground-stark), var(--o-heavy));
+}
+.upNextDialog-button::before,
+.upNextDialog-button::after {
+	margin-right: .3rem;
+	font-family: var(--f-icon);
+	font-size: 2em;
+	line-height: inherit;
+}
+
+.upNextDialog-button.btnStartNow::before {
+	content: "\e044 ";
+}
+
+.upNextDialog-button.btnHide::before {
+	content: "\e5cd ";
 }/*
 MEDIA ITEM
 /details
@@ -1662,12 +1552,15 @@ html:has(#itemDetailPage:not(.hide)) .backdropImage {
 /* MORE LIKE THIS - recommended/suggestions section - only affects mouse input because it would be hell on mobile */
 
 @media (pointer: fine) {
+	#similarCollapsible .card {
+		pointer-events: auto; /* revert hitbox changes from base.css to prevent visual errors */
+	}
 	#similarCollapsible .card + .card {
 		margin-left: -4em;
-		transition: translate 0.1s ease-out;
+		transition: transform 0.1s ease-out;
 	}
 	#similarCollapsible .card:hover ~ .card {
-		translate: 3.5em 0;
+		transform: translateX(3.5em);
 	}
 	
 	#similarCollapsible .card + .card .cardScalable {
@@ -1675,6 +1568,14 @@ html:has(#itemDetailPage:not(.hide)) .backdropImage {
 	}
 	#similarCollapsible .card:not(:hover):not(:last-of-type) .cardText {
 		mask-image: linear-gradient(to left, transparent 1vw, rgba(0,0,0,0.1) 3vw, black 7vw);
+	}
+	
+	#similarCollapsible#similarCollapsible .cardOverlayButton-br {
+		right: .3rem !important;
+		left: auto;
+	}
+	#similarCollapsible#similarCollapsible .card:not(:hover) .cardOverlayButton-br {
+		transform: translateX(calc(100% + var(--s-card-margin)));
 	}
 	
 	#similarCollapsible .cardIndicators {
@@ -1840,114 +1741,6 @@ this should prevent some layout issues */
 }
 
 /*
-METADATA MANAGER
-/edititemmetadata.html
-*/
-
-.editPageSidebar {
-	left: 5rem;
-}/*
-PLAYER
-/video
-*/
-
-
-/* temp */
-
-/* .videoOsdBottom, */
-/* .osdHeader-hidden
-{
-	display: block !important;
-	opacity: 1;
-} */
-
-/* Controls */
-
-/* .osdControls {
-	display: flex;
-	flex-direction: column-reverse;
-} */
-
-
-
-/* Progress Bar */
-
-.mdl-slider-background-flex {
-	background: hsla(var(--hsl-foreground-stark), var(--o-medium));
-	padding: .2rem;
-	height: .3rem;
-	backdrop-filter: blur(1px);
-	transform: translateY(-50%);
-	margin: 0;
-}
-
-.mdl-slider-background-flex,
-.mdl-slider-background-lower,
-.mdl-slider-background-upper {
-	border-radius: 99em;
-}
-
-.mdl-slider-background-lower {
-	background: var(--c-accent);
-}
-
-.mdl-slider-background-upper {
-	background: #fff4;
-}
-
-/* Handle */
-
-.mdl-slider {
-	padding-top: .1rem;
-}
-
-/* Time Slider */
-
-.sliderBubble {
-	background: var(--g-background);
-	backdrop-filter: blur(5px);
-	border-radius: 1rem;
-}
-
-.sliderBubbleText {
-	padding: 1rem;
-}
-
-/* Next Up */
-
-.upNextContainer {
-	border-radius: var(--r-large);
-}
-
-.upNextDialog-countdownText {
-	color: var(--c-accent);
-	font-weight: inherit;
-}
-
-.upNextDialog-button {
-	background: none;
-	padding: .2em .5em;
-	text-transform: uppercase;
-	color: var(--c-accent);
-}
-.upNextDialog-button:hover {
-	background: hsla(var(--hsl-foreground-stark), var(--o-heavy));
-}
-.upNextDialog-button::before,
-.upNextDialog-button::after {
-	margin-right: .3rem;
-	font-family: var(--f-icon);
-	font-size: 2em;
-	line-height: inherit;
-}
-
-.upNextDialog-button.btnStartNow::before {
-	content: "\e044 ";
-}
-
-.upNextDialog-button.btnHide::before {
-	content: "\e5cd ";
-}/*
 PROFILE
 /mypreferencesmenu.html
 */
@@ -1989,4 +1782,262 @@ PROFILE
 		linear-gradient(-15deg, #0002, #1c1c1c44),
 		radial-gradient(circle at 20% -30%, hsla(70deg, 65%, 65%, 70%), hsla(230deg, 50%, 50%, 65%) 60%, hsla(200deg, 70%, 50%, 45%))
 		!important;
+}/*
+DASHBOARD
+/dashboard
+/metadata
+*/
+
+.MuiListSubheader-gutters {
+	font-size: inherit;
+}
+
+.MuiListItemText-primary {
+	font-size: inherit;
+}
+
+.MuiListItemText-secondary {
+	font-size: .875em;
+}
+
+
+/* ==-Metadata-Menus-======================================================= */
+
+.metadataEditorPage .metadataSidebarIcon {
+	color: var(--c-complementary);
+}
+
+.metadataEditorPage .jstree-default :is(.jstree-wholerow-clicked,.jstree-wholerow-hovered) {
+	background: hsla(var(--hsl-foreground), var(--o-medium)) !important;
+}
+.metadataEditorPage .jstree-wholerow-clicked ~ a {
+	color: var(--c-accent) !important;
+}
+.metadataEditorPage .jstree-wholerow-clicked ~ a .metadataSidebarIcon {
+	color: var(--c-accent) !important;
+}/*
+METADATA MANAGER
+/edititemmetadata.html
+*/
+
+.editPageSidebar {
+	left: 5rem;
+}/*
+DIALOG
+media metadata
+*/
+
+@supports selector(:has(*)) {
+	/* TEMP */
+
+	.layout-desktop #fldDateAdded .fieldDescription,
+	.layout-desktop .seriesDisplayOrderDescription {
+		display: none;
+	}
+
+	/* Base */
+
+	html:has(body) .dialog:has(.editItemMetadataForm) {
+		width: max-content;
+		height: calc(100% - 2rem);
+	}
+
+	/* Header & Footer */
+
+	html:has(body) .formDialogHeader,
+	html:has(body) .formDialogFooter {
+		padding: 0 1rem;
+	}
+
+	.layout-desktop .dialog:has(.editItemMetadataForm) .formDialogFooter {
+		position: absolute;
+		inset: 0 0 auto auto;
+		flex-wrap: nowrap;
+		gap: 1rem;
+		flex-direction: row-reverse;
+	}
+
+	.layout-desktop .dialog:has(.editItemMetadataForm) .formDialogFooterItem {
+		flex-basis: max-content;
+		margin: 0 !important;
+	}
+
+	.layout-desktop .editItemMetadataForm {
+		width: clamp(600px, 80vw, 800px);
+		max-width: initial;
+	}
+
+	/* Lock Item Checks */
+
+	@media (width > 1400px) {
+		.layout-desktop .dialog .editItemMetadataForm {
+			padding-right: 300px;
+		}
+		
+		.layout-desktop .dialog .checkboxContainer:has(#chkLockData) {
+			position: absolute;
+			top: 7rem;
+			left: calc(50% + 250px + 3rem);
+			width: calc(300px - 3rem);
+		}
+		.layout-desktop .dialog .checkboxContainer:has(#chkLockData) + .checkboxList {
+			position: absolute;
+			top: 11rem;
+			left: calc(50% + 250px + 3rem);
+			width: calc(300px - 3rem);
+		}
+		.layout-desktop .dialog .checkboxContainer:has(#chkLockData) + .checkboxList.hide {
+			display: block !important;
+			pointer-events: none;
+			opacity: .2;
+			filter: grayscale(1);
+		}
+	}
+
+	/* Fields */
+
+	.layout-desktop .metadataFormFields {
+		font-size: 13px;
+		line-height: 1.25;
+	}
+
+	.layout-desktop .metadataFormFields:has(#fldTagline.hide) {
+		--tv-column: "date-added air-time runtime null" "air-days air-days air-days air-days"
+	}
+	.layout-desktop .metadataFormFields:has(#fldTagline:not(.hide)) {
+		--movie-column: "tagline tagline tagline tagline";
+	}
+
+	.layout-desktop .metadataFormFields > div:first-of-type {
+		display: grid;
+		grid-template-columns: repeat(4, calc(25% - .6rem));
+		grid-template-areas:
+			"header header header header"
+			"title title og-title sort-title"
+			var(--movie-column,)
+			"desc desc desc desc"
+			"date-start date-end year status"
+			var(--tv-column,)
+			"rating-official rating-custom score after-ratings"
+		;
+		gap: .6rem;
+	}
+
+	.layout-desktop .externalIds {
+		display: grid;
+		grid-template-columns: repeat(3, calc(33.3334% - .6rem));
+		gap: .6rem;
+	}
+
+	.layout-desktop .metadataFormFields .inlineForm {
+		display: contents;
+	}
+	.layout-desktop .metadataFormFields .inlineForm .inputContainer,
+	.layout-desktop .metadataFormFields .inlineForm .selectContainer {
+		margin: 0;
+	}
+
+	/* Path */
+
+	.layout-desktop #fldPath {
+		grid-area: header
+	}
+	.layout-desktop #fldPath label {
+		display: none;
+	}
+	.layout-desktop #fldPath input {
+		background: none;
+		border: none;
+		padding: 0;
+		opacity: 0.5;
+	}
+
+	/* Titles */
+
+	.layout-desktop .inputContainer:has(#txtName) {
+		grid-area: title
+	}
+	.layout-desktop #fldOriginalName {
+		grid-area: og-title
+	}
+	.layout-desktop .inputContainer:has(#txtSortName) {
+		grid-area: sort-title
+	}
+
+	/* Tagline */
+
+	.layout-desktop #fldTagline {
+		grid-area: tagline
+	}
+
+	/* Dates */
+
+	.layout-desktop #fldPremiereDate {
+		grid-area: date-start
+	}
+	.layout-desktop #fldEndDate {
+		grid-area: date-end
+	}
+	.layout-desktop #fldYear {
+		grid-area: year
+	}
+	.layout-desktop #fldPlaceOfBirth,
+	.layout-desktop #fldStatus {
+		grid-area: status
+	}
+
+	.layout-desktop #fldDateAdded {
+		grid-area: date-added
+	}
+	.layout-desktop .metadataFormFields:has(#fldEndDate.hide) #fldDateAdded {
+		grid-area: date-end;
+		grid-row: date-end / span 2;
+	}
+	.layout-desktop #fldAirTime {
+		grid-area: air-time
+	}
+	.layout-desktop #fldAirDays {
+		grid-area: air-days
+	}
+	.layout-desktop #fldAirDays p {
+		margin: 0;
+	}
+	.layout-desktop #fldAirDays .checkboxList {
+		display: flex;
+		width: fit-content;
+		gap: 1rem;
+	}
+
+	/* Ratings */
+
+	.layout-desktop #fldOfficialRating {
+		grid-area: rating-official
+	}
+	.layout-desktop #fldCustomRating {
+		grid-area: rating-custom
+	}
+	.layout-desktop #fldCommunityRating {
+		grid-area: score
+	}
+	.layout-desktop #fldCriticRating,
+	.layout-desktop #fldDisplayOrder {
+		grid-area: after-ratings
+	}
+
+	/* Misc */
+
+	.layout-desktop #fld3dFormat,
+	.layout-desktop #fldOriginalAspectRatio {
+		grid-row: -1;
+	}
+
+
+	/* Description/overview */
+
+	.layout-desktop .overviewContainer {
+		grid-area: desc;
+	}
+	.layout-desktop #txtOverview {
+		resize: vertical;
+	}
 }
