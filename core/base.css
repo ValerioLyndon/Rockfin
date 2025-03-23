@@ -346,6 +346,17 @@ h2 {
 	padding: 0 !important;
 }
 
+/* Dropdowns with checkmarks */
+
+@supports selector(:has(*)) {
+	.actionsheetMenuItemIcon.check {
+		display: none;
+	}
+	.actionSheetMenuItem:has(.actionsheetMenuItemIcon.check:not([style])) {
+		background: hsla(var(--hsl-foreground), 100%);
+	}
+}
+
 
 
 
