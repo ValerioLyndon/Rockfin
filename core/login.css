@@ -1,11 +1,13 @@
 /*
 LOGIN PAGE
 /login.html
+/forgotpassword.html
 */
 
 /* Containers */
 
-#loginPage {
+#loginPage,
+#forgotPasswordPage {
 	display: grid;
 	place-items: center;
 	padding: 5rem !important;
@@ -14,6 +16,10 @@ LOGIN PAGE
 
 #loginPage h1 {
 	display: none !important;
+}
+#loginPage h1,
+#forgotPasswordPage h1 {
+	margin-top: 0;
 }
 
 #loginPage .cardPadder {
@@ -24,7 +30,8 @@ LOGIN PAGE
 	background: hsla(var(--hsl-foreground), var(--o-medium));
 }
 
-#loginPage > div {
+#loginPage > div,
+#forgotPasswordPage > div {
 	position: relative;
 	min-width: 26rem;
 	max-width: 40rem;
@@ -40,7 +47,8 @@ LOGIN PAGE
 
 /* Background */
 
-#loginPage::before {
+#loginPage::before,
+#forgotPasswordPage::before {
 	content: "";
 	position: absolute;
 	top: 0;
@@ -71,10 +79,12 @@ LOGIN PAGE
 	margin: 0 !important;
 }
 
-#loginPage .raised {
+#loginPage .raised,
+#forgotPasswordPage .raised {
 	margin: 1rem 0 0 !important;
 }
-#loginPage .raised:not(.button-submit) {
+#loginPage .raised:not(.button-submit),
+#forgotPasswordPage .raised {
 	background: hsla(var(--hsl-foreground), var(--o-medium));
 }
 
@@ -95,7 +105,8 @@ body.hideMainDrawer .skinHeader {
 }
 
 /* Add the logo back using a pseudo element - this is done so that it can align with the form */
-#loginPage > div::before {
+#loginPage > div::before,
+#forgotPasswordPage > div::before {
 	content: "";
 	position: absolute;
 	top: -2.3rem;
