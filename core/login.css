@@ -16,18 +16,9 @@ LOGIN PAGE
 	display: none !important;
 }
 
-#loginPage .cardPadder {
-	background: none !important;
-}
-
-#loginPage .defaultCardBackground {
-	background: hsla(var(--hsl-foreground), var(--o-medium));
-}
-
 #loginPage > div {
 	position: relative;
-	min-width: 26rem;
-	max-width: 40rem;
+	width: 28rem;
 	background: var(--c-foreground-stark);
 	border-radius: var(--r-large);
 	padding: 2rem !important;
@@ -51,19 +42,58 @@ LOGIN PAGE
 	opacity: 0.25;
 }
 
-/* User Icons */
+/* Convert User Icons into a simple button list */
 
 #loginPage #divUsers {
-	gap: 2rem;
-	justify-content: left;
+	flex-direction: column;
 }
 
 #loginPage .card {
-	width: 12rem;
+	width: auto;
+	margin-bottom: 1rem;
 }
+
 #loginPage .cardBox {
+	display: flex;
+	background: hsla(var(--hsl-foreground), var(--o-medium));
+	border-radius: calc(var(--r-small) + .5rem);
+	align-items: center;
+	padding: .5rem !important;
 	margin: 0 !important;
+	transition: background-color var(--t-quick) ease;
 }
+#loginPage .card:hover .cardBox {
+	background: var(--c-foreground);
+}
+
+#loginPage .cardScalable {
+	width: 4rem;
+}
+
+#loginPage .cardPadder {
+	background: var(--c-foreground) !important;
+	padding-bottom: 4rem;
+}
+
+#loginPage .cardScalable,
+#loginPage .cardContent,
+#loginPage .cardImageContainer {
+	border-radius: var(--r-small);
+}
+
+#loginPage .cardImageIcon {
+	font-size: 4rem;
+}
+
+#loginPage .cardFooter {
+	padding: 0 0 0 .5rem;
+	font-weight: bold;
+	transition: color var(--t-quick) ease;
+}
+#loginPage .card:hover .cardFooter {
+	color: var(--c-accent);
+}
+
 
 /* Buttons */
 
@@ -74,8 +104,19 @@ LOGIN PAGE
 #loginPage .raised {
 	margin: 1rem 0 0 !important;
 }
-#loginPage .raised:not(.button-submit) {
+#loginPage :not(.readOnlyContent) > .raised:not(.button-submit) {
 	background: hsla(var(--hsl-foreground), var(--o-medium));
+}
+#loginPage .readOnlyContent .raised {
+	padding: 0.2rem 0.5rem;
+	/* font-size: var(--s-text-small); */
+}
+#loginpage .visualLoginForm:not(.hide) ~ .readOnlyContent .raised {
+	width: fit-content;
+	text-align: left;
+}
+#loginPage .readOnlyContent .raised:hover {
+	color: var(--c-accent);
 }
 
 /* Disclaimer */

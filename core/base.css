@@ -65,6 +65,7 @@ t-   timings
 	
 	--s-page-pad: calc(1vw + 3rem);
 	--s-sidebar-allowance: 5rem;
+	--s-text-small: .85em;
 
 	--f-default: Noto Sans,Noto Sans HK,Noto Sans JP,Noto Sans KR,Noto Sans SC,Noto Sans TC,sans-serif;
 	--f-icon: 'Material Icons Round';
