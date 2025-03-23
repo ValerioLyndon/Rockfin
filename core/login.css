@@ -88,9 +88,21 @@ LOGIN PAGE
 	margin: 2rem 0 1rem;
 }
 
-/* Hide useless header - this code is a bit delicate due to the over-complicated selector... hope it doesn't break! */
-
-/* TODO: probably going to remove this and add the logo back but aligned with the login dialog */
-#reactRoot:has(#loginPage:not(.hide)) > div:not([class]) {
+/* hide the header by use of the hideMainDrawer class as I have only seen it used on the login page.
+This should be changed if found elsewhere. */
+body.hideMainDrawer .skinHeader {
 	display: none !important;
+}
+
+/* Add the logo back using a pseudo element - this is done so that it can align with the form */
+#loginPage > div::before {
+	content: "";
+	position: absolute;
+	top: -2.3rem;
+	left: 2rem;
+	background: var(--c-accent);
+	-webkit-mask: url(./assets/img/banner-light.png) left center / contain no-repeat;
+	mask: url(./assets/img/banner-light.png) left center / contain no-repeat;
+	width: 24rem;
+	height: 3rem;
 }
