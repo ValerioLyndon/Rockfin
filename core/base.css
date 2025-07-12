@@ -627,7 +627,7 @@ h2 {
 	background: none;
 }
 
-.coveredImage::before {
+.cardImageContainer.cardContent::before {
 	content: "";
 	position: absolute;
 	bottom: 0;
@@ -637,7 +637,7 @@ h2 {
 	background-color: transparent;
 	transition: background-color var(--t-quick) ease;
 }
-.card:hover .coveredImage::before {
+.card:hover .cardContent::before {
 	background-color: hsla(var(--hsl-darken), var(--o-darken));
 }
 
