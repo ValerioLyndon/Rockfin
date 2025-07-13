@@ -637,7 +637,7 @@ h2 {
 	background-color: transparent;
 	transition: background-color var(--t-quick) ease;
 }
-.card:hover .cardContent::before {
+.card-hoverable:hover .cardContent::before {
 	background-color: hsla(var(--hsl-darken), var(--o-darken));
 }
 
