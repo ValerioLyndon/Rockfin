@@ -654,7 +654,9 @@ h2 {
 
 /* Card Action Buttons */
 
-*:not(#castContent) > .card .cardOverlayButton-br {
+*:not(#castContent) > .card .cardOverlayButton-br,
+.listViewUserDataButtons {
+	position: absolute;
 	left: var(--s-card-margin);
 	top: var(--s-card-margin);
 	bottom: auto !important;
@@ -665,15 +667,27 @@ h2 {
 	opacity: 1;
 	transition: transform var(--t-quick) ease;
 }
+.listViewUserDataButtons {
+	transition: opacity var(--t-quick) ease;
+}
 *:not(#castContent) > .card:not(:hover) .cardOverlayButton-br {
 	transform: translateX(calc(-100% - var(--s-card-margin)));
 }
+*:not(#castContent) > .card:not(:hover) .cardOverlayButton-br,
+.listItem:not(:hover) .listViewUserDataButtons {
+	opacity: 0;
+}
 
-.cardOverlayButton {
+.cardOverlayButton,
+.listViewUserDataButtons .listItemButton {
 	padding: 0;
 	border-radius: var(--r-card-buttons);
 }
-*:not(#castContent) > .card .cardOverlayButton-br .cardOverlayButtonIcon {
+*:not(#castContent) > .card .cardOverlayButton-br .cardOverlayButtonIcon,
+.listViewUserDataButtons .listItemButton .material-icons {
+	width: 1.5em;
+	height: 1.5em;
+	line-height: 1.5em;
 	font-size: 1.75rem !important;
 }
 

@@ -8,6 +8,7 @@ MEDIA ITEM
 	--s-card: clamp(200px, 24vw, 500px);
 	--s-card-pad: var(--s-page-pad);
 	--s-card-allowance: calc(var(--s-card) + var(--s-card-pad) * 2);
+	--s-content-max: calc(var(--s-sidebar-allowance) + var(--s-card-allowance));
 }
 /* enabled banner */
 @supports selector(:has(*)) {
@@ -372,28 +373,64 @@ html:has(#itemDetailPage:not(.hide)) .backdropImage {
 
 
 /* Episode pages & "more from" section on library pages */
+
+@supports selector(:has(*)) {	
+	.layout-desktop #itemDetailPage #childrenCollapsible:has(.itemsContainer [data-type="Episode"])::before {
+		content: "Episodes";
+		display: block;
+		padding-bottom: .2em;
+		padding-top: .5em;	
+		font-size: 1.5em;
+		font-weight: 900;
+	}
+}
+
 .layout-desktop  #childrenCollapsible.verticalSection-extrabottompadding .itemsContainer {
 	flex-flow: row wrap;
 	padding-right: 0;
 }
 
-.layout-desktop  #childrenCollapsible.verticalSection-extrabottompadding .listItem {
+
+.layout-desktop #itemDetailPage .listItem[data-type="Episode"] {
+	padding: 0 1.5rem 1.5rem 0;
+	background: none;
 	position: relative;
 	width: 30rem;
+	flex-grow: 1;
 	overflow: visible;
 	contain: initial;
 }
 
-.layout-desktop  #childrenCollapsible.verticalSection-extrabottompadding .listItem-content {
+.layout-desktop #itemDetailPage .listItem[data-type="Episode"]:hover {
+	color: var(--c-text);
+}
+
+.layout-desktop #itemDetailPage .listItem[data-type="Episode"]:not(:hover) .listItemImageButton {
+	opacity: 0;
+}
+
+
+.layout-desktop #itemDetailPage .listItem[data-type="Episode"] .listItemImage {
+	cursor: pointer;
+	aspect-ratio: 16/9;
+}
+
+.layout-desktop #itemDetailPage .listItem[data-type="Episode"] .listItem-content {
 	flex-flow: column nowrap;
 }
 
-.layout-desktop  #childrenCollapsible.verticalSection-extrabottompadding .listItemImage {
+.layout-desktop #itemDetailPage .listItem[data-type="Episode"] .listItemImage {
 	width: 100%;
 	height: calc(30rem * 9/16);
-	border-radius: 1rem;
+	border-radius: var(--r-large);
 	margin: 0;
 	overflow: hidden;
+}
+@supports (aspect-ratio: 16/9) {
+	.layout-desktop #itemDetailPage .listItem[data-type="Episode"] .listItemImage {
+		height: auto;
+		aspect-ratio: 16/9;
+	}
 }
 
 .layout-desktop  .listItemBody {
@@ -422,15 +459,13 @@ html:has(#itemDetailPage:not(.hide)) .backdropImage {
 	contain: initial;
 }
 
-.layout-desktop  #childrenCollapsible.verticalSection-extrabottompadding .listViewUserDataButtons {
-	height: 3em;
-	margin-top: -3em;
+/* .layout-desktop  #childrenCollapsible.verticalSection-extrabottompadding .listViewUserDataButtons {
 	opacity: 0;
 	transition: opacity .2s ease;
 }
 .layout-desktop  #childrenCollapsible.verticalSection-extrabottompadding .listItem:hover .listViewUserDataButtons {
 	opacity: 1;
-}
+} */
 	
 /* descriptions */
 
